@@ -1,14 +1,25 @@
-baseURL: https://cstrnull00.github.io/
-languageCode: ko-kr
-title: cstrnull00's blog
-theme : hextra
+baseURL:  https://cstrnull00.github.io/
+title:  cstrnull00's blog
+theme:  hextra
+contentDir: "content"
+timeZone: "Asia/Seoul"
 
-module:
-  mounts:
-    - source: themes/hextra/assets
-      target: assets
-    - source: themes/hextra/layouts
-      target: layouts
-  params:
-    displayNextPrev: true
-    enableSearch: true
+outputs:
+  home: [html, rss, json]
+
+params:
+  enableSearch: false
+  navbar:
+    enableSearch: false
+
+menus:
+  main:
+    - name: "게임 리뷰"
+      url: "/review/"
+      weight: 2
+    - name: "콘텐츠 분석"
+      url: "/analysis"
+      weight: 3
+
+ignoreFiles:
+  - ".*glossary.*"

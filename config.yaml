@@ -1,5 +1,5 @@
 baseURL:  https://cstrnull00.github.io/
-title:  cstrnull00's blog
+title:  기타 의견 반려함
 theme:  hextra
 contentDir: "content"
 timeZone: "Asia/Seoul"
@@ -9,8 +9,12 @@ outputs:
 
 params:
   enableSearch: false
+  favicon: favicon.ico
   navbar:
-    enableSearch: false
+    logo:
+      path: images/logo.png
+      width: 32
+      height: 32
 
 menus:
   main:
@@ -18,8 +22,15 @@ menus:
       url: "/review/"
       weight: 2
     - name: "콘텐츠 분석"
-      url: "/analysis"
+      url: "/analysis/"
       weight: 3
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+enableGitInfo: true
 
 ignoreFiles:
   - ".*glossary.*"

@@ -3,6 +3,10 @@ date: '2026-01-28T22:17:54+09:00'
 draft: true
 title: '고스트 오브 쓰시마'
 ---
+<div class="!hx-text-xs !hx-text-gray-500">
+  {{< lastmod >}}
+</div>
+
 ![](./images/GhostOfTsushima01.png)
 
 **개발** | 서커 펀치 프로덕션(Sucker Punch Productions)  

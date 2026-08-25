@@ -4,12 +4,21 @@ theme:  hextra
 contentDir: "content"
 timeZone: "Asia/Seoul"
 
+# 테마 UI 문구를 한국어로 (themes/hextra/i18n/ko.yaml 사용)
+languageCode: "ko-KR"
+defaultContentLanguage: "ko"
+
+# json은 Hextra 검색 인덱스 전용. enableSearch가 false라 미사용 +
+# home 레이아웃에 json 템플릿이 없어 빌드 경고를 유발하므로 제외.
+# 검색을 켤 경우 json을 다시 추가할 것.
 outputs:
-  home: [html, rss, json]
+  home: [html, rss]
 
 params:
   enableSearch: false
-  favicon: favicon.ico
+  # 각 글 하단에 최종 수정일 표시 (enableGitInfo 기반)
+  displayUpdatedDate: true
+  dateFormat: "2006-01-02"
   navbar:
     logo:
       path: images/logo.png

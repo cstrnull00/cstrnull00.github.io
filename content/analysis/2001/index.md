@@ -3,9 +3,6 @@ date: '2023-10-01'
 draft: false
 title: '[콘텐츠 분석] 크루세이더 킹즈 3'
 ---
-<div class="!hx-text-xs !hx-text-gray-500">
-  {{< lastmod >}}
-</div>
 
 ![](images/CrusaderKings3.jpg)
 

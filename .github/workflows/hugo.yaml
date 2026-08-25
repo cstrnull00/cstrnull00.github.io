@@ -32,8 +32,10 @@ jobs:
         uses: peaceiris/actions-hugo@v3
         with:
           # 'latest'는 Hugo가 올라갈 때마다 빌드가 조용히 깨질 수 있어 고정.
-          # 올릴 때는 로컬에서 같은 버전으로 빌드해보고 변경할 것.
-          hugo-version: '0.165.0'
+          # 0.154.5는 로컬에서 빌드 검증된 버전.
+          # 0.165.0에서는 빌드가 실패하며 원인 미규명 상태이므로,
+          # 올릴 때는 반드시 로컬에서 같은 버전으로 빌드해보고 변경할 것.
+          hugo-version: '0.154.5'
           extended: true # Hextra는 반드시 extended 버전 필요
 
       - name: Build with Hugo

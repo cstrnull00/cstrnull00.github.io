@@ -4,7 +4,6 @@ draft: true
 ---
 
 ## 이력서
-**Phone /** ***REMOVED***\
 **Blog /** https://cstrnull00.github.io\
 **E-Mail /** thack9849@gmail.com
 

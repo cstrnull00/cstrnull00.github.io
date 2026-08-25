@@ -3,9 +3,6 @@ date: '2026-01-28T22:17:54+09:00'
 draft: true
 title: '고스트 오브 쓰시마'
 ---
-<div class="!hx-text-xs !hx-text-gray-500">
-  {{< lastmod >}}
-</div>
 
 ![](./images/GhostOfTsushima01.png)
 
@@ -23,7 +20,7 @@ title: '고스트 오브 쓰시마'
 
 ## 스토리
 
-> 진은 사무라이의 방식을 배우며 자랐습니다. 그리고 사무라이가 몽골군에 패하자, 그의 세상은 부서집니다. 진은 가장 어려운 선택을 할 수밖에 없습니다. 사무라이 정신에 기반한 명예와 전통을 유지하며 승리할 수 없는 전쟁을 할지, 아니면 사무라이의 길에서 벗어나 수단과 방법을 가리지 않고 섬과 주민을 보호할지 결정을 내려야만 합니다.<sup class="footnote"><a href="https://cstrnull00.tistory.com/2#footnote_2_1" id="footnote_link_2_1" onmouseover="tistoryFootnote.show(this, 2, 1)" onmouseout="tistoryFootnote.hide(2, 1)" style="color:#f9650d; font-family: Verdana, Sans-serif; display: inline;"><span style="display: none;">[각주:</span>1<span style="display: none;">]</span></a></sup>
+> 진은 사무라이의 방식을 배우며 자랐습니다. 그리고 사무라이가 몽골군에 패하자, 그의 세상은 부서집니다. 진은 가장 어려운 선택을 할 수밖에 없습니다. 사무라이 정신에 기반한 명예와 전통을 유지하며 승리할 수 없는 전쟁을 할지, 아니면 사무라이의 길에서 벗어나 수단과 방법을 가리지 않고 섬과 주민을 보호할지 결정을 내려야만 합니다.[^1]
 
   몽골군이라는 거대한 적의 침입을 물리치는 영웅의 서사를 가지고 있으면서도, '부시도'라는 기존의 가치관과 현실의 충돌,  위기 앞에서 방황하는 인간 군상 등을 알기 쉽게 표현하고 있다. 특히 주인공 사카이 진과 외숙부 시무라 공의 서사는 전통과 다른 새로운 것을 받아들이는 일본 문화의 일면을 제대로 통찰하고 있는 것처럼 보인다.
 
@@ -53,17 +50,17 @@ title: '고스트 오브 쓰시마'
 
  본작은 플레이하는 동안 각종 인터페이스 화면을 오래 볼 일이 없다. 전투에 들어가지 않는 한 모든 인터페이스는 노출되지 않으며, 이는 플레이어로 하여금 더욱 게임 내 세계에 몰입할 수 있도록 해준다.
 
-![](https://blog.kakaocdn.net/dna/AnDKB/btsskZZ9VpT/AAAAAAAAAAAAAAAAAAAAAPD10mCnGz8phsQF-VpUXbPaGUJJX4B6WQ0oW0p6XPb8/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=NqAeLreYQCHmlG6XJTHJPua31VA%3D)
+![](./images/GhostOfTsushima02.jpg)
 
-![](https://blog.kakaocdn.net/dna/ehJRFm/btssk8QimG2/AAAAAAAAAAAAAAAAAAAAAHJP3MhbHnRcgwxAnf2mcj663ys-tOQIBcNr-J-lPNjw/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=vNeq1P4srDaa6BYkAONzO6WdBXY%3D)
+![](./images/GhostOfTsushima03.jpg)
 
 위 스크린샷은 모두 사진 모드를 사용하지 않고 캡처하였다.
 
- 으레 인터페이스를 자제했다고 하는 다른 게임의 경우와 달리 미니맵조차 없이 깔끔한 화면 구성 덕분에 길찾기가 다소 어려워진 감은 있지만 이를 위한 시스템으로 '바람'이 있다. 듀얼센스<sup class="footnote"><a href="https://cstrnull00.tistory.com/2#footnote_2_2" id="footnote_link_2_2" onmouseover="tistoryFootnote.show(this, 2, 2)" onmouseout="tistoryFootnote.hide(2, 2)" style="color:#f9650d; font-family: Verdana, Sans-serif; display: inline;"><span style="display: none;">[각주:</span>2<span style="display: none;">]</span></a></sup>의 터치패드를 위로 스와이프하면 게임 화면에 바람이 부는듯한 효과가 일어나는데, 이 바람이 곧 목적지로 향하는 방향을 알려준다. 이러한 방식이 실내나 입체적인 공간에서 사용하기 어려운 것은 사실이나, 게임 내 지형을 대부분 개활지와 파쿠르 가능한 절벽 위주로 구성하여 몰입감이라는 장점을 극대화하기 위해 노력한 부분이 엿보인다.
+ 으레 인터페이스를 자제했다고 하는 다른 게임의 경우와 달리 미니맵조차 없이 깔끔한 화면 구성 덕분에 길찾기가 다소 어려워진 감은 있지만 이를 위한 시스템으로 '바람'이 있다. 듀얼센스[^2]의 터치패드를 위로 스와이프하면 게임 화면에 바람이 부는듯한 효과가 일어나는데, 이 바람이 곧 목적지로 향하는 방향을 알려준다. 이러한 방식이 실내나 입체적인 공간에서 사용하기 어려운 것은 사실이나, 게임 내 지형을 대부분 개활지와 파쿠르 가능한 절벽 위주로 구성하여 몰입감이라는 장점을 극대화하기 위해 노력한 부분이 엿보인다.
 
 ### 탐험
 
- 여러 플레이에 도움을 주는 인터페이스를 제거하는 가장 큰 목적 중 하나는 자연스러운 탐험의 유도일 것이다. 흔히 단순화된 오픈월드 게임의 전형의 멸칭을 소위 '유비<sup class="footnote"><a href="https://cstrnull00.tistory.com/2#footnote_2_3" id="footnote_link_2_3" onmouseover="tistoryFootnote.show(this, 2, 3)" onmouseout="tistoryFootnote.hide(2, 3)" style="color:#f9650d; font-family: Verdana, Sans-serif; display: inline;"><span style="display: none;">[각주:</span>3<span style="display: none;">]</span></a></sup>식 오픈월드'라고 하는데, 이 유비식 오픈월드의 가장 큰 특징이 바로 미니맵과 게임 내 흩뿌려진 수집 요소, 그리고 맵을 밝히는 빠른이동 포인트이기 때문에, 플레이 타임을 늘리기 위해 이러한 수집 요소를 집어넣더라도 무의미한 이동이 되지 않도록 인터페이스를 제거하고 게임 내 상호작용으로 플레이어가 직접 이러한 요소들을 찾아갈 수 있게 배치해 두었다.
+ 여러 플레이에 도움을 주는 인터페이스를 제거하는 가장 큰 목적 중 하나는 자연스러운 탐험의 유도일 것이다. 흔히 단순화된 오픈월드 게임의 전형의 멸칭을 소위 '유비[^3]식 오픈월드'라고 하는데, 이 유비식 오픈월드의 가장 큰 특징이 바로 미니맵과 게임 내 흩뿌려진 수집 요소, 그리고 맵을 밝히는 빠른이동 포인트이기 때문에, 플레이 타임을 늘리기 위해 이러한 수집 요소를 집어넣더라도 무의미한 이동이 되지 않도록 인터페이스를 제거하고 게임 내 상호작용으로 플레이어가 직접 이러한 요소들을 찾아갈 수 있게 배치해 두었다.
 
 #### 이나리 신사
 
@@ -111,11 +108,11 @@ title: '고스트 오브 쓰시마'
 
  본작의 비주얼에서 특기할 부분은 그 어느 게임보다도 입자의 표현이 사실적이라는 데 있다. 소위 AAA급 게임의 대부분이 흩날리는 낙엽이나 눈 따위를 단순 비주얼 이펙트로 구현한 반면 본작은 땅에 자라난 풀 한 줄기마다, 흩날리는 낙엽마다 입자가 살아있는 듯한 느낌을 준다. 이를 강조하려는듯 탑재된 포토 모드에도 입자 관련 옵션이 따로 존재할 정도이다.
 
-![](https://blog.kakaocdn.net/dna/wgNL0/btsshu7quEI/AAAAAAAAAAAAAAAAAAAAAKsn8FTkyjzNcVIlF1vkh-VklxQxuruL7BoKlgzqcMT0/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=6guRc3eQ7FRmJx3fzQ7wlmnWuHQ%3D)
+![](./images/GhostOfTsushima04.jpg)
 
 은행 낙엽의 표현이 매우 사실적이다.
 
-![](https://blog.kakaocdn.net/dna/pkrXt/btssquZOQdp/AAAAAAAAAAAAAAAAAAAAANvTHqj87aDpkAhJ2FxHfpob4-07XdtSL610I7I9bt5i/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=kqDZnWzyqUWrkpkVIy5hHNcjFUM%3D)
+![](./images/GhostOfTsushima05.jpg)
 
 바람이 불면 풀과 갈대가 한 방향으로 눕는 것을 관찰할 수 있다.
 
@@ -129,17 +126,17 @@ title: '고스트 오브 쓰시마'
 
  전반적으로 작품의 시대 배경인 가마쿠라 막부 시기의 갑옷과 도검 양식 등을 기반으로 하면서도, 필요하다면 과감하게 후대의 것이라도 도입하는 모습을 보여준다. 본작의 모티브가 된 여러 시대극들이 그러하듯 소위 '사무라이 뽕'을 자극하는 당세구족을 비롯한 멋진 갑옷들이 등장하면서도, 대부분의 갑옷은 당대 착용했던 오오요로이를 기반으로 하여 구현되었다.
 
-![](https://blog.kakaocdn.net/dna/cnGTQU/btssbyQ5QHI/AAAAAAAAAAAAAAAAAAAAADe9bIDOL5KRqxS9PAl1IQ5G67TmQQ7N7Umww9hKuPc6/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=T68pmj7aWtBF0eRUEGA4sYumFdg%3D)
+![](./images/GhostOfTsushima06.jpg)
 
 게임에 등장하는 '고사쿠 갑옷'. 오오요로이에 가까운 갑옷 형태이다.
 
-![](https://blog.kakaocdn.net/dna/dBOpkQ/btssgrQUQnC/AAAAAAAAAAAAAAAAAAAAACnkJ-xvnny3axgLzKrL59npupSz7ZbKkZZDLHvYF3QU/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=%2FHs4bh9d1SV1BcjImFdo%2BY8xvXk%3D)
+![](./images/GhostOfTsushima07.jpg)
 
 디렉터즈 컷에 등장하는 이키 섬에서 얻을 수 있는 사루가미 갑옷. 훨씬 후대의 갑옷인 당세구족과 비슷한 형태를 가지고 있다.
 
  한편 몽골군의 경우 다소 후대의 무기나 판타지적 요소를 많이 차용했다. 본작의 메인 보스이자 몽골군의 지휘관 코툰 칸은 당대 송나라에서 사용하던 무기인 언월도를 주력으로 사용하거나,  정예 병사들은 황금 가면을 착용하는 등 비교적 화려하게 디자인되었다. 화차의 경우도 조선 문종 때 개발된 무기라 본작의 배경에서 몽골군이 가지고 나올 수는 없지만, 게임적 허용으로 받아들일 수 있다.
 
-![](https://blog.kakaocdn.net/dna/lIHGa/btssgKo69lu/AAAAAAAAAAAAAAAAAAAAAPG6Fw-gQP5Lla6UqwbRDJmKvipN9poUiQFg_GbqTzEz/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=R2f6jabvdMmsD%2Bq8XE95Nkg2OpQ%3D)
+![](./images/GhostOfTsushima08.jpg)
 
 게임에서 얻을 수 있는 몽골군 갑옷.
 
@@ -147,13 +144,13 @@ title: '고스트 오브 쓰시마'
 
  일본 영화의 거장 구로사와 아키라 감독의 영향을 받아 흑백 필름 영화 같은 효과를 주는 이른바 '구로사와 모드'를 탑재하는 등 전반적으로 일본에서 제작된 일본 시대극의 향취가 느껴진다. 특히 여러 컷신에서 보여지는 광원과 입자의 활용은 탄탄한 스토리와 맞물려 영화와 같은 연출을 보여준다.
 
-![](https://blog.kakaocdn.net/dna/bdIdQG/btssk2o1OR7/AAAAAAAAAAAAAAAAAAAAANETT45rJuuc8PwSmKEb-dEGbnxYw4-JI-f5RB0btxwZ/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=pdv0SwWU%2B2y4Gtjr87aSdggziH8%3D)![](https://blog.kakaocdn.net/dna/dyQLV1/btssbh9DLax/AAAAAAAAAAAAAAAAAAAAAJyRNTF3mu_XYWKFd5e9stKloK71xqiXIf1CBJED4qRe/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=swd8hJJpPDzpSoXHLlgCR2fWOb0%3D)
+![](./images/GhostOfTsushima09.jpg)![](./images/GhostOfTsushima10.jpg)
 
-![](https://blog.kakaocdn.net/dna/c93Qk7/btsscFCpZgJ/AAAAAAAAAAAAAAAAAAAAAMkG_ZegHRCuWc84y7T38QxguzyR2AcP_dQsycbNfwPC/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=ukTUohDLNoi4II4GuK4nZfi8KXs%3D)![](https://blog.kakaocdn.net/dna/z4D1M/btssimVAYDL/AAAAAAAAAAAAAAAAAAAAAOWRyiGm7Z44pi6LB_YkjY3hnIWMSFkbSF52C9VFTiIS/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=wc5tfaEJcIt2xRFg%2FlgycNYNaS0%3D)
+![](./images/GhostOfTsushima11.jpg)![](./images/GhostOfTsushima12.jpg)
 
-![](https://blog.kakaocdn.net/dna/cPdPpl/btssgpr1LlH/AAAAAAAAAAAAAAAAAAAAAPmF7ABor3S8Kj8TmynkTt1TZb3glARXYK8JMrj9G7GW/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=w%2B0nTJBvzrToc58NhbW10sK1J30%3D)![](https://blog.kakaocdn.net/dna/cH98ku/btssijYTm6Z/AAAAAAAAAAAAAAAAAAAAAHFSFEKrP7EF6pVj7wh2quzFunzpnseIOdzFe6kdmYJv/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=R5zOj%2FTLkH%2B%2FZyDNe51G9Pxu8HE%3D)
+![](./images/GhostOfTsushima13.jpg)![](./images/GhostOfTsushima14.jpg)
 
-![](https://blog.kakaocdn.net/dna/bl9QIC/btsshk4RhzO/AAAAAAAAAAAAAAAAAAAAAPrLIrNUcYtu8Ts-f8Y38fJgLZcyB7t8Xpiq_vdXIXGQ/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=3T2kB4XJwtRhdfHHab%2BqZSSYxq0%3D)![](https://blog.kakaocdn.net/dna/817xu/btsshwD9MZT/AAAAAAAAAAAAAAAAAAAAAHnH7syQAQeyKEzwCkQFgyhoePEEhoraHLXG2J8ys9ZB/img.jpg?credential=yqXZFxpELC7KVnFOS48ylbz2pIh7yKj8&expires=1769871599&allow_ip=&allow_referer=&signature=ZeB78La5wqAWEBGxcH4sBHzS8oY%3D)
+![](./images/GhostOfTsushima15.jpg)![](./images/GhostOfTsushima16.jpg)
 
 ## 정리
 
@@ -177,6 +174,6 @@ title: '고스트 오브 쓰시마'
 > **총점** | ★★★★ (83 / 100)  
 > _시대극의 로망 총집합_
 
-1. https://www.playstation.com/ko-kr/games/ghost-of-tsushima/ [\[본문으로\]](https://cstrnull00.tistory.com/2#footnote_link_2_1)
-2. PS5 기준 [\[본문으로\]](https://cstrnull00.tistory.com/2#footnote_link_2_2)
-3. 유비소프트 [\[본문으로\]](https://cstrnull00.tistory.com/2#footnote_link_2_3)
+[^1]: <https://www.playstation.com/ko-kr/games/ghost-of-tsushima/>
+[^2]: PS5 기준
+[^3]: 유비소프트

@@ -1,6 +1,6 @@
 ---
 date: '2023-09-17T16:57:54+09:00'
-draft: true
+draft: false
 title: '더 위쳐 3: 와일드 헌트'
 ---
 

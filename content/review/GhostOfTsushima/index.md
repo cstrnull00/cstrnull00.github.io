@@ -1,6 +1,6 @@
 ---
 date: '2023-08-27T19:31:11+09:00'
-draft: true
+draft: false
 title: '고스트 오브 쓰시마'
 ---
 

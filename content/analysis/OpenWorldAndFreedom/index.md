@@ -1,6 +1,6 @@
 ---
 date: '2023-10-15T23:14:55+09:00'
-draft: true
+draft: false
 title: '오픈월드와 자유 上'
 ---
 

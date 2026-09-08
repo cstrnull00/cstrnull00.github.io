@@ -1,6 +1,6 @@
 ---
 date: '2023-08-30T21:25:38+09:00'
-draft: true
+draft: false
 title: '호그와트 레거시'
 ---
 

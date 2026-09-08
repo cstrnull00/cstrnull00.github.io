@@ -1,6 +1,6 @@
 ---
 date: '2023-10-08T21:30:51+09:00'
-draft: true
+draft: false
 title: '레드 데드 리뎀션 2'
 ---
 

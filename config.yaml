@@ -94,7 +94,8 @@ menu:
       url: /analysis/
       weight: 3
       params:
-        icon: archives
+        # 두 섹션은 같은 성격이므로 동일 아이콘
+        icon: categories
 
   social:
     - identifier: github

@@ -106,7 +106,11 @@
       border: none;
       padding: 0;
       cursor: pointer;
+      /* align-items 가 없으면 svg 가 버튼 상단에 붙어 8px 정도 위로 뜬다 */
       display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
       color: var(--card-text-color-secondary);
     }
 
@@ -141,4 +145,34 @@
   --card-background: #24282f;
   --accent-color: #e8edf2;
   --accent-color-darker: #c8d2dc;
+}
+
+/* compact 목록: 제목 아래에 카테고리 · 날짜를 한 줄로 좌측 정렬 */
+.article-list--compact article .article-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.article-list--compact .article-meta {
+  display: flex;
+  /* 테마 기본값이 column 이라 명시적으로 row 로 덮어야 한 줄로 놓인다 */
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.article-list--compact .article-category {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* 카테고리와 날짜 사이 구분점 (날짜가 있을 때만) */
+.article-list--compact .article-category + time::before {
+  content: "·";
+  margin-right: 6px;
+  color: var(--card-text-color-tertiary);
 }

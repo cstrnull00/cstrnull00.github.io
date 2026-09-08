@@ -19,6 +19,12 @@ params:
   # 각 글 하단에 최종 수정일 표시 (enableGitInfo 기반)
   displayUpdatedDate: true
   dateFormat: "2006-01-02"
+  # 방문 통계. 대시보드: https://cstrnull00.goatcounter.com
+  # 테마가 hugo.IsProduction으로 감싸므로 로컬 hugo server에서는 삽입되지 않음.
+  # 로컬에서 확인하려면 --environment production 과 allowLocal: true 가 필요.
+  analytics:
+    goatCounter:
+      code: cstrnull00
   navbar:
     logo:
       path: images/logo.png

@@ -25,15 +25,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive # Hextra 테마(서브모듈)를 가져오기 위해 필수
+          submodules: recursive # Stack 테마(서브모듈)를 가져오기 위해 필수
           fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           # 'latest'는 Hugo가 올라갈 때마다 빌드가 조용히 깨질 수 있어 고정.
-          # Stack 4.0.3 은 Hugo 0.157 이상을 요구하므로 상향.
-          # (main 의 Hextra 고정본은 .Site.Author 제거 때문에 0.154.5 에 묶여 있음)
+          # Stack 4.0.3 은 Hugo 0.157 이상을 요구한다.
+          # 올릴 때는 로컬에서 같은 버전으로 빌드해보고 변경할 것.
           hugo-version: '0.165.0'
           extended: true # Stack 도 extended 필요 (SCSS 트랜스파일)
 

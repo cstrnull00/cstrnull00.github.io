@@ -11,5 +11,5 @@ CLAUDE.local.md
 # Obsidian 볼트 설정
 .obsidian/
 
-# 실험 브랜치: 테마를 서브모듈이 아닌 사본으로 둠
-themes/stack/
+# Hugo 가 js.Build 용으로 자동 생성 (경로가 OS 별로 달라짐)
+assets/jsconfig.json

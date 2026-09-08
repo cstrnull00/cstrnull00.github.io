@@ -72,6 +72,11 @@
   margin-bottom: 8px;
 
   .search-form {
+    /* 테마는 위젯 검색 버튼을 60px 로 잡는다. 아이콘(18px)이 그 한가운데
+       놓이면서 우측에 27px 여백이 생겨 아이콘이 하나 더 들어갈 것처럼
+       보였으므로 아이콘 크기에 맞춘다. */
+    --button-size: 18px;
+
     /* 우측 사이드바용 카드 스타일을 벗겨 메뉴에 맞춤 */
     background: transparent;
     box-shadow: none;
@@ -89,7 +94,7 @@
     input {
       width: 100%;
       box-sizing: border-box;
-      padding: 8px 34px 8px 12px;
+      padding: 8px 38px 8px 12px;
       border-radius: 6px;
       border: 1px solid var(--card-separator-color);
       background: var(--card-background);
@@ -99,7 +104,8 @@
 
     button {
       position: absolute;
-      right: 6px;
+      /* 입력창 좌측 여백(12px)과 대칭 */
+      right: 12px;
       top: 50%;
       transform: translateY(-50%);
       background: none;

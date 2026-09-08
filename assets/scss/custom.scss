@@ -63,3 +63,82 @@
 .post-details summary { cursor: pointer; }
 .post-details-body { margin-top: 0.75rem; }
 .post-lastmod { font-size: 0.8rem; opacity: 0.6; }
+
+/* ===================================================================
+   좌측 사이드바로 옮긴 검색 폼
+   =================================================================== */
+#sidebar-search {
+  padding: 0;
+  margin-bottom: 8px;
+
+  .search-form {
+    /* 우측 사이드바용 카드 스타일을 벗겨 메뉴에 맞춤 */
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+    label { display: none; }
+
+    p {
+      margin: 0;
+      position: relative;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 8px 34px 8px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--card-separator-color);
+      background: var(--card-background);
+      color: var(--card-text-color-main);
+      font-size: 1.4rem;
+    }
+
+    button {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      color: var(--card-text-color-secondary);
+    }
+
+    button svg { width: 18px; height: 18px; }
+  }
+}
+
+/* ===================================================================
+   [데모] 배경색 / 폰트 — 아래 값만 바꾸면 사이트 전체가 바뀝니다.
+   Stack 은 모든 스타일을 CSS 변수로 두고, custom.scss 가 마지막에
+   임포트되므로 여기서 덮어쓰면 전부 반영됩니다.
+   =================================================================== */
+
+/* 한글 웹폰트. 테마 기본값 Lato 에는 한글 글리프가 없어 시스템 폰트로
+   대체되고 있었음. */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+
+:root {
+  --base-font-family: "Pretendard Variable", Pretendard, var(--sys-font-family), sans-serif;
+  --article-font-family: var(--base-font-family);
+
+  /* 배경색 (라이트) */
+  --body-background: #f2f4f7;
+  --card-background: #ffffff;
+  --accent-color: #2f4858;
+  --accent-color-darker: #24384a;
+}
+
+:root[data-scheme="dark"] {
+  /* 배경색 (다크) */
+  --body-background: #1c1f24;
+  --card-background: #24282f;
+  --accent-color: #e8edf2;
+  --accent-color-darker: #c8d2dc;
+}

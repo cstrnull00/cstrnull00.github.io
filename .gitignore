@@ -8,3 +8,6 @@ resources/
 CLAUDE.md
 CLAUDE.local.md
 .claude/launch.json
+
+# Obsidian 볼트 설정 (content/를 Obsidian으로 열면 생성됨)
+.obsidian/

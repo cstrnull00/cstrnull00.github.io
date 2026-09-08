@@ -1,10 +1,10 @@
 ---
-date: '2026-01-28T22:17:54+09:00'
+date: '2023-08-27T19:31:11+09:00'
 draft: true
 title: '고스트 오브 쓰시마'
 ---
 
-![](./images/GhostOfTsushima01.png)
+![](./images/GhostOfTsushima01.webp)
 
 **개발** | 서커 펀치 프로덕션(Sucker Punch Productions)  
 **유통** | 소니 인터랙티브 엔터테인먼트(Sony Interactive Entertainment)  
@@ -50,9 +50,9 @@ title: '고스트 오브 쓰시마'
 
  본작은 플레이하는 동안 각종 인터페이스 화면을 오래 볼 일이 없다. 전투에 들어가지 않는 한 모든 인터페이스는 노출되지 않으며, 이는 플레이어로 하여금 더욱 게임 내 세계에 몰입할 수 있도록 해준다.
 
-![](./images/GhostOfTsushima02.jpg)
+![](./images/GhostOfTsushima02.webp)
 
-![](./images/GhostOfTsushima03.jpg)
+![](./images/GhostOfTsushima03.webp)
 
 위 스크린샷은 모두 사진 모드를 사용하지 않고 캡처하였다.
 
@@ -108,11 +108,11 @@ title: '고스트 오브 쓰시마'
 
  본작의 비주얼에서 특기할 부분은 그 어느 게임보다도 입자의 표현이 사실적이라는 데 있다. 소위 AAA급 게임의 대부분이 흩날리는 낙엽이나 눈 따위를 단순 비주얼 이펙트로 구현한 반면 본작은 땅에 자라난 풀 한 줄기마다, 흩날리는 낙엽마다 입자가 살아있는 듯한 느낌을 준다. 이를 강조하려는듯 탑재된 포토 모드에도 입자 관련 옵션이 따로 존재할 정도이다.
 
-![](./images/GhostOfTsushima04.jpg)
+![](./images/GhostOfTsushima04.webp)
 
 은행 낙엽의 표현이 매우 사실적이다.
 
-![](./images/GhostOfTsushima05.jpg)
+![](./images/GhostOfTsushima05.webp)
 
 바람이 불면 풀과 갈대가 한 방향으로 눕는 것을 관찰할 수 있다.
 
@@ -126,17 +126,17 @@ title: '고스트 오브 쓰시마'
 
  전반적으로 작품의 시대 배경인 가마쿠라 막부 시기의 갑옷과 도검 양식 등을 기반으로 하면서도, 필요하다면 과감하게 후대의 것이라도 도입하는 모습을 보여준다. 본작의 모티브가 된 여러 시대극들이 그러하듯 소위 '사무라이 뽕'을 자극하는 당세구족을 비롯한 멋진 갑옷들이 등장하면서도, 대부분의 갑옷은 당대 착용했던 오오요로이를 기반으로 하여 구현되었다.
 
-![](./images/GhostOfTsushima06.jpg)
+![](./images/GhostOfTsushima06.webp)
 
 게임에 등장하는 '고사쿠 갑옷'. 오오요로이에 가까운 갑옷 형태이다.
 
-![](./images/GhostOfTsushima07.jpg)
+![](./images/GhostOfTsushima07.webp)
 
 디렉터즈 컷에 등장하는 이키 섬에서 얻을 수 있는 사루가미 갑옷. 훨씬 후대의 갑옷인 당세구족과 비슷한 형태를 가지고 있다.
 
  한편 몽골군의 경우 다소 후대의 무기나 판타지적 요소를 많이 차용했다. 본작의 메인 보스이자 몽골군의 지휘관 코툰 칸은 당대 송나라에서 사용하던 무기인 언월도를 주력으로 사용하거나,  정예 병사들은 황금 가면을 착용하는 등 비교적 화려하게 디자인되었다. 화차의 경우도 조선 문종 때 개발된 무기라 본작의 배경에서 몽골군이 가지고 나올 수는 없지만, 게임적 허용으로 받아들일 수 있다.
 
-![](./images/GhostOfTsushima08.jpg)
+![](./images/GhostOfTsushima08.webp)
 
 게임에서 얻을 수 있는 몽골군 갑옷.
 
@@ -144,13 +144,13 @@ title: '고스트 오브 쓰시마'
 
  일본 영화의 거장 구로사와 아키라 감독의 영향을 받아 흑백 필름 영화 같은 효과를 주는 이른바 '구로사와 모드'를 탑재하는 등 전반적으로 일본에서 제작된 일본 시대극의 향취가 느껴진다. 특히 여러 컷신에서 보여지는 광원과 입자의 활용은 탄탄한 스토리와 맞물려 영화와 같은 연출을 보여준다.
 
-![](./images/GhostOfTsushima09.jpg)![](./images/GhostOfTsushima10.jpg)
+![](./images/GhostOfTsushima09.webp)![](./images/GhostOfTsushima10.webp)
 
-![](./images/GhostOfTsushima11.jpg)![](./images/GhostOfTsushima12.jpg)
+![](./images/GhostOfTsushima11.webp)![](./images/GhostOfTsushima12.webp)
 
-![](./images/GhostOfTsushima13.jpg)![](./images/GhostOfTsushima14.jpg)
+![](./images/GhostOfTsushima13.webp)![](./images/GhostOfTsushima14.webp)
 
-![](./images/GhostOfTsushima15.jpg)![](./images/GhostOfTsushima16.jpg)
+![](./images/GhostOfTsushima15.webp)![](./images/GhostOfTsushima16.webp)
 
 ## 정리
 

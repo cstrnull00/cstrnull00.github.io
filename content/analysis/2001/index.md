@@ -1,10 +1,10 @@
 ---
 date: '2023-10-01'
 draft: false
-title: '[콘텐츠 분석] 크루세이더 킹즈 3'
+title: '크루세이더 킹즈 3'
 ---
 
-![](images/CrusaderKings3.jpg)
+![](./images/CrusaderKings301.webp)
 
 ## 재미 요소
 

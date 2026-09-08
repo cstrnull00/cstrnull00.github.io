@@ -4,10 +4,12 @@ resources/
 .hugo_build.lock
 
 # Claude Code 로컬 컨텍스트 (커밋 금지)
-# 슬래시 없는 패턴이라 루트/.claude/ 등 어느 위치에 있어도 매칭됨
 CLAUDE.md
 CLAUDE.local.md
 .claude/launch.json
 
-# Obsidian 볼트 설정 (content/를 Obsidian으로 열면 생성됨)
+# Obsidian 볼트 설정
 .obsidian/
+
+# 실험 브랜치: 테마를 서브모듈이 아닌 사본으로 둠
+themes/stack/

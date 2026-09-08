@@ -2,6 +2,12 @@
 date: '2023-08-30T21:25:38+09:00'
 draft: false
 title: '호그와트 레거시'
+image: images/HogwartsLegacy01.webp
+categories:
+  - 게임 리뷰
+tags:
+  - 오픈월드
+  - 액션 RPG
 ---
 
 ![](./images/HogwartsLegacy01.webp)

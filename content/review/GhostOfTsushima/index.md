@@ -2,6 +2,13 @@
 date: '2023-08-27T19:31:11+09:00'
 draft: false
 title: '고스트 오브 쓰시마'
+image: images/GhostOfTsushima01.webp
+categories:
+  - 게임 리뷰
+tags:
+  - 오픈월드
+  - 액션 어드벤처
+  - PS4
 ---
 
 ![](./images/GhostOfTsushima01.webp)

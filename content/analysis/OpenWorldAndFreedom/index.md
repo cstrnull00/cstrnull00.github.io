@@ -2,6 +2,12 @@
 date: '2023-10-15T23:14:55+09:00'
 draft: false
 title: '오픈월드와 자유 上'
+image: images/OpenWorldAndFreedom01.webp
+categories:
+  - 콘텐츠 분석
+tags:
+  - 오픈월드
+  - 콘텐츠 분석
 ---
 
 ![](./images/OpenWorldAndFreedom01.webp)

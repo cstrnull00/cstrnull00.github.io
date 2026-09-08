@@ -1,0 +1,8 @@
+{{- $title := .Get "title" | default "더보기" -}}
+{{- $closed := eq (.Get "closed") "true" -}}
+<details class="post-details" {{ if not $closed }}open{{ end }}>
+  <summary><strong>{{ $title | markdownify }}</strong></summary>
+  <div class="post-details-body">
+    {{ .InnerDeindent | markdownify }}
+  </div>
+</details>

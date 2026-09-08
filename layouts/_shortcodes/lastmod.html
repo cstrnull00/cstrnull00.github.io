@@ -1,3 +1,1 @@
-<span class="hx:block hx:mt-6 hx:text-xs hx:text-gray-500 hx:dark:text-gray-400">
-  {{- .Page.Lastmod | time.Format (site.Params.dateFormat | default "2006-01-02") -}}
-</span>
+<span class="post-lastmod">{{ .Page.Lastmod | time.Format (site.Params.dateFormat.lastUpdated | default "2006-01-02") }}</span>

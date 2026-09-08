@@ -2,6 +2,12 @@
 date: '2023-10-01'
 draft: false
 title: '크루세이더 킹즈 3'
+image: images/CrusaderKings301.webp
+categories:
+  - 콘텐츠 분석
+tags:
+  - 시뮬레이션
+  - 콘텐츠 분석
 ---
 
 ![](./images/CrusaderKings301.webp)

@@ -1,0 +1,65 @@
+/* 인물 비교표 (용과 같이 7)
+   원본의 colspan/rowspan을 살리기 위해 본문에 HTML 표로 작성했고,
+   전신샷이 본문 폭까지 늘어나지 않도록 여기서 높이를 제한한다. */
+.yakuza-compare {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.yakuza-compare th,
+.yakuza-compare td {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+[data-scheme='dark'] .yakuza-compare th,
+[data-scheme='dark'] .yakuza-compare td {
+  border-color: #374151;
+}
+
+.yakuza-compare th {
+  font-weight: 600;
+  background-color: #f9fafb;
+}
+
+[data-scheme='dark'] .yakuza-compare th {
+  background-color: #1f2937;
+}
+
+/* 전신샷: 세로로 긴 이미지라 높이 기준으로 제한 */
+.yakuza-compare img {
+  display: block;
+  margin: 0 auto 0.5rem;
+  max-height: 260px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* 좁은 화면에서는 더 작게 */
+@media (max-width: 640px) {
+  .yakuza-compare {
+    font-size: 0.8rem;
+  }
+  .yakuza-compare img {
+    max-height: 150px;
+  }
+  .yakuza-compare th,
+  .yakuza-compare td {
+    padding: 0.35rem 0.4rem;
+  }
+}
+
+/* Stack 용 추가: details / lastmod */
+.post-details {
+  border: 1px solid var(--card-separator-color, #e5e7eb);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin: 1.5rem 0;
+}
+.post-details summary { cursor: pointer; }
+.post-details-body { margin-top: 0.75rem; }
+.post-lastmod { font-size: 0.8rem; opacity: 0.6; }

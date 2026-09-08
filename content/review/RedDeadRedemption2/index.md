@@ -2,6 +2,12 @@
 date: '2023-10-08T21:30:51+09:00'
 draft: false
 title: '레드 데드 리뎀션 2'
+image: images/RedDeadRedemption201.webp
+categories:
+  - 게임 리뷰
+tags:
+  - 오픈월드
+  - 서사
 ---
 
 ![](./images/RedDeadRedemption201.webp)

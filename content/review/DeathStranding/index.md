@@ -2,6 +2,12 @@
 date: '2023-09-10T21:30:26+09:00'
 draft: false
 title: '데스 스트랜딩'
+image: images/DeathStranding01.webp
+categories:
+  - 게임 리뷰
+tags:
+  - 오픈월드
+  - 코지마 히데오
 ---
 
 ![](./images/DeathStranding01.webp)

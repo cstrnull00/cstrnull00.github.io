@@ -2,6 +2,12 @@
 date: '2023-09-17T16:57:54+09:00'
 draft: false
 title: '더 위쳐 3: 와일드 헌트'
+image: images/Witcher301.webp
+categories:
+  - 게임 리뷰
+tags:
+  - 오픈월드
+  - RPG
 ---
 
 ![](./images/Witcher301.webp)

@@ -1,51 +1,117 @@
-baseURL:  https://cstrnull00.github.io/
-title:  기타 의견 반려함
-theme:  hextra
-contentDir: "content"
-timeZone: "Asia/Seoul"
+baseURL: https://cstrnull00.github.io/
+title: 기타 의견 반려함
+theme: stack
 
-# 테마 UI 문구를 한국어로 (themes/hextra/i18n/ko.yaml 사용)
-languageCode: "ko-KR"
+locale: "ko-kr"
 defaultContentLanguage: "ko"
-
-# json은 Hextra 검색 인덱스 전용. enableSearch가 false라 미사용 +
-# home 레이아웃에 json 템플릿이 없어 빌드 경고를 유발하므로 제외.
-# 검색을 켤 경우 json을 다시 추가할 것.
-outputs:
-  home: [html, rss]
-
-params:
-  enableSearch: false
-  # 각 글 하단에 최종 수정일 표시 (enableGitInfo 기반)
-  displayUpdatedDate: true
-  dateFormat: "2006-01-02"
-  # 방문 통계. 대시보드: https://cstrnull00.goatcounter.com
-  # 테마가 hugo.IsProduction으로 감싸므로 로컬 hugo server에서는 삽입되지 않음.
-  # 로컬에서 확인하려면 --environment production 과 allowLocal: true 가 필요.
-  analytics:
-    goatCounter:
-      code: cstrnull00
-  navbar:
-    logo:
-      path: images/logo.png
-      width: 32
-      height: 32
-
-menus:
-  main:
-    - name: "게임 리뷰"
-      url: "/review/"
-      weight: 2
-    - name: "콘텐츠 분석"
-      url: "/analysis/"
-      weight: 3
-
-markup:
-  goldmark:
-    renderer:
-      unsafe: true
+# CJK 언어일 때 .Summary / .WordCount 가 올바르게 동작하도록
+hasCJKLanguage: true
+timeZone: "Asia/Seoul"
 
 enableGitInfo: true
 
 ignoreFiles:
   - ".*glossary.*"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    noClasses: false
+  tableOfContents:
+    endLevel: 4
+    ordered: true
+    startLevel: 2
+
+outputs:
+  home: [html, rss, json]
+
+pagination:
+  pagerSize: 6
+
+params:
+  # Hextra 는 섹션 트리를, Stack 은 이 목록을 글 모음으로 본다
+  mainSections:
+    - review
+    - analysis
+  rssFullContent: true
+  favicon: /favicon.ico
+
+  footer:
+    since: 2023
+
+  dateFormat:
+    published: "2006-01-02"
+    lastUpdated: "2006-01-02"
+
+  sidebar:
+    compact: false
+    emoji: "🎮"
+    subtitle: "게임 시스템 기획자의 리뷰와 콘텐츠 분석"
+    avatar: img/avatar.png
+
+  article:
+    math: false
+    toc: true
+    readingTime: true
+    license:
+      enabled: false
+
+  # 좌측/우측 위젯 — 카테고리·아카이브 자동 생성이 Stack 의 강점
+  widgets:
+    homepage:
+      - type: search
+      - type: archives
+        params:
+          limit: 10
+      - type: categories
+        params:
+          limit: 10
+      - type: tag-cloud
+        params:
+          limit: 20
+    page:
+      - type: toc
+
+  colorScheme:
+    toggle: true
+    default: auto
+
+  imageProcessing:
+    content:
+      enabled: true
+    thumbnail:
+      enabled: true
+
+  comments:
+    enabled: false
+
+menu:
+  main:
+    - identifier: home
+      name: 홈
+      url: /
+      weight: 1
+      params:
+        icon: home
+        newTab: false
+    - identifier: review
+      name: 게임 리뷰
+      url: /review/
+      weight: 2
+      params:
+        icon: categories
+    - identifier: analysis
+      name: 콘텐츠 분석
+      url: /analysis/
+      weight: 3
+      params:
+        icon: archives
+
+  social:
+    - identifier: github
+      name: GitHub
+      url: https://github.com/cstrnull00
+      params:
+        icon: brand-github

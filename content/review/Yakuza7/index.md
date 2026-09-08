@@ -2,6 +2,12 @@
 date: '2023-09-24T23:34:32+09:00'
 draft: false
 title: '용과 같이 7: 빛과 어둠의 행방'
+image: images/Yakuza701.webp
+categories:
+  - 게임 리뷰
+tags:
+  - 턴제 RPG
+  - 용과 같이
 ---
 
 ![](./images/Yakuza701.webp)

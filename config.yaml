@@ -74,6 +74,13 @@ params:
   comments:
     enabled: false
 
+  # 방문 통계. 대시보드: https://cstrnull00.goatcounter.com
+  # Stack 은 GoatCounter 를 기본 지원하지 않아
+  # layouts/_partials/head/custom.html 에서 직접 삽입한다.
+  analytics:
+    goatCounter:
+      code: cstrnull00
+
 menu:
   main:
     - identifier: home

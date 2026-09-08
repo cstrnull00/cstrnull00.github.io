@@ -1,0 +1,8 @@
+{{/* GoatCounter. Stack 은 Google Analytics 만 기본 지원하므로 여기에 직접 넣는다.
+     대시보드: https://cstrnull00.goatcounter.com */}}
+{{- if hugo.IsProduction -}}
+  {{- with site.Params.analytics.goatCounter.code -}}
+    <script data-goatcounter="https://{{ . }}.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+  {{- end -}}
+{{- end -}}

@@ -180,3 +180,12 @@
   margin-right: 6px;
   color: var(--card-text-color-tertiary);
 }
+
+/* 좌측 메뉴 하단 목록(검색 · 다크모드)의 숫자 마커 제거.
+   테마는 #main-menu 에만 list-style: none 을 주고, 중첩된 ol 은
+   padding-left: 0 으로 마커를 잘라내는 방식이라 모바일에서
+   flex-direction: column 이 되면 "1." 이 보인다. */
+#main-menu .menu-bottom-section ol,
+#main-menu .menu-bottom-section ol > li {
+  list-style: none;
+}

@@ -1,9 +1,9 @@
 ---
-excludeSearch: true
+title: "이력서"
 draft: true
+# mainSections 에 없으므로 글 목록·검색 인덱스에는 잡히지 않는다.
 ---
 
-## 이력서
 **Blog /** https://cstrnull00.github.io\
 **E-Mail /** thack9849@gmail.com
 

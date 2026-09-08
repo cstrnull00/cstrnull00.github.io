@@ -10,8 +10,6 @@ tags:
   - RPG
 ---
 
-![](./images/Witcher301.webp)
-
 **개발** | CD 프로젝트 레드(CD PROJEKT RED)  
 **유통** | 반다이 남코(Bandai Namco)  
 **출시** | 2015년 5월 18일 / 2019년 10월 15일  

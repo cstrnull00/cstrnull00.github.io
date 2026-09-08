@@ -11,8 +11,6 @@ tags:
   - PS4
 ---
 
-![](./images/GhostOfTsushima01.webp)
-
 **개발** | 서커 펀치 프로덕션(Sucker Punch Productions)  
 **유통** | 소니 인터랙티브 엔터테인먼트(Sony Interactive Entertainment)  
 **출시** | 2020년 7월 17일 / 2021년 8월 20일(디렉터스 컷)  

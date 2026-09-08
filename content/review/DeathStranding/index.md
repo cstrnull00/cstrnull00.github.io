@@ -10,8 +10,6 @@ tags:
   - 코지마 히데오
 ---
 
-![](./images/DeathStranding01.webp)
-
 **개발** | 코지마 프로덕션(Kojima Productions)  
 **유통** | 소니 인터랙티브 엔터테인먼트(Sony Interactive Entertainment) / 505 게임즈(505 Games)  
 **출시** | 2019년 11월 8일 / 2020년 7월 14일 / 2021년 9월 24일(디렉터스 컷) / 2022년 3월 30일(디렉터스 컷)  

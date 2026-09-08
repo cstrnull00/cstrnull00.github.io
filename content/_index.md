@@ -1,5 +1,5 @@
 ---
-layout: cover
+title: "기타 의견 반려함"
 ---
 
 ### About

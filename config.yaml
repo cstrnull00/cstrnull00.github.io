@@ -24,9 +24,6 @@ markup:
     ordered: true
     startLevel: 2
 
-outputs:
-  home: [html, rss, json]
-
 pagination:
   pagerSize: 6
 
@@ -47,7 +44,6 @@ params:
 
   sidebar:
     compact: false
-    emoji: "🎮"
     subtitle: "게임 시스템 기획자의 리뷰와 콘텐츠 분석"
     avatar: img/avatar.png
 

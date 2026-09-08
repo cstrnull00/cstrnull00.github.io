@@ -10,8 +10,6 @@ tags:
   - 서사
 ---
 
-![](./images/RedDeadRedemption201.webp)
-
 **개발** | 락스타 스튜디오(Rockstar Studio)  
 **유통** | 락스타 게임즈(Rockstar Games)  
 **출시** | 2018년 10월 26일 / 2019년 11월 5일  

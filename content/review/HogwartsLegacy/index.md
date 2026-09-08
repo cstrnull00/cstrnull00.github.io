@@ -10,8 +10,6 @@ tags:
   - 액션 RPG
 ---
 
-![](./images/HogwartsLegacy01.webp)
-
 **개발** | 아발란체 소프트웨어(Avalanche Software)  
 **유통** | 포트키 게임즈(Portkey Games) / 워너 브라더스 인터랙티브 엔터테인먼트(Warner Bros. Interactive Entertainment)  
 **출시** | 2023년 2월 10일 / 2023년 2월 11일 / 2023년 5월 5일 / 2023년 11월 14일

@@ -323,8 +323,11 @@
   font-variant-numeric: tabular-nums;
 }
 
-.played-col-rev,
-.played-col-src {
+/* .played-table td 가 text-align: left 를 주고 그쪽이 더 구체적이라
+   클래스만으로는 덮이지 않는다. td/th 를 붙여 구체성을 맞춘다. */
+.played-table td.played-col-rev,
+.played-table td.played-col-src,
+.played-table th.played-col-src {
   text-align: center;
 }
 

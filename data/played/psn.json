@@ -1,11 +1,11 @@
 {
   "platform": "psn",
-  "updated": "2026-09-09T07:56:57.724Z",
-  "minMinutes": 0,
+  "updated": "2026-09-09T07:58:57.959Z",
+  "minMinutes": 120,
   "ownedGames": 63,
-  "listedGames": 56,
+  "listedGames": 48,
   "unknownDuration": 0,
-  "totalMinutes": 117367,
+  "totalMinutes": 116938,
   "games": [
     {
       "titleId": "PPSA27360_00",
@@ -438,78 +438,6 @@
       "icon": "https://image.api.playstation.com/gs2-sec/acpkgo/prod/CUSA04551_00/2/i_cdee925ec8ea903fb9f7f6eda4471a56c2e6cd32c495ee44f04e7ac082c0ae21/i/icon0.png",
       "category": "unknown",
       "conceptId": "217551"
-    },
-    {
-      "titleId": "PPSA02584_00",
-      "name": "원신-스네즈나야 오픈",
-      "minutes": 84,
-      "lastPlayed": "2024-02-29T08:40:40.170000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202608/0109/e6dd45eda94eca072e057ea3fa2d0f5964a56bde42fb2f0d.png",
-      "category": "ps5_native_game",
-      "conceptId": "10000896"
-    },
-    {
-      "titleId": "CUSA16170_00",
-      "name": "FINAL FANTASY VII REMAKE",
-      "minutes": 76,
-      "lastPlayed": "2021-09-11T07:44:09.130000Z",
-      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA07187_00/5/i_3a90c0e006f2193b1adc12b9424372f4044439cadd6d91fda06c0a86c9c6acf2/i/icon0.png",
-      "category": "ps4_game",
-      "conceptId": "228744"
-    },
-    {
-      "titleId": "PPSA02198_00",
-      "name": "스타워즈 제다이: 오더의 몰락™",
-      "minutes": 65,
-      "lastPlayed": "2025-04-13T07:21:36.120000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202012/1013/DKYIpVhskEQ4jbzr1PVxsO0Z.png",
-      "category": "ps5_native_game",
-      "conceptId": "232345"
-    },
-    {
-      "titleId": "CUSA06134_00",
-      "name": "나루토 -질풍전- 나루티밋 스톰 4",
-      "minutes": 64,
-      "lastPlayed": "2023-01-27T12:56:21.760000Z",
-      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA02957_00/2/i_eed0db94972c44c3bf58c244f72bd0b00c4a123f61574817ad14e5a695836f8a/i/icon0_09.png",
-      "category": "ps4_game",
-      "conceptId": "212870"
-    },
-    {
-      "titleId": "PPSA05753_00",
-      "name": "매트릭스 어웨이큰스: 언리얼 엔진 5 익스피어리언스",
-      "minutes": 52,
-      "lastPlayed": "2021-12-11T04:42:16.810000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202111/3023/2Xx5zJZOqDPuGZxQMf68YNaV.png",
-      "category": "ps5_native_game",
-      "conceptId": "10004087"
-    },
-    {
-      "titleId": "PPSA15890_00",
-      "name": "P의 거짓",
-      "minutes": 34,
-      "lastPlayed": "2023-06-10T12:46:26.580000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202305/2308/06b354c8015b3c71e54f43aa883aab4641285d4a91734681.png",
-      "category": "ps5_native_game",
-      "conceptId": "10006052"
-    },
-    {
-      "titleId": "PPSA25915_00",
-      "name": "디지몬 스토리 타임 스트레인저",
-      "minutes": 28,
-      "lastPlayed": "2025-09-12T12:53:10.370000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202505/1402/1f3c429abe5a0108581297cf0bfef91bbf1981903d620b44.png",
-      "category": "ps5_native_game",
-      "conceptId": "10011861"
-    },
-    {
-      "titleId": "CUSA01982_00",
-      "name": "Journey",
-      "minutes": 26,
-      "lastPlayed": "2020-11-05T01:32:34.860000Z",
-      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202010/2917/Cj8ngIRc3MB1uhNR40BQhzXv.png",
-      "category": "unknown",
-      "conceptId": "202276"
     }
   ]
 }

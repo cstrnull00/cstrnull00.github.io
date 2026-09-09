@@ -194,10 +194,10 @@
    data/played/steam.json 을 표로 렌더한다. */
 .played-notice,
 .played-empty {
-  padding: 0.6rem 0.9rem;
+  padding: 0.6em 0.9em;
   border-left: 3px solid #d97706;
   background-color: rgba(217, 119, 6, 0.08);
-  font-size: 0.9rem;
+  font-size: 0.9em;
 }
 
 /* hidden 속성이 테마 CSS 에 밀리지 않도록 */
@@ -212,7 +212,7 @@
 
 .played-table thead th[data-sort] button {
   width: 100%;
-  padding: 0.55rem 0.5rem;
+  padding: 0.55em 0.5em;
   border: 0;
   background: transparent;
   color: inherit;
@@ -222,7 +222,7 @@
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.3em;
   white-space: nowrap;
 }
 
@@ -251,8 +251,8 @@
 
 /* 리뷰 열은 대부분 비어 있다. 배지만 가운데 놓되 좌우는 좁게. */
 .played-col-rev {
-  padding-left: 0.4rem;
-  padding-right: 0.4rem;
+  padding-left: 0.4em;
+  padding-right: 0.4em;
 }
 
 .played-table tr.is-hidden {
@@ -262,14 +262,14 @@
 .played-more {
   display: block;
   width: 100%;
-  margin-top: 0.2rem;
-  padding: 0.5rem;
+  margin-top: 0.2em;
+  padding: 0.6em;
   border: 1px dashed var(--card-separator-color, rgba(127, 127, 127, 0.35));
   border-radius: 4px;
   background: transparent;
   color: var(--card-text-color-secondary);
   font: inherit;
-  font-size: 0.85rem;
+  font-size: 0.9em;
   cursor: pointer;
 }
 
@@ -280,7 +280,7 @@
 }
 
 .played-summary {
-  font-size: 0.9rem;
+  font-size: 0.9em;
   color: var(--card-text-color-secondary);
 }
 
@@ -291,14 +291,14 @@
 .played-table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1rem 0;
-  font-size: 0.92rem;
+  margin: 1em 0;
+  font-size: 0.95em;
 }
 
 .played-table th,
 .played-table td {
   border-bottom: 1px solid #e5e7eb;
-  padding: 0.55rem 0.5rem;
+  padding: 0.55em 0.5em;
   text-align: left;
   vertical-align: middle;
 }
@@ -335,7 +335,7 @@
   width: 32px;
   height: 32px;
   border-radius: 3px;
-  margin-right: 0.5rem;
+  margin-right: 8px;
   vertical-align: middle;
 }
 
@@ -391,11 +391,11 @@
 .played-badge {
   display: inline-block;
   text-decoration: none;
-  padding: 0.2rem 0.55rem;
+  padding: 0.2em 0.55em;
   border-radius: 4px;
   /* 제목 옆에 끼어 있을 때는 작아야 했지만, 전용 열로 옮긴 뒤에는
      본문과 비슷한 크기여야 읽힌다. */
-  font-size: 0.85rem;
+  font-size: 0.8em;
   line-height: 1.4;
   background-color: var(--accent-color);
   color: var(--accent-color-text);
@@ -404,13 +404,13 @@
 
 @media (max-width: 560px) {
   .played-table {
-    font-size: 0.85rem;
+    font-size: 0.9em;
   }
 
   .played-icon {
     width: 24px;
     height: 24px;
-    margin-right: 0.4rem;
+    margin-right: 6px;
   }
 
   /* 5열은 좁은 화면에 안 들어간다. 장식인 출처 로고 열을 접는다. */

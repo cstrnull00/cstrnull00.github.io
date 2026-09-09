@@ -1,52 +1,569 @@
 {
-  "sample": true,
-  "updated": "2026-09-09T00:00:00.000Z",
+  "updated": "2026-09-09T05:38:46.534Z",
   "minMinutes": 120,
-  "ownedGames": 6,
-  "listedGames": 6,
-  "totalMinutes": 41820,
+  "ownedGames": 112,
+  "listedGames": 80,
+  "totalMinutes": 208358,
   "games": [
     {
       "appid": 1158310,
       "name": "Crusader Kings III",
-      "minutes": 14760,
-      "lastPlayed": "2026-06-14T00:00:00.000Z",
-      "icon": null
+      "minutes": 36904,
+      "lastPlayed": "2026-07-05T02:30:39.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1158310/8a0d88dfaff790ea1aa2b9fcf50d4e3b4f49cf56.jpg"
+    },
+    {
+      "appid": 255710,
+      "name": "Cities: Skylines",
+      "minutes": 25059,
+      "lastPlayed": "2023-03-06T12:43:17.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/255710/6cf7b10dd29db28448ef79698ed2118a03617d63.jpg"
+    },
+    {
+      "appid": 8930,
+      "name": "Sid Meier's Civilization V",
+      "minutes": 15541,
+      "lastPlayed": "2020-03-02T11:22:31.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/8930/fbe80c4743e226f0bf65559c91b12953d4446808.jpg"
+    },
+    {
+      "appid": 271590,
+      "name": "Grand Theft Auto V Legacy",
+      "minutes": 8552,
+      "lastPlayed": "2020-11-30T08:54:12.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/271590/1e72f87eb927fa1485e68aefaff23c7fd7178251.jpg"
+    },
+    {
+      "appid": 578080,
+      "name": "PUBG: BATTLEGROUNDS",
+      "minutes": 7341,
+      "lastPlayed": "2026-03-04T06:32:18.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/578080/609f27278aa70697c13bf99f32c5a0248c381f9d.jpg"
+    },
+    {
+      "appid": 1086940,
+      "name": "Baldur's Gate 3",
+      "minutes": 6592,
+      "lastPlayed": "2025-01-04T05:03:57.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1086940/d866cae7ea1e471fdbc206287111f1b642373bd9.jpg"
+    },
+    {
+      "appid": 582010,
+      "name": "Monster Hunter: World",
+      "minutes": 5706,
+      "lastPlayed": "2021-02-11T08:27:24.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/582010/6ec147f2d423f435e15eb79b3d82f771913de634.jpg"
+    },
+    {
+      "appid": 2483190,
+      "name": "Forza Horizon 6",
+      "minutes": 5572,
+      "lastPlayed": "2026-07-22T11:47:53.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/2483190/55a14aaa3f5ef5367225f3099ce564462f15b171.jpg"
     },
     {
       "appid": 292030,
-      "name": "The Witcher 3: Wild Hunt",
-      "minutes": 9300,
-      "lastPlayed": "2025-11-02T00:00:00.000Z",
-      "icon": null
+      "name": "The Witcher 3: Wild Hunt - Complete Edition",
+      "minutes": 5426,
+      "lastPlayed": "2022-12-16T11:23:53.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/292030/7b52d11edee478d652ef4e7103e00644bed2c74c.jpg"
     },
     {
-      "appid": 1174180,
-      "name": "Red Dead Redemption 2",
-      "minutes": 7620,
-      "lastPlayed": "2025-08-21T00:00:00.000Z",
-      "icon": null
+      "appid": 1091500,
+      "name": "Cyberpunk 2077",
+      "minutes": 4983,
+      "lastPlayed": "2026-04-15T07:18:44.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1091500/6897c3848f3e0350d512f59d5bae174a1e3739f9.jpg"
     },
     {
       "appid": 1771300,
       "name": "Kingdom Come: Deliverance II",
-      "minutes": 5400,
-      "lastPlayed": "2026-08-30T00:00:00.000Z",
-      "icon": null
+      "minutes": 4840,
+      "lastPlayed": "2026-04-09T03:01:30.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1771300/80e8d75b87433627cafd2a1bcbb5b9f5741e2277.jpg"
     },
     {
-      "appid": 990080,
-      "name": "Hogwarts Legacy",
-      "minutes": 3120,
-      "lastPlayed": "2024-03-11T00:00:00.000Z",
-      "icon": null
+      "appid": 812140,
+      "name": "Assassin's Creed Odyssey",
+      "minutes": 4586,
+      "lastPlayed": "2025-10-27T06:11:22.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/812140/4b6cf0715b30669411bf204bce7ed99a9c84671b.jpg"
     },
     {
-      "appid": 1235140,
-      "name": "Yakuza: Like a Dragon",
-      "minutes": 1620,
-      "lastPlayed": null,
-      "icon": null
+      "appid": 529340,
+      "name": "Victoria 3",
+      "minutes": 4349,
+      "lastPlayed": "2023-05-27T00:33:35.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/529340/da7eddaef804905207eaf0ba9580b5026385f041.jpg"
+    },
+    {
+      "appid": 227300,
+      "name": "Euro Truck Simulator 2",
+      "minutes": 4018,
+      "lastPlayed": "2023-04-28T22:24:07.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/227300/adc18a4fc9adc0330144b76d61cbda68bb2394a0.jpg"
+    },
+    {
+      "appid": 465650,
+      "name": "Out of the Park Baseball 18",
+      "minutes": 3922,
+      "lastPlayed": "2018-10-14T05:16:37.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/465650/5cf3579096110d19fa6a3db0c20a185d7e723fef.jpg"
+    },
+    {
+      "appid": 619290,
+      "name": "Out of the Park Baseball 19",
+      "minutes": 3602,
+      "lastPlayed": "2019-03-01T11:30:57.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/619290/8c5b9bc8054b61255f0427b5a3a1ec59d7563f26.jpg"
+    },
+    {
+      "appid": 582160,
+      "name": "Assassin's Creed Origins",
+      "minutes": 3283,
+      "lastPlayed": "2020-06-28T10:09:13.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/582160/dff3a53f93d39f1e0432ec4f22d31c12aeefa36f.jpg"
+    },
+    {
+      "appid": 949230,
+      "name": "Cities: Skylines II",
+      "minutes": 3148,
+      "lastPlayed": "2025-08-25T13:35:32.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/949230/2dfa1f3e740ae5300bf59e9a14066391dab4727a.jpg"
+    },
+    {
+      "appid": 703080,
+      "name": "Planet Zoo",
+      "minutes": 3048,
+      "lastPlayed": "2024-12-08T00:22:06.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/703080/68c7a610498955f547b0ece0aff081d23f2025b5.jpg"
+    },
+    {
+      "appid": 48190,
+      "name": "Assassin's Creed Brotherhood",
+      "minutes": 2945,
+      "lastPlayed": "2016-03-27T09:18:08.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/48190/6a87d0b61e45e8075decd1f8ace549300b036a52.jpg"
+    },
+    {
+      "appid": 242050,
+      "name": "Assassin's Creed IV Black Flag",
+      "minutes": 2326,
+      "lastPlayed": "2017-09-08T07:15:11.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/242050/a03c06290af00eed66814815663b68f5fd063882.jpg"
+    },
+    {
+      "appid": 368500,
+      "name": "Assassin's Creed Syndicate",
+      "minutes": 2187,
+      "lastPlayed": "2017-09-07T00:14:36.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/368500/4f67f650e621319029fa884755dbd89a2d7076f6.jpg"
+    },
+    {
+      "appid": 203770,
+      "name": "Crusader Kings II",
+      "minutes": 2174,
+      "lastPlayed": "2020-06-29T23:32:28.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/203770/56e9c15cbeb6c1f873f7f1dc757bae7618861484.jpg"
+    },
+    {
+      "appid": 435150,
+      "name": "Divinity: Original Sin 2",
+      "minutes": 1968,
+      "lastPlayed": "2023-08-16T09:57:34.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/435150/519a99caef7c5e2b4625c8c2fa0620fb66a752f3.jpg"
+    },
+    {
+      "appid": 3751260,
+      "name": "The Blood of Dawnwalker",
+      "minutes": 1630,
+      "lastPlayed": "2026-09-08T03:50:06.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/3751260/49fefdf2ae0e6171985509acec890b756cedc694.jpg"
+    },
+    {
+      "appid": 779340,
+      "name": "Total War: THREE KINGDOMS",
+      "minutes": 1598,
+      "lastPlayed": "2023-03-07T12:19:34.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/779340/12eb7d5a469812b3dd13d04165cff053f477914d.jpg"
+    },
+    {
+      "appid": 1455660,
+      "name": "Out of the Park Baseball 22",
+      "minutes": 1512,
+      "lastPlayed": "2021-12-03T04:17:50.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1455660/72cbfaa8ceebb90788849eed063ccd697cfcab40.jpg"
+    },
+    {
+      "appid": 289650,
+      "name": "Assassin's Creed Unity",
+      "minutes": 1491,
+      "lastPlayed": "2016-12-13T13:29:27.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/289650/0629ffe7fc7d88011c5b9705625bfe3791fe0afe.jpg"
+    },
+    {
+      "appid": 2139460,
+      "name": "Once Human",
+      "minutes": 1473,
+      "lastPlayed": "2026-08-06T04:23:34.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/2139460/e1c29227c162232120c15edcf282df61ee35f091.jpg"
+    },
+    {
+      "appid": 1859910,
+      "name": "Legend of Mortal",
+      "minutes": 1302,
+      "lastPlayed": "2024-11-01T22:29:27.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1859910/030501e0266d9b728fd61e067422263ff8a146a5.jpg"
+    },
+    {
+      "appid": 208480,
+      "name": "Assassin's Creed® III",
+      "minutes": 1296,
+      "lastPlayed": "2018-12-24T07:59:49.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/208480/5d13ffd781fa7658903fbd762b51a76f8c734d2b.jpg"
+    },
+    {
+      "appid": 391540,
+      "name": "Undertale",
+      "minutes": 1131,
+      "lastPlayed": "2020-07-06T03:57:53.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/391540/2ce672b89b63ec1e70d2f12862e72eb4a33e9268.jpg"
+    },
+    {
+      "appid": 787860,
+      "name": "Farming Simulator 19",
+      "minutes": 1126,
+      "lastPlayed": "2020-03-02T01:33:25.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/787860/2e908f4aa7fecbe9a105094e0b8e63b3a1f2a446.jpg"
+    },
+    {
+      "appid": 620,
+      "name": "Portal 2",
+      "minutes": 1067,
+      "lastPlayed": "2020-02-13T02:34:55.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/620/25a5a16b2423bf7487ac5340b5b0948cef48c5f8.jpg"
+    },
+    {
+      "appid": 201870,
+      "name": "Assassin's Creed Revelations",
+      "minutes": 995,
+      "lastPlayed": "2017-05-14T09:42:57.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/201870/08f7266496718dbd5d2f93e4776d3f5dc368ad54.jpg"
+    },
+    {
+      "appid": 3768760,
+      "name": "007 First Light",
+      "minutes": 935,
+      "lastPlayed": "2026-05-30T13:42:13.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/3768760/feccaf73a3bde702d1978afff6ba6540bf5331fe.jpg"
+    },
+    {
+      "appid": 1868140,
+      "name": "DAVE THE DIVER",
+      "minutes": 856,
+      "lastPlayed": "2024-12-16T05:13:45.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1868140/2f19d6889f66eae88e8b5a36727d560ec88a00cb.jpg"
+    },
+    {
+      "appid": 3751950,
+      "name": "Assassin's Creed Black Flag Resynced",
+      "minutes": 821,
+      "lastPlayed": "2026-07-13T03:48:20.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/3751950/07bbd08f5147d18c3e86c6216a33ad99683771d2.jpg"
+    },
+    {
+      "appid": 2958130,
+      "name": "Jurassic World Evolution 3",
+      "minutes": 762,
+      "lastPlayed": "2025-12-26T06:43:29.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/2958130/bcdd97c9e5bd9d310592ba8b6d6043293a67025d.jpg"
+    },
+    {
+      "appid": 289070,
+      "name": "Sid Meier's Civilization VI",
+      "minutes": 758,
+      "lastPlayed": "2018-01-16T15:19:46.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/289070/9dc914132fec244adcede62fb8e7524a72a7398c.jpg"
+    },
+    {
+      "appid": 1124300,
+      "name": "HUMANKIND™",
+      "minutes": 723,
+      "lastPlayed": "2021-09-04T13:53:23.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1124300/c2d90169b56bc798213b8bcf949d3d5924a2d0a0.jpg"
+    },
+    {
+      "appid": 367450,
+      "name": "Poly Bridge",
+      "minutes": 698,
+      "lastPlayed": "2023-02-05T07:21:14.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/367450/7bc695b845364099d87469c2d9074a3782c68638.jpg"
+    },
+    {
+      "appid": 1207650,
+      "name": "Suzerain",
+      "minutes": 695,
+      "lastPlayed": "2025-07-08T14:49:36.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1207650/4be97e1b0dbd562a757d766806ad82df4ad1ee0a.jpg"
+    },
+    {
+      "appid": 821880,
+      "name": "Idol Manager",
+      "minutes": 645,
+      "lastPlayed": "2021-12-30T02:27:12.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/821880/64d40e6abeee5b5e27f35512946671a778e4a765.jpg"
+    },
+    {
+      "appid": 8870,
+      "name": "BioShock Infinite",
+      "minutes": 630,
+      "lastPlayed": "2017-06-20T12:47:06.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/8870/4ebaf5f9ee74f50152f7ff361debef7553fa0e4e.jpg"
+    },
+    {
+      "appid": 3321460,
+      "name": "Crimson Desert Enhanced",
+      "minutes": 608,
+      "lastPlayed": "2026-05-21T05:03:57.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/3321460/f260267377759a5fea6b651817c9a413c6b562b0.jpg"
+    },
+    {
+      "appid": 311560,
+      "name": "Assassin's Creed Rogue",
+      "minutes": 596,
+      "lastPlayed": "2016-11-27T09:40:42.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/311560/422e9d527f4a509a179cfbd2832b47db793d8000.jpg"
+    },
+    {
+      "appid": 1623730,
+      "name": "Palworld",
+      "minutes": 575,
+      "lastPlayed": "2026-03-19T03:24:08.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1623730/f5523077a8f4c923c2e8d8c17794b3319035fa73.jpg"
+    },
+    {
+      "appid": 1404210,
+      "name": "Red Dead Online",
+      "minutes": 572,
+      "lastPlayed": "2021-02-13T03:12:23.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1404210/996e1730f1e06a557ce986f17b756823c402702d.jpg"
+    },
+    {
+      "appid": 379430,
+      "name": "Kingdom Come: Deliverance",
+      "minutes": 558,
+      "lastPlayed": "2024-12-15T00:11:25.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/379430/915ec515c36645855abed0476b5b0891d8a4e47a.jpg"
+    },
+    {
+      "appid": 220240,
+      "name": "Far Cry® 3",
+      "minutes": 536,
+      "lastPlayed": "2017-09-07T02:37:29.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/220240/8231f43d3dd47fb4b4111fd6bd4a849e73eb0520.jpg"
+    },
+    {
+      "appid": 3041230,
+      "name": "Windrose",
+      "minutes": 521,
+      "lastPlayed": "2026-04-28T05:08:23.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/3041230/f8ae552a1c3eb4a6d3015867a6a4a64c02b9cd8d.jpg"
+    },
+    {
+      "appid": 1203620,
+      "name": "Enshrouded",
+      "minutes": 496,
+      "lastPlayed": "2026-03-19T03:19:16.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1203620/b51ff4aa19722a1f3587b35f37f590a998f36a9a.jpg"
+    },
+    {
+      "appid": 282070,
+      "name": "This War of Mine",
+      "minutes": 474,
+      "lastPlayed": "2018-07-24T06:08:32.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/282070/38ad6fd10e2b89ab24e8013584ece7961bebe086.jpg"
+    },
+    {
+      "appid": 632470,
+      "name": "Disco Elysium",
+      "minutes": 423,
+      "lastPlayed": "2021-06-29T05:49:55.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/632470/b681544caa931c7c1a6788e6e3e33cb42892d17c.jpg"
+    },
+    {
+      "appid": 2592160,
+      "name": "Dispatch",
+      "minutes": 420,
+      "lastPlayed": "2025-11-13T04:33:16.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/2592160/1fa72a0254bb96aab1642604720d74c376f97756.jpg"
+    },
+    {
+      "appid": 33230,
+      "name": "Assassin's Creed II",
+      "minutes": 404,
+      "lastPlayed": "2020-12-07T12:09:51.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/33230/0492d8ee860ac99168e46efeb003029c3224cb38.jpg"
+    },
+    {
+      "appid": 4128400,
+      "name": "eBaseball™: PRO SPIRIT",
+      "minutes": 393,
+      "lastPlayed": "2026-07-22T12:54:33.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/4128400/ebb091eafe886097f774de50e38e1fb30c1d6cd8.jpg"
+    },
+    {
+      "appid": 1363080,
+      "name": "Manor Lords",
+      "minutes": 388,
+      "lastPlayed": "2024-06-21T04:33:17.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1363080/f0b869c004ddb564f961668130894f335fe04175.jpg"
+    },
+    {
+      "appid": 57690,
+      "name": "Tropico 4",
+      "minutes": 355,
+      "lastPlayed": "2019-01-23T09:04:16.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/57690/8e58ca48b978439ba4986938247fdb21a645a673.jpg"
+    },
+    {
+      "appid": 2456740,
+      "name": "inZOI",
+      "minutes": 351,
+      "lastPlayed": "2025-03-29T01:38:05.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/2456740/91593017a96a23af849781d6a68e9599cf250b4d.jpg"
+    },
+    {
+      "appid": 1669000,
+      "name": "Age of Wonders 4",
+      "minutes": 349,
+      "lastPlayed": "2025-08-15T11:30:21.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1669000/14427bfe04185417a03d94d48d621ea7ce486b16.jpg"
+    },
+    {
+      "appid": 400,
+      "name": "Portal",
+      "minutes": 315,
+      "lastPlayed": "2020-02-13T02:10:08.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/400/cfa928ab4119dd137e50d728e8fe703e4e970aff.jpg"
+    },
+    {
+      "appid": 1504980,
+      "name": "It Takes Two Friend's Pass",
+      "minutes": 280,
+      "lastPlayed": "2021-07-13T07:42:05.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1504980/6b15f6d81c4fc52056f4928b363b7fac591a945b.jpg"
+    },
+    {
+      "appid": 365450,
+      "name": "Hacknet",
+      "minutes": 274,
+      "lastPlayed": "2018-07-14T13:30:19.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/365450/2445c4ead6ee47784a326922271ec1c0b41d64e2.jpg"
+    },
+    {
+      "appid": 2054970,
+      "name": "Dragon's Dogma 2",
+      "minutes": 268,
+      "lastPlayed": "2024-12-08T06:50:27.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/2054970/f3d469e0d7a0e25ddd13db8ebf08f1c24d6478b0.jpg"
+    },
+    {
+      "appid": 1808500,
+      "name": "ARC Raiders",
+      "minutes": 261,
+      "lastPlayed": "2026-04-06T03:29:04.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1808500/c284e73b6f3321864805d66f99924a0da9f0b219.jpg"
+    },
+    {
+      "appid": 570,
+      "name": "Dota 2",
+      "minutes": 234,
+      "lastPlayed": "2015-08-01T09:51:42.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/570/0bbb630d63262dd66d2fdd0f7d37e8661a410075.jpg"
+    },
+    {
+      "appid": 377160,
+      "name": "Fallout 4",
+      "minutes": 213,
+      "lastPlayed": "2022-01-04T13:05:21.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/377160/779c4356ebe32af2af7c9f0bbba595dfe872cd7f.jpg"
+    },
+    {
+      "appid": 65980,
+      "name": "Sid Meier's Civilization: Beyond Earth",
+      "minutes": 205,
+      "lastPlayed": "2014-10-25T23:55:23.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/65980/d3ec8a47272ea6ecaf8545591df571fe6bb18f30.jpg"
+    },
+    {
+      "appid": 2755480,
+      "name": "The Censor DX Edition",
+      "minutes": 201,
+      "lastPlayed": "2025-09-29T00:19:31.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/2755480/33996e701c2a9403505d72f4f313b8ab7de92521.jpg"
+    },
+    {
+      "appid": 2074920,
+      "name": "The First Descendant",
+      "minutes": 190,
+      "lastPlayed": "2025-04-21T00:29:53.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/2074920/a07ab51050a8e03993b1860ae929da51287f283b.jpg"
+    },
+    {
+      "appid": 72850,
+      "name": "The Elder Scrolls V: Skyrim",
+      "minutes": 183,
+      "lastPlayed": "2016-01-14T00:32:10.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/72850/b9aca8a189abd8d6aaf09047dbb0f57582683e1c.jpg"
+    },
+    {
+      "appid": 1259420,
+      "name": "Days Gone",
+      "minutes": 182,
+      "lastPlayed": "2026-04-02T06:14:54.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1259420/839338fcedd1033ab7f0d2a31c194fb880ebf7b5.jpg"
+    },
+    {
+      "appid": 550,
+      "name": "Left 4 Dead 2",
+      "minutes": 176,
+      "lastPlayed": "2016-11-18T14:46:35.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/550/7d5a243f9500d2f8467312822f8af2a2928777ed.jpg"
+    },
+    {
+      "appid": 1238840,
+      "name": "Battlefield™ 1",
+      "minutes": 143,
+      "lastPlayed": "2022-07-29T13:15:30.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1238840/325c78f6940b57a43b65468d2dc10e22601b0ec5.jpg"
+    },
+    {
+      "appid": 374320,
+      "name": "DARK SOULS™ III",
+      "minutes": 142,
+      "lastPlayed": "2018-01-11T13:30:39.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/374320/7abe1a33129c20cf10d2c74128bbd657a2a2c806.jpg"
+    },
+    {
+      "appid": 17390,
+      "name": "Spore",
+      "minutes": 122,
+      "lastPlayed": "2020-04-08T01:56:21.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/17390/00e6b5f1f7173e5a2db9978de34df03abb886430.jpg"
+    },
+    {
+      "appid": 261550,
+      "name": "Mount & Blade II: Bannerlord",
+      "minutes": 121,
+      "lastPlayed": "2026-04-06T10:40:18.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/261550/896d5f4214e4e185a20af51b46d9dea2e6f4aaad.jpg"
+    },
+    {
+      "appid": 346110,
+      "name": "ARK: Survival Evolved",
+      "minutes": 121,
+      "lastPlayed": "2026-03-17T08:09:20.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/346110/fef1799533131c10f538d2dd697bbbd89e663265.jpg"
     }
   ]
 }

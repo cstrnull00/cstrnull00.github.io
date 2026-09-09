@@ -61,6 +61,9 @@ jobs:
         env:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
           STEAM_ID: ${{ secrets.STEAM_ID }}
+          # 선택 시크릿. 없으면 스크립트 기본값이 쓰인다.
+          STEAM_MIN_MINUTES: ${{ secrets.STEAM_MIN_MINUTES }}
+          STEAM_EXCLUDE: ${{ secrets.STEAM_EXCLUDE }}
         run: node scripts/sync-steam.mjs
 
       # PSN 은 비공식 API 라 언제든 막힐 수 있다. 실패해도 빌드는 계속되고
@@ -71,6 +74,9 @@ jobs:
         env:
           PSN_REFRESH_TOKEN: ${{ secrets.PSN_REFRESH_TOKEN }}
           PSN_TOKEN_OUT: ${{ runner.temp }}/psn_refresh_token
+          # 선택 시크릿. 없으면 스크립트 기본값이 쓰인다.
+          PSN_MIN_MINUTES: ${{ secrets.PSN_MIN_MINUTES }}
+          PSN_EXCLUDE: ${{ secrets.PSN_EXCLUDE }}
         run: node scripts/sync-psn.mjs
 
       # 리프레시 토큰은 교환할 때마다 새로 발급된다(약 60일 유효).

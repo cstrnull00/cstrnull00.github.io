@@ -6,6 +6,7 @@
 //   STEAM_API_KEY   https://steamcommunity.com/dev/apikey 에서 발급
 //   STEAM_ID        SteamID64 (17자리 숫자)
 //   STEAM_MIN_MINUTES  선택. 이 시간 미만은 목록에서 제외 (기본 120분)
+//   STEAM_EXCLUDE      선택. 추가로 제외할 appid 를 쉼표로 구분 (아래 EXCLUDED 와 합쳐진다)
 //
 // 주의: 스팀 프로필의 "게임 상세 정보"가 공개여야 API 가 목록을 돌려준다.
 //       비공개면 게임 배열이 아예 오지 않는다.
@@ -41,6 +42,12 @@ function loadEnvLocal() {
   }
 }
 
+// 게임이 아닌 항목. 플레이 시간만으로 정렬하면 상위에 섞여 목록의 성격을 흐린다.
+// 여기 없는 것을 더 빼려면 코드를 고치지 않고 STEAM_EXCLUDE 환경변수로도 된다.
+const EXCLUDED = new Set([
+  431960, // Wallpaper Engine — 배경화면 유틸리티
+]);
+
 function fail(msg) {
   console.error(`\n[sync-steam] ${msg}\n`);
   process.exit(1);
@@ -51,6 +58,12 @@ loadEnvLocal();
 const KEY = process.env.STEAM_API_KEY;
 const ID = process.env.STEAM_ID;
 const MIN = Number(process.env.STEAM_MIN_MINUTES ?? 120);
+
+// 환경변수로 넘어온 제외 목록을 합친다
+for (const raw of (process.env.STEAM_EXCLUDE ?? '').split(',')) {
+  const id = Number(raw.trim());
+  if (Number.isInteger(id) && id > 0) EXCLUDED.add(id);
+}
 
 if (!KEY) fail('STEAM_API_KEY 가 없습니다. .env.local 에 넣거나 환경변수로 주세요.');
 if (!ID) fail('STEAM_ID (SteamID64, 17자리) 가 없습니다.');
@@ -92,7 +105,7 @@ if (!Array.isArray(games)) {
 }
 
 const listed = games
-  .filter((g) => (g.playtime_forever ?? 0) >= MIN)
+  .filter((g) => (g.playtime_forever ?? 0) >= MIN && !EXCLUDED.has(g.appid))
   .sort((a, b) => b.playtime_forever - a.playtime_forever)
   .map((g) => ({
     appid: g.appid,
@@ -104,6 +117,11 @@ const listed = games
       ? `https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/${g.appid}/${g.img_icon_url}.jpg`
       : null,
   }));
+
+// 무엇이 제외됐는지 로그에 남긴다
+const excludedHits = games.filter(
+  (g) => (g.playtime_forever ?? 0) >= MIN && EXCLUDED.has(g.appid)
+);
 
 const totalMinutes = games.reduce((sum, g) => sum + (g.playtime_forever ?? 0), 0);
 
@@ -119,7 +137,11 @@ const out = {
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8');
 
+const note = excludedHits.length
+  ? ` (제외 ${excludedHits.length}개: ${excludedHits.map((g) => g.name).join(', ')})`
+  : '';
+
 console.log(
-  `[sync-steam] 보유 ${games.length}개 중 ${MIN}분 이상 ${listed.length}개를 기록했습니다.\n` +
+  `[sync-steam] 보유 ${games.length}개 중 ${MIN}분 이상 ${listed.length}개를 기록했습니다.${note}\n` +
     `[sync-steam] → data/played/steam.json`
 );

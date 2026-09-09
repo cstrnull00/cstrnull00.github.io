@@ -5,6 +5,8 @@ title: '더 위쳐 3: 와일드 헌트'
 image: images/Witcher301.webp
 categories:
   - 게임 리뷰
+# 플레이한 게임 목록에서 이 글로 연결된다 (layouts/_shortcodes/played.html)
+steam_appid: 292030
 tags:
   - 오픈월드
   - RPG

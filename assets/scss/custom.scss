@@ -200,6 +200,87 @@
   font-size: 0.9rem;
 }
 
+/* hidden 속성이 테마 CSS 에 밀리지 않도록 */
+.played [hidden] {
+  display: none !important;
+}
+
+/* 정렬 컨트롤. JS 가 없으면 hidden 으로 남아 안 보이고,
+   그 대신 표 전여가 그대로 다 노출된다. */
+.played-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0.9rem 0 0.2rem;
+}
+
+.played-controls-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--card-text-color-tertiary);
+}
+
+.played-sortgroup {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.played-sort {
+  padding: 0.22rem 0.7rem;
+  border: 1px solid var(--card-separator-color, rgba(127, 127, 127, 0.3));
+  border-radius: 999px;
+  background: transparent;
+  color: var(--card-text-color-secondary);
+  font: inherit;
+  font-size: 0.83rem;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.played-sort:hover {
+  border-color: var(--accent-color);
+}
+
+.played-sort.is-on {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--accent-color-text);
+}
+
+/* 마지막 플레이 열은 상시 필요하지 않다.
+   최근 플레이 정렬을 컰 때만 보여 정렬 기준을 드러낸다. */
+.played-last-col {
+  display: none;
+}
+
+.played-table.by-recent .played-last-col {
+  display: table-cell;
+}
+
+.played-table tr.is-hidden {
+  display: none;
+}
+
+.played-more {
+  display: block;
+  width: 100%;
+  margin-top: 0.2rem;
+  padding: 0.5rem;
+  border: 1px dashed var(--card-separator-color, rgba(127, 127, 127, 0.35));
+  border-radius: 4px;
+  background: transparent;
+  color: var(--card-text-color-secondary);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.played-more:hover {
+  border-style: solid;
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
 .played-summary {
   font-size: 0.9rem;
   color: var(--card-text-color-secondary);
@@ -236,6 +317,7 @@
 
 /* 시간·아이콘 열은 폭을 고정해 제목이 넓게 쓰이도록 */
 .played-hours,
+.played-last,
 .played-store {
   white-space: nowrap;
   width: 1%;

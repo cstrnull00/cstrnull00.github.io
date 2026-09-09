@@ -3,9 +3,11 @@
   데이터는 scripts/sync-steam.mjs 가 만드는 data/played/steam.json 에서 읽는다.
 
   리뷰 글과 연결하려면 그 글의 프론트매터에 앱 ID 를 적어 두면 된다.
-    steam_appid: 990080
-  그러면 제목이 그 글로 연결되고 "리뷰" 배지가 붙는다.
-  스팀 상점 링크는 리뷰가 있든 없든 우측 아이콘으로 항상 나간다.
+    steam_appid: 1158310
+  그러면 제목·배지가 그 글로 연결된다. 스팀 상점 링크는 우측 아이콘으로 항상 나간다.
+
+  정렬·펼치기는 JS 로 처리한다. JS 가 없으면 전체 행이 그냥 다 보이고
+  컨트롤만 숨겨진 채 표로 읽힌다(점진적 향상).
 
   주의: JSON 숫자는 Hugo 에서 float64 로 들어온다. appid 를 그대로 출력하면
   7자리 이상이 지수 표기(1.15831e+06)가 되므로 반드시 int 로 캐스팅한다.
@@ -34,8 +36,9 @@
   {{- end -}}
 
   {{- $hours := math.Floor (div $steam.totalMinutes 60.0) -}}
+  {{- $initial := 20 -}}
 
-  <div class="played">
+  <div class="played" data-initial="{{ $initial }}">
     {{- if $steam.sample }}
     <p class="played-notice">
       아래는 렌더링 확인용 <strong>예시 데이터</strong>입니다.
@@ -51,11 +54,20 @@
       <span class="played-note">({{ if ge $minH 1.0 }}{{ lang.FormatNumber 0 $minH }}시간{{ else }}{{ lang.FormatNumber 0 $steam.minMinutes }}분{{ end }} 이상만 표시)</span>
     </p>
 
+    <div class="played-controls" hidden>
+      <span class="played-controls-label">정렬</span>
+      <div class="played-sortgroup" role="group" aria-label="정렬 기준">
+        <button type="button" class="played-sort is-on" data-sort="hours" aria-pressed="true">플레이 시간</button>
+        <button type="button" class="played-sort" data-sort="recent" aria-pressed="false">최근 플레이</button>
+      </div>
+    </div>
+
     <table class="played-table">
       <thead>
         <tr>
           <th scope="col">게임</th>
           <th scope="col">플레이 시간</th>
+          <th scope="col" class="played-last-col">마지막 플레이</th>
           <th scope="col"><span class="played-sr">스팀 상점</span></th>
         </tr>
       </thead>
@@ -64,7 +76,7 @@
         {{- $appid := int .appid -}}
         {{- $link := index $byApp (printf "%d" $appid) -}}
         {{- $h := math.Floor (div .minutes 60.0) -}}
-        <tr>
+        <tr data-minutes="{{ int .minutes }}" data-last="{{ with .lastPlayed }}{{ (time.AsTime .).Unix }}{{ end }}">
           <td class="played-title">
             {{- with .icon -}}
               <img class="played-icon" src="{{ . }}" alt="" width="32" height="32" loading="lazy">
@@ -80,6 +92,9 @@
           <td class="played-hours">
             {{- if ge $h 1.0 }}{{ lang.FormatNumber 0 $h }}시간{{ else }}{{ lang.FormatNumber 0 .minutes }}분{{ end -}}
           </td>
+          <td class="played-last played-last-col">
+            {{- with .lastPlayed }}{{ (time.AsTime .).Format "2006-01" }}{{ else }}&mdash;{{ end -}}
+          </td>
           <td class="played-store">
             <a href="https://store.steampowered.com/app/{{ $appid }}/"
                rel="noopener noreferrer"
@@ -92,6 +107,93 @@
         {{- end }}
       </tbody>
     </table>
+
+    <button type="button" class="played-more" hidden></button>
   </div>
+
+  <script>
+  (function () {
+    var roots = document.querySelectorAll('.played');
+    for (var n = 0; n < roots.length; n++) init(roots[n]);
+
+    function num(el, attr) {
+      var v = parseInt(el.getAttribute(attr), 10);
+      return isNaN(v) ? 0 : v;
+    }
+
+    function init(root) {
+      var table = root.querySelector('.played-table');
+      var tbody = table && table.querySelector('tbody');
+      var controls = root.querySelector('.played-controls');
+      var moreBtn = root.querySelector('.played-more');
+      if (!tbody || !controls || !moreBtn) return;
+
+      var rows = Array.prototype.slice.call(tbody.rows);
+      if (!rows.length) return;
+
+      var limit = num(root, 'data-initial') || 20;
+      var sort = 'hours';
+      var expanded = false;
+
+      // 서버가 이미 플레이 시간 내림차순으로 내려준다
+      var byHours = rows.slice();
+
+      // 기록이 없는 항목(data-last 빈 값 → 0)은 뒤로 보낸다
+      var byRecent = rows.slice().sort(function (a, b) {
+        var d = num(b, 'data-last') - num(a, 'data-last');
+        if (d !== 0) return d;
+        return num(b, 'data-minutes') - num(a, 'data-minutes');
+      });
+
+      var buttons = root.querySelectorAll('.played-sort');
+
+      function render() {
+        var order = sort === 'recent' ? byRecent : byHours;
+        for (var i = 0; i < order.length; i++) tbody.appendChild(order[i]);
+
+        if (sort === 'recent') table.classList.add('by-recent');
+        else table.classList.remove('by-recent');
+
+        var shown = expanded ? order.length : Math.min(limit, order.length);
+        for (var j = 0; j < order.length; j++) {
+          if (j < shown) order[j].classList.remove('is-hidden');
+          else order[j].classList.add('is-hidden');
+        }
+
+        if (order.length <= limit) {
+          moreBtn.hidden = true;
+        } else {
+          moreBtn.hidden = false;
+          moreBtn.textContent = expanded
+            ? '접기'
+            : '나머지 ' + (order.length - limit) + '개 더 보기';
+          moreBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        }
+
+        for (var k = 0; k < buttons.length; k++) {
+          var on = buttons[k].getAttribute('data-sort') === sort;
+          if (on) buttons[k].classList.add('is-on');
+          else buttons[k].classList.remove('is-on');
+          buttons[k].setAttribute('aria-pressed', on ? 'true' : 'false');
+        }
+      }
+
+      for (var b = 0; b < buttons.length; b++) {
+        buttons[b].addEventListener('click', function (e) {
+          sort = e.currentTarget.getAttribute('data-sort');
+          render();
+        });
+      }
+
+      moreBtn.addEventListener('click', function () {
+        expanded = !expanded;
+        render();
+      });
+
+      controls.hidden = false;
+      render();
+    }
+  })();
+  </script>
 
 {{- end -}}

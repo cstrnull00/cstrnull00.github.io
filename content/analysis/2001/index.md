@@ -5,6 +5,8 @@ title: '크루세이더 킹즈 3'
 image: images/CrusaderKings301.webp
 categories:
   - 콘텐츠 분석
+# 플레이한 게임 목록에서 이 글로 연결된다 (layouts/_shortcodes/played.html)
+steam_appid: 1158310
 tags:
   - 시뮬레이션
   - 콘텐츠 분석

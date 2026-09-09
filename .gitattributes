@@ -1,0 +1,22 @@
+# 줄바꿈 정책
+#
+# core.autocrlf 는 로컬 설정이라 사람마다 다르고, 이 저장소에는
+# .gitattributes 가 없어서 파일을 열었다 저장할 때마다 내용은 그대로인데
+# "수정됨"으로 표시되는 일이 반복됐다. 여기서 저장소 차원으로 고정한다.
+#
+# eol=lf 는 저장소뿐 아니라 작업 트리도 LF 로 유지한다.
+# Hugo·Node·GitHub Actions 모두 LF 를 쓰므로 윈도우에서도 LF 로 통일한다.
+* text=auto eol=lf
+
+# 바이너리 — 텍스트로 취급되면 줄바꿈 변환에 깨진다
+*.webp binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.woff  binary
+*.woff2 binary
+*.ttf  binary
+*.otf  binary
+*.pdf  binary

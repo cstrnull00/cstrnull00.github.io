@@ -1,53 +1,111 @@
 {{- /*
-  플레이한 게임 목록.
-  데이터는 scripts/sync-steam.mjs 가 만드는 data/played/steam.json 에서 읽는다.
+  플레이한 게임 목록. 여러 플랫폼의 데이터를 하나의 표로 합친다.
 
-  리뷰 글과 연결하려면 그 글의 프론트매터에 앱 ID 를 적어 두면 된다.
-    steam_appid: 1158310
+  데이터:
+    data/played/steam.json   scripts/sync-steam.mjs
+    data/played/psn.json     scripts/sync-psn.mjs   (없으면 그냥 빠진다)
+
+  리뷰 글과 연결하려면 그 글의 프론트매터에 아래 중 하나를 적는다.
+    steam_appid: 1158310          (스팀)
+    psn_title_id: CUSA01433_00    (PS)
 
   한 행의 역할 분담:
-    게임 아이콘 → 스팀 상점 (링크)
+    게임 아이콘 → 스팀 상점 (스팀 행만. PS 는 공개 상점 주소를 titleId 로
+                  안정적으로 만들 수 없어 링크를 걸지 않는다)
     제목        → 일반 텍스트
     리뷰 배지   → 리뷰 글 (링크) 겸 정렬 기준
-    스팀 로고   → 출처 표시 (링크 아님)
+    플랫폼 로고 → 출처 표시 (링크 아님)
 
-  정렬은 열 머리글을 눌러서 한다. 머리글은 th 안의 button 이라 키보드로도
-  동작하고, aria-sort 로 현재 기준·방향을 알린다.
-  JS 가 없으면 정렬만 안 되고 전체 행이 그냥 표로 읽힌다(점진적 향상).
+  플레이 시간이 없는 항목: PSN 은 2020년 무렵부터 플레이 시간을 기록하므로
+  그 이전 플레이는 값이 없다. 공란으로 두고 정렬에서는 뒤로 보낸다.
 
   주의: JSON 숫자는 Hugo 에서 float64 로 들어온다. appid 를 그대로 출력하면
   7자리 이상이 지수 표기(1.15831e+06)가 되므로 반드시 int 로 캐스팅한다.
 */ -}}
 
 {{- $steam := index site.Data "played" "steam" -}}
+{{- $psn := index site.Data "played" "psn" -}}
 
-{{- if not $steam -}}
+{{- $sources := slice -}}
+{{- with $steam }}{{ $sources = $sources | append (dict "key" "steam" "d" .) }}{{ end -}}
+{{- with $psn }}{{ $sources = $sources | append (dict "key" "psn" "d" .) }}{{ end -}}
+
+{{- if not $sources -}}
   <p class="played-empty">
     아직 동기화된 데이터가 없습니다. <code>node scripts/sync-steam.mjs</code> 를 먼저 실행하세요.
   </p>
 {{- else -}}
 
-  {{- /* steam_appid 를 선언한 글을 앱 ID → (주소, 작성일) 로 모아 둔다 */ -}}
-  {{- $byApp := dict -}}
+  {{- /* 리뷰 글 색인. 스팀은 appid, PS 는 titleId 로 잡는다. */ -}}
+  {{- $bySteam := dict -}}
+  {{- $byPsn := dict -}}
   {{- range site.RegularPages -}}
     {{- $p := . -}}
+    {{- $date := 0 -}}
+    {{- if not $p.Date.IsZero -}}{{ $date = $p.Date.Unix }}{{- end -}}
+    {{- $entry := dict "url" $p.RelPermalink "date" $date -}}
     {{- with $p.Params.steam_appid -}}
-      {{- $d := 0 -}}
-      {{- if not $p.Date.IsZero -}}{{ $d = $p.Date.Unix }}{{- end -}}
-      {{- $byApp = merge $byApp (dict (printf "%d" (int .)) (dict "url" $p.RelPermalink "date" $d)) -}}
+      {{- $bySteam = merge $bySteam (dict (printf "%d" (int .)) $entry) -}}
+    {{- end -}}
+    {{- with $p.Params.psn_title_id -}}
+      {{- $byPsn = merge $byPsn (dict (printf "%v" .) $entry) -}}
     {{- end -}}
   {{- end -}}
 
-  {{- $steamIcon := "" -}}
+  {{- /* 플랫폼 로고 */ -}}
+  {{- $logos := dict -}}
   {{- with resources.Get "icons/brand-steam.svg" -}}
-    {{- $steamIcon = .Content -}}
+    {{- $logos = merge $logos (dict "steam" (dict "svg" .Content "label" "Steam")) -}}
+  {{- end -}}
+  {{- with resources.Get "icons/brand-playstation.svg" -}}
+    {{- $logos = merge $logos (dict "psn" (dict "svg" .Content "label" "PlayStation")) -}}
   {{- end -}}
 
-  {{- $hours := math.Floor (div $steam.totalMinutes 60.0) -}}
+  {{- /* 두 소스를 한 목록으로 합친다 */ -}}
+  {{- $rows := slice -}}
+  {{- $totalMinutes := 0.0 -}}
+  {{- $minFloor := 0.0 -}}
+  {{- $oldest := "" -}}
+  {{- $unknown := 0 -}}
+
+  {{- range $sources -}}
+    {{- $plat := .key -}}
+    {{- $d := .d -}}
+    {{- $totalMinutes = add $totalMinutes $d.totalMinutes -}}
+    {{- if gt $d.minMinutes $minFloor }}{{ $minFloor = $d.minMinutes }}{{ end -}}
+    {{- if or (eq $oldest "") (lt (string $d.updated) $oldest) }}{{ $oldest = string $d.updated }}{{ end -}}
+
+    {{- range $d.games -}}
+      {{- $mins := -1.0 -}}
+      {{- if .minutes }}{{ $mins = .minutes }}{{ else }}{{ $unknown = add $unknown 1 }}{{ end -}}
+
+      {{- $store := "" -}}
+      {{- $rev := false -}}
+      {{- if eq $plat "steam" -}}
+        {{- $store = printf "https://store.steampowered.com/app/%d/" (int .appid) -}}
+        {{- $rev = index $bySteam (printf "%d" (int .appid)) -}}
+      {{- else -}}
+        {{- $rev = index $byPsn (printf "%v" .titleId) -}}
+      {{- end -}}
+
+      {{- $rows = $rows | append (dict
+            "platform" $plat
+            "name" .name
+            "minutes" .minutes
+            "sortMinutes" $mins
+            "lastPlayed" (.lastPlayed | default "")
+            "icon" (.icon | default "")
+            "store" $store
+            "rev" $rev) -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $rows = sort $rows "sortMinutes" "desc" -}}
+  {{- $hours := math.Floor (div $totalMinutes 60.0) -}}
   {{- $initial := 20 -}}
 
   <div class="played" data-initial="{{ $initial }}">
-    {{- if $steam.sample }}
+    {{- if and $steam $steam.sample }}
     <p class="played-notice">
       아래는 렌더링 확인용 <strong>예시 데이터</strong>입니다.
       <code>node scripts/sync-steam.mjs</code> 를 실행하면 실제 기록으로 교체됩니다.
@@ -55,11 +113,11 @@
     {{- end }}
 
     <p class="played-summary">
-      {{ lang.FormatNumber 0 $steam.listedGames }}개 ·
+      {{ lang.FormatNumber 0 (len $rows) }}개 ·
       누적 {{ lang.FormatNumber 0 $hours }}시간 ·
-      {{ (time.AsTime $steam.updated).Format "2006-01-02" }} 기준
-      {{- $minH := div $steam.minMinutes 60.0 -}}
-      <span class="played-note">({{ if ge $minH 1.0 }}{{ lang.FormatNumber 0 $minH }}시간{{ else }}{{ lang.FormatNumber 0 $steam.minMinutes }}분{{ end }} 이상만 표시)</span>
+      {{ (time.AsTime $oldest).Format "2006-01-02" }} 기준
+      {{- $minH := div $minFloor 60.0 }}
+      <span class="played-note">({{ if ge $minH 1.0 }}{{ lang.FormatNumber 0 $minH }}시간{{ else }}{{ lang.FormatNumber 0 $minFloor }}분{{ end }} 이상만 표시{{ if gt $unknown 0 }} · 플레이 시간 미기록 {{ $unknown }}개{{ end }})</span>
     </p>
 
     <table class="played-table">
@@ -81,40 +139,50 @@
         </tr>
       </thead>
       <tbody>
-        {{- range $steam.games }}
-        {{- $appid := int .appid -}}
-        {{- $rev := index $byApp (printf "%d" $appid) -}}
-        {{- $h := math.Floor (div .minutes 60.0) -}}
+        {{- range $rows }}
+        {{- $h := -1.0 -}}
+        {{- if .minutes }}{{ $h = math.Floor (div .minutes 60.0) }}{{ end -}}
         <tr data-name="{{ .name }}"
-            data-minutes="{{ int .minutes }}"
+            data-minutes="{{ if .minutes }}{{ int .minutes }}{{ end }}"
             data-last="{{ with .lastPlayed }}{{ (time.AsTime .).Unix }}{{ end }}"
-            data-review="{{ with $rev }}{{ .date }}{{ end }}">
+            data-review="{{ with .rev }}{{ .date }}{{ end }}">
           <td class="played-title">
-            <a class="played-iconlink"
-               href="https://store.steampowered.com/app/{{ $appid }}/"
-               rel="noopener noreferrer"
-               title="스팀 상점에서 보기"
-               aria-label="{{ .name }} — 스팀 상점에서 보기">
-              {{- with .icon -}}
-                <img class="played-icon" src="{{ . }}" alt="" width="32" height="32" loading="lazy">
+            {{- if .store -}}
+              <a class="played-iconlink"
+                 href="{{ .store }}"
+                 rel="noopener noreferrer"
+                 title="스팀 상점에서 보기"
+                 aria-label="{{ .name }} — 스팀 상점에서 보기">
+                {{- if .icon -}}
+                  <img class="played-icon" src="{{ .icon }}" alt="" width="32" height="32" loading="lazy">
+                {{- else -}}
+                  <span class="played-icon played-icon-none" aria-hidden="true"></span>
+                {{- end -}}
+              </a>
+            {{- else -}}
+              {{- if .icon -}}
+                <img class="played-icon" src="{{ .icon }}" alt="" width="32" height="32" loading="lazy">
               {{- else -}}
                 <span class="played-icon played-icon-none" aria-hidden="true"></span>
               {{- end -}}
-            </a>
+            {{- end -}}
             {{ .name }}
           </td>
           <td class="played-col-hours">
-            {{- if ge $h 1.0 }}{{ lang.FormatNumber 0 $h }}시간{{ else }}{{ lang.FormatNumber 0 .minutes }}분{{ end -}}
+            {{- if ge $h 1.0 }}{{ lang.FormatNumber 0 $h }}시간
+            {{- else if .minutes }}{{ lang.FormatNumber 0 .minutes }}분
+            {{- else }}<span class="played-blank" title="플레이 시간 기록이 없습니다">&mdash;</span>
+            {{- end -}}
           </td>
           <td class="played-col-last">
             {{- with .lastPlayed }}{{ (time.AsTime .).Format "2006-01" }}{{ else }}&mdash;{{ end -}}
           </td>
           <td class="played-col-rev">
-            {{- if $rev }}<a class="played-badge" href="{{ $rev.url }}" aria-label="{{ .name }} 리뷰 읽기">리뷰</a>{{ end -}}
+            {{- if .rev }}<a class="played-badge" href="{{ .rev.url }}" aria-label="{{ .name }} 리뷰 읽기">리뷰</a>{{ end -}}
           </td>
           {{- /* 출처 표시용. 링크가 아니므로 접근성 트리에서는 숨긴다 */ -}}
           <td class="played-col-src" aria-hidden="true">
-            {{- with $steamIcon }}{{ . | safeHTML }}{{ end -}}
+            {{- with index $logos .platform }}<span title="{{ .label }}">{{ .svg | safeHTML }}</span>{{ end -}}
           </td>
         </tr>
         {{- end }}

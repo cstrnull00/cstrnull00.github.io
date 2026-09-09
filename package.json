@@ -1,0 +1,13 @@
+{
+  "name": "cstrnull00-blog-scripts",
+  "private": true,
+  "description": "플레이 기록 동기화 스크립트 전용. Hugo 사이트 빌드와는 무관하다.",
+  "type": "commonjs",
+  "scripts": {
+    "sync:steam": "node scripts/sync-steam.mjs",
+    "sync:psn": "node scripts/sync-psn.mjs"
+  },
+  "dependencies": {
+    "psn-api": "^2.18.1"
+  }
+}

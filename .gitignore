@@ -16,3 +16,6 @@ assets/jsconfig.json
 
 # Steam API 키 등 로컬 비밀값 (커밋 금지)
 .env.local
+
+# Node (동기화 스크립트 의존성)
+node_modules/

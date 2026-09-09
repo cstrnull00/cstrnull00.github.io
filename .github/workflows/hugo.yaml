@@ -26,6 +26,10 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      # 스텝의 if 에서는 secrets 컨텍스트를 쓸 수 없어 여기서 넘긴다.
+      HAS_PSN_ROTATION: ${{ secrets.GH_SECRETS_TOKEN != '' }}
+      PSN_TOKEN_FILE: ${{ runner.temp }}/psn_refresh_token
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -49,12 +53,40 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Install dependencies
+        run: npm ci
+
       - name: Sync Steam library
         continue-on-error: true
         env:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
           STEAM_ID: ${{ secrets.STEAM_ID }}
         run: node scripts/sync-steam.mjs
+
+      # PSN 은 비공식 API 라 언제든 막힐 수 있다. 실패해도 빌드는 계속되고
+      # 그 경우 커밋된 psn.json(지난 데이터)으로 렌더된다.
+      - name: Sync PlayStation library
+        id: psn
+        continue-on-error: true
+        env:
+          PSN_REFRESH_TOKEN: ${{ secrets.PSN_REFRESH_TOKEN }}
+          PSN_TOKEN_OUT: ${{ env.PSN_TOKEN_FILE }}
+        run: node scripts/sync-psn.mjs
+
+      # 리프레시 토큰은 교환할 때마다 새로 발급된다(약 60일 유효).
+      # 새 토큰을 시크릿에 다시 저장하지 않으면 60일 뒤 체인이 끊기고
+      # NPSSO 재발급이 필요해진다. 이 스텝이 그 저장을 담당한다.
+      - name: Rotate PSN refresh token
+        if: steps.psn.outcome == 'success' && env.HAS_PSN_ROTATION == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}
+        run: |
+          if [ -s "$PSN_TOKEN_FILE" ]; then
+            gh secret set PSN_REFRESH_TOKEN --repo "$GITHUB_REPOSITORY" < "$PSN_TOKEN_FILE"
+            echo "PSN 리프레시 토큰을 갱신했습니다."
+          else
+            echo "새 토큰 파일이 비어 있습니다 — 갱신 건너뜀." >&2
+          fi
 
       # 받아온 데이터를 커밋해 다음 실패 때의 폴백으로 남긴다.
       # GITHUB_TOKEN 으로 푸시하면 워크플로가 재실행되지 않으므로 루프는 없다.

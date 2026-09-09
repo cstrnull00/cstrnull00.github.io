@@ -1,9 +1,16 @@
 // NPSSO → 리프레시 토큰 (최초 1회용)
 //
-// 실행:  npm run psn:token
+// 두 가지 모드로 동작한다.
 //
-// NPSSO 는 인자로 받지 않고 입력으로 받는다. 인자로 주면 셸 히스토리에
-// 그대로 남기 때문이다.
+//   1) 대화형 — 로컬에서 `npm run psn:token`
+//      NPSSO 를 물어보고, 발급된 리프레시 토큰을 화면에 출력한다.
+//      NPSSO 를 인자가 아니라 입력으로 받는 이유는 셸 히스토리에
+//      남지 않게 하기 위해서다.
+//
+//   2) 비대화형 — PSN_NPSSO 환경변수가 있을 때 (GitHub Actions)
+//      토큰을 화면에 찍지 않고 PSN_TOKEN_OUT 경로의 파일에만 쓴다.
+//      원격에서 브라우저만으로 설정할 때 쓰는 경로다.
+//      .github/workflows/psn-bootstrap.yaml 참조.
 //
 // 얻은 리프레시 토큰은 약 60일 유효하고, 주간 워크플로가 갱신하며
 // 새 토큰으로 교체된다. 자세한 절차는 docs/psn-setup.md 참조.
@@ -103,11 +110,50 @@ ${BAR}
   return 0;
 }
 
-const rl = createInterface({ input: stdin, output: stdout });
+// 비대화형: NPSSO 를 환경변수로 받고 토큰은 파일로만 내보낸다
+async function nonInteractive(npsso) {
+  const out = process.env.PSN_TOKEN_OUT;
+  if (!out) {
+    console.error('\nPSN_TOKEN_OUT 이 필요합니다 (토큰을 쓸 파일 경로).\n');
+    return 1;
+  }
+
+  console.log('[psn-token] NPSSO 교환 중...');
+
+  let tokens;
+  try {
+    const codeStr = await exchangeNpssoForAccessCode(npsso.trim());
+    tokens = await exchangeAccessCodeForAuthTokens(codeStr);
+  } catch (e) {
+    console.error(
+      `\n[psn-token] 실패: ${e.message}\n` +
+        '  NPSSO 가 만료됐거나 값이 잘못됐을 수 있습니다.\n' +
+        '  브라우저에서 다시 받아 PSN_NPSSO 시크릿을 갱신하세요.\n'
+    );
+    return 1;
+  }
+
+  if (!tokens?.refreshToken) {
+    console.error('\n[psn-token] 리프레시 토큰을 받지 못했습니다.\n');
+    return 1;
+  }
+
+  writeFileSync(out, tokens.refreshToken, 'utf8');
+  const days = Math.floor((tokens.refreshTokenExpiresIn ?? 0) / 86400);
+  console.log(`[psn-token] 발급 완료. 유효기간 약 ${days}일.`);
+  console.log('[psn-token] 토큰은 파일로만 전달했습니다 (로그에 남기지 않음).');
+  return 0;
+}
+
 let code = 1;
-try {
-  code = await main(rl);
-} finally {
-  rl.close();
+if (process.env.PSN_NPSSO) {
+  code = await nonInteractive(process.env.PSN_NPSSO);
+} else {
+  const rl = createInterface({ input: stdin, output: stdout });
+  try {
+    code = await main(rl);
+  } finally {
+    rl.close();
+  }
 }
 process.exitCode = code;

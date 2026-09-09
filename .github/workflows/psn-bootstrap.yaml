@@ -1,0 +1,84 @@
+name: Bootstrap PSN token
+
+# NPSSO 를 리프레시 토큰으로 바꿔 시크릿에 저장한다. 최초 1회용이고,
+# 리프레시 토큰이 만료(약 60일 미갱신)돼 체인이 끊겼을 때도 다시 쓴다.
+#
+# 로컬 터미널이 없는 환경(원격)에서 브라우저만으로 설정하기 위한 경로다.
+# 로컬에서 할 수 있으면 `npm run psn:token` 이 더 간단하다.
+#
+# 준비 (둘 다 Settings → Secrets and variables → Actions):
+#   GH_SECRETS_TOKEN  시크릿 쓰기 권한이 있는 fine-grained PAT
+#   PSN_NPSSO         브라우저에서 받은 NPSSO 값 (이 워크플로가 지운다)
+#
+# 실행하면:
+#   PSN_REFRESH_TOKEN 을 만들고 PSN_NPSSO 는 삭제한다.
+#   NPSSO 와 리프레시 토큰 모두 로그에 남지 않는다.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check secrets
+        env:
+          HAS_NPSSO: ${{ secrets.PSN_NPSSO != '' }}
+          HAS_PAT: ${{ secrets.GH_SECRETS_TOKEN != '' }}
+        run: |
+          fail=0
+          if [ "$HAS_NPSSO" != "true" ]; then
+            echo "::error::PSN_NPSSO 시크릿이 없습니다. 브라우저에서 NPSSO 를 받아 등록하세요."
+            fail=1
+          fi
+          if [ "$HAS_PAT" != "true" ]; then
+            echo "::error::GH_SECRETS_TOKEN 시크릿이 없습니다. docs/psn-setup.md 2번 절 참조."
+            fail=1
+          fi
+          exit $fail
+
+      # 토큰은 stdout 에 찍지 않고 파일로만 넘긴다.
+      - name: Exchange NPSSO for refresh token
+        env:
+          PSN_NPSSO: ${{ secrets.PSN_NPSSO }}
+          PSN_TOKEN_OUT: ${{ runner.temp }}/psn_refresh_token
+        run: node scripts/psn-token.mjs
+
+      - name: Store refresh token and delete NPSSO
+        env:
+          GH_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}
+        run: |
+          f="${{ runner.temp }}/psn_refresh_token"
+          if [ ! -s "$f" ]; then
+            echo "::error::토큰 파일이 비어 있습니다."
+            exit 1
+          fi
+          gh secret set PSN_REFRESH_TOKEN --repo "$GITHUB_REPOSITORY" < "$f"
+          echo "PSN_REFRESH_TOKEN 을 저장했습니다."
+
+          # NPSSO 는 더 필요 없으므로 지운다. 실패해도 전체를 실패시키지는
+          # 않되 눈에 띄게 남긴다 (직접 지우면 된다).
+          if gh secret delete PSN_NPSSO --repo "$GITHUB_REPOSITORY"; then
+            echo "PSN_NPSSO 를 삭제했습니다."
+          else
+            echo "::warning::PSN_NPSSO 삭제에 실패했습니다. 설정 화면에서 직접 지우세요."
+          fi
+
+      - name: Next step
+        run: |
+          echo "완료. 이제 Deploy Hugo site to Pages 워크플로를 실행하면"
+          echo "PSN 플레이 기록이 동기화됩니다."

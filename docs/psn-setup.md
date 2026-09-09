@@ -42,6 +42,11 @@ npm install
 
 ## 1. `PSN_REFRESH_TOKEN`
 
+경로가 두 가지다. 로컬 터미널을 쓸 수 있으면 **1-A**, 원격이라 이 PC 에
+접근할 수 없으면 **1-B**(브라우저만으로 끝난다).
+
+### 1-A. 로컬에서
+
 ```bash
 npm run psn:token
 ```
@@ -67,6 +72,37 @@ npm run psn:token
 
 NPSSO 자체는 이 단계에서만 쓰고 저장하지 않는다.
 
+### 1-B. 원격에서 (브라우저만)
+
+이 경로는 **아래 2번의 `GH_SECRETS_TOKEN` 을 먼저 등록해야 한다.**
+시크릿을 쓰는 주체가 워크플로이기 때문이다. 순서는 2번 → 1-B.
+
+1. 브라우저에서 https://www.playstation.com 에 로그인한다.
+2. 같은 브라우저에서 https://ca.account.sony.com/api/v1/ssocookie 를 연다.
+3. 보이는 `npsso` **값만** 복사한다 (JSON 중괄호는 빼고).
+4. 시크릿으로 등록한다 — 이름 `PSN_NPSSO`, 값은 방금 복사한 것.
+5. `Actions → Bootstrap PSN token → Run workflow` 를 실행한다.
+
+워크플로가 NPSSO 를 리프레시 토큰으로 교환해 `PSN_REFRESH_TOKEN` 을 만들고,
+**`PSN_NPSSO` 는 삭제한다.** NPSSO 와 리프레시 토큰 모두 로그에 남지 않는다
+(토큰은 러너 안의 파일로만 전달된다).
+
+> `workflow_dispatch` 의 입력값은 실행 기록에 그대로 남기 때문에
+> NPSSO 를 입력 폼으로 받지 않고 시크릿으로 받는다.
+
+성공 로그:
+
+```
+[psn-token] NPSSO 교환 중...
+[psn-token] 발급 완료. 유효기간 약 59일.
+[psn-token] 토큰은 파일로만 전달했습니다 (로그에 남기지 않음).
+PSN_REFRESH_TOKEN 을 저장했습니다.
+PSN_NPSSO 를 삭제했습니다.
+```
+
+리프레시 토큰이 만료돼 체인이 끊겼을 때도 이 워크플로를 다시 쓰면 된다
+(`PSN_NPSSO` 를 새로 등록하고 재실행).
+
 ---
 
 ## 2. `GH_SECRETS_TOKEN`
@@ -91,6 +127,9 @@ NPSSO 자체는 이 단계에서만 쓰고 저장하지 않는다.
 > 이 시크릿을 등록하지 않아도 PSN 동기화 자체는 동작한다. 다만 자동 갱신이
 > 꺼진 상태이므로 60일마다 1번을 반복해야 한다. 워크플로는
 > `HAS_PSN_ROTATION` 으로 존재 여부를 보고 갱신 스텝을 건너뛴다.
+>
+> 단 **1-B(원격) 경로를 쓸 때는 이 토큰이 필수다.** 그 경로에서는
+> 워크플로가 시크릿을 쓰기 때문이다.
 
 ---
 

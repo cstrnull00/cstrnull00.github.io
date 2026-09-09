@@ -12,9 +12,15 @@
 //
 // 토큰 수명:
 //   accessToken   몇 시간
-//   refreshToken  약 60일. 교환할 때마다 새 것이 발급되므로(로테이션)
-//                 60일 안에 한 번씩 실행되면 NPSSO 재발급 없이 계속 이어진다.
-//                 60일을 넘기면 체인이 끊기고 NPSSO 부터 다시 받아야 한다.
+//   refreshToken  교환할 때마다 새 것이 발급된다(로테이션). 만료 전에 한 번씩
+//                 실행되면 NPSSO 재발급 없이 계속 이어지고, 넘기면 체인이
+//                 끊겨 NPSSO 부터 다시 받아야 한다.
+//
+//                 ⚠ 문서상 "약 60일" 이지만 2026-09 실측값은 약 9일이었다.
+//                 소니가 수명을 줄인 것으로 보인다. 그래서 주간 실행만으로는
+//                 여유가 없어, 별도의 일간 워크플로(psn-keepalive.yaml)가
+//                 PSN_ROTATE_ONLY 모드로 토큰만 갱신한다.
+//                 실제 잔여 일수는 실행 로그에 찍히므로 그 값을 신뢰할 것.
 //
 // 새 리프레시 토큰은 stdout 에 찍지 않고 PSN_TOKEN_OUT 경로의 파일에 쓴다.
 // 워크플로가 그 파일을 gh secret set 으로 저장한다.
@@ -32,8 +38,21 @@ import {
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = resolve(ROOT, 'data/played/psn.json');
 
-// 게임이 아닌 항목. 스팀 쪽과 같은 취지 (Wallpaper Engine 등).
+// 게임이 아닌 항목을 titleId 로 개별 제외할 때 쓴다.
 const EXCLUDED = new Set([]);
+
+// 게임이 아닌 항목은 카테고리로 걸러낸다.
+//
+// PSN 이 실제로 돌려주는 category 값에는 문서에 없는 것들이 섞여 있다.
+// 2026-09 실측: ps5_native_media_app(YouTube, Netflix, Disney+, Apple TV),
+// ps5_web_based_media_app(왓챠), ps4_nongame_mini_app(Disney+).
+//
+// 이걸 남기면 YouTube 4204시간이 전체 목록 1위가 된다. 스팀 쪽에서
+// Wallpaper Engine 을 뺀 것과 같은 이유다.
+//
+// unknown 은 남긴다 — 실제 게임(DEATH STRANDING, NieR:Automata,
+// UNCHARTED 컬렉션 등)이 이 값으로 온다.
+const NON_GAME_CATEGORY = /media_app|nongame/i;
 
 function loadEnvLocal() {
   const p = resolve(ROOT, '.env.local');
@@ -118,6 +137,13 @@ if (tokenOut && auth.refreshToken) {
   console.log('[sync-psn] 새 리프레시 토큰을 파일에 기록했습니다.');
 }
 
+// 토큰만 살려두는 모드. 일간 워크플로가 이 경로로 돈다 —
+// 목록 조회와 데이터 커밋 없이 로테이션만 하므로 히스토리가 지저분해지지 않는다.
+if (process.env.PSN_ROTATE_ONLY) {
+  console.log('[sync-psn] PSN_ROTATE_ONLY — 토큰만 갱신하고 종료합니다.');
+  process.exit(0);
+}
+
 console.log('[sync-psn] 플레이 목록 조회 중...');
 
 const authorization = { accessToken: auth.accessToken };
@@ -147,8 +173,14 @@ if (!titles.length) {
   );
 }
 
+const dropped = titles.filter(
+  (t) => EXCLUDED.has(t.titleId) || NON_GAME_CATEGORY.test(t.category ?? '')
+);
+
 const mapped = titles
-  .filter((t) => !EXCLUDED.has(t.titleId))
+  .filter(
+    (t) => !EXCLUDED.has(t.titleId) && !NON_GAME_CATEGORY.test(t.category ?? '')
+  )
   .map((t) => ({
     titleId: t.titleId,
     name: t.localizedName || t.name,
@@ -182,8 +214,14 @@ const out = {
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8');
 
+const droppedNote = dropped.length
+  ? ` (게임 아님 ${dropped.length}개 제외: ${dropped
+      .map((t) => t.localizedName || t.name)
+      .join(', ')})`
+  : '';
+
 console.log(
   `[sync-psn] 이력 ${titles.length}개 중 ${listed.length}개를 기록했습니다.` +
-    ` (플레이 시간 미기록 ${unknown}개)\n` +
+    ` (플레이 시간 미기록 ${unknown}개)${droppedNote}\n` +
     `[sync-psn] → data/played/psn.json`
 );

@@ -1,0 +1,75 @@
+name: Keep PSN token alive
+
+# PSN 리프레시 토큰은 교환할 때마다 새로 발급되고, 만료 전에 한 번이라도
+# 교환하지 않으면 체인이 끊겨 NPSSO 재발급이 필요해진다.
+#
+# 문서상 수명은 "약 60일" 이지만 2026-09 실측값은 약 9일이었다.
+# 주간 배포 워크플로만으로는 여유가 2일뿐이라, 한 번 밀리면 끊긴다.
+# 그래서 토큰 갱신만 하는 일간 워크플로를 따로 둔다.
+#
+# 목록 조회도, 데이터 커밋도, 배포도 하지 않는다. 하는 일은 하나 —
+# 토큰을 교환해 새 토큰을 시크릿에 다시 저장하는 것.
+#
+# 필요한 시크릿: PSN_REFRESH_TOKEN, GH_SECRETS_TOKEN
+# 최초 설정은 docs/psn-setup.md 참조.
+
+on:
+  schedule:
+    # 매일 04:00 KST (19:00 UTC). 배포 워크플로(월 03:00 KST)와 겹치지 않게 둔다.
+    - cron: "0 19 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  # 배포 워크플로의 로테이션과 동시에 돌지 않게 한다.
+  group: psn-token
+  cancel-in-progress: false
+
+jobs:
+  rotate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check secrets
+        env:
+          HAS_TOKEN: ${{ secrets.PSN_REFRESH_TOKEN != '' }}
+          HAS_PAT: ${{ secrets.GH_SECRETS_TOKEN != '' }}
+        run: |
+          if [ "$HAS_TOKEN" != "true" ] || [ "$HAS_PAT" != "true" ]; then
+            echo "::notice::PSN 연동이 설정되지 않았습니다 — 건너뜁니다."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+        id: check
+
+      - name: Refresh token
+        if: steps.check.outputs.skip != 'true'
+        env:
+          PSN_REFRESH_TOKEN: ${{ secrets.PSN_REFRESH_TOKEN }}
+          PSN_TOKEN_OUT: ${{ runner.temp }}/psn_refresh_token
+          PSN_ROTATE_ONLY: '1'
+        run: node scripts/sync-psn.mjs
+
+      - name: Store rotated token
+        if: steps.check.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}
+        run: |
+          f="${{ runner.temp }}/psn_refresh_token"
+          if [ ! -s "$f" ]; then
+            echo "::error::새 토큰 파일이 비어 있습니다."
+            exit 1
+          fi
+          gh secret set PSN_REFRESH_TOKEN --repo "$GITHUB_REPOSITORY" < "$f"
+          echo "PSN 리프레시 토큰을 갱신했습니다."

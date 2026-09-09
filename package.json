@@ -5,7 +5,8 @@
   "type": "commonjs",
   "scripts": {
     "sync:steam": "node scripts/sync-steam.mjs",
-    "sync:psn": "node scripts/sync-psn.mjs"
+    "sync:psn": "node scripts/sync-psn.mjs",
+    "psn:token": "node scripts/psn-token.mjs"
   },
   "dependencies": {
     "psn-api": "^2.18.1"

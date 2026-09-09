@@ -24,48 +24,48 @@ https://github.com/cstrnull00/cstrnull00.github.io/settings/secrets/actions
 
 ---
 
+## 0. 준비 — 터미널 위치와 의존성
+
+아래 명령은 모두 **이 저장소의 최상위 폴더**(`package.json` 과 `config.yaml`
+이 있는 곳, 이 PC 에서는 `C:\blog`)에서 실행한다. `psn-api` 가 그 폴더의
+`node_modules` 에 설치되므로 다른 위치에서는 찾지 못한다.
+
+```bash
+cd C:\blog
+npm install
+```
+
+`node_modules/` 는 커밋하지 않으므로, 새로 클론한 환경에서는
+`npm install` 을 한 번 실행해야 한다. Node 18 이상이 필요하다.
+
+---
+
 ## 1. `PSN_REFRESH_TOKEN`
 
-### 1-1. NPSSO 받기
+```bash
+npm run psn:token
+```
+
+실행하면 안내가 나오고 NPSSO 를 물어본다.
 
 1. 브라우저에서 https://www.playstation.com 에 로그인한다.
 2. 같은 브라우저에서 아래 주소를 연다.
    ```
    https://ca.account.sony.com/api/v1/ssocookie
    ```
-3. `{"npsso":"xxxxxxxx..."}` 가 보인다. `npsso` 값만 복사한다.
-
-NPSSO 자체는 이 단계에서만 쓰고 저장하지 않는다.
-
-### 1-2. 리프레시 토큰으로 교환
-
-레포 루트에서 (`npm install` 이 끝난 상태여야 한다):
-
-```bash
-node -e "
-import('psn-api').then(async (m) => {
-  const code = await m.exchangeNpssoForAccessCode(process.argv[1]);
-  const t = await m.exchangeAccessCodeForAuthTokens(code);
-  console.log('refreshToken:', t.refreshToken);
-  console.log('유효기간(일):', Math.floor(t.refreshTokenExpiresIn / 86400));
-});
-" "여기에_NPSSO_값"
-```
+3. 보이는 `{"npsso":"xxxxxxxx..."}` 를 그대로 복사해 붙여넣는다.
+   (JSON 통째로 붙여넣어도 값만 알아서 꺼낸다.)
 
 출력된 `refreshToken` 을 `PSN_REFRESH_TOKEN` 시크릿으로 등록한다.
+마지막에 `.env.local` 에도 저장할지 물어보는데, 로컬에서
+`npm run sync:psn` 을 시험해 볼 생각이면 `y` 를 누른다
+(`.env.local` 은 `.gitignore` 에 있어 커밋되지 않는다).
 
-> 이 명령은 토큰을 화면에 출력한다. 터미널 기록과 스크롤백에 남으므로,
-> 등록 후에는 히스토리를 정리하는 편이 좋다.
+> NPSSO 를 명령 인자로 받지 않고 입력으로 받는 이유는 셸 히스토리에
+> 남지 않게 하기 위해서다. 다만 발급된 리프레시 토큰은 화면에 출력되므로
+> 터미널 스크롤백에는 남는다.
 
-로컬에서 테스트하려면 레포 루트에 `.env.local` (커밋되지 않음) 을 만든다.
-
-```
-PSN_REFRESH_TOKEN=여기에_리프레시_토큰
-```
-
-```bash
-node scripts/sync-psn.mjs
-```
+NPSSO 자체는 이 단계에서만 쓰고 저장하지 않는다.
 
 ---
 

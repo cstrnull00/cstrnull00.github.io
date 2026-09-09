@@ -403,6 +403,37 @@
   transition: opacity 0.15s ease;
 }
 
+/* 점수 배지. 메타크리틱과 같은 구간(75+ / 50-74 / 0-49)과 색 계열을 쓴다.
+   배경색이 의미를 나르므로 색만으로 판단하지 않도록 숫자를 그대로 노출하고,
+   aria-label 에도 총점을 넣는다. */
+.played-score {
+  min-width: 2.4em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.played-score.is-good {
+  background-color: #66cc33;
+  color: #14290a;
+}
+
+.played-score.is-mixed {
+  background-color: #ffcc33;
+  color: #33290a;
+}
+
+.played-score.is-bad {
+  background-color: #ff4d4d;
+  color: #33090a;
+}
+
+/* 점수 배지는 자체 색을 쓰므로 강조색 호버 규칙에서 제외한다 */
+.played-score:hover,
+.played-score:focus-visible {
+  color: inherit;
+}
+
 .played-badge:hover,
 .played-badge:focus-visible {
   /* 테마가 링크 호버 색을 바꾸므로 다시 못박는다 */

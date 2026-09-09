@@ -3,9 +3,15 @@ public/
 resources/
 .hugo_build.lock
 
-# Claude Code 로컬 컨텍스트 (커밋 금지)
+# 에이전트 로컬 컨텍스트 (커밋 금지)
+# 파일명만 적어 두면 루트/하위 어디에 있어도 무시된다.
 CLAUDE.md
 CLAUDE.local.md
+AGENTS.md
+AGENTS.local.md
+Codex.md
+Codex.local.md
+GEMINI.md
 .claude/launch.json
 
 # Obsidian 볼트 설정

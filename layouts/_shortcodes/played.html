@@ -10,8 +10,9 @@
     psn_title_id: CUSA01433_00    (PS)
 
   한 행의 역할 분담:
-    게임 아이콘 → 스팀 상점 (스팀 행만. PS 는 공개 상점 주소를 titleId 로
-                  안정적으로 만들 수 없어 링크를 걸지 않는다)
+    게임 아이콘 → 각 플랫폼 상점. 스팀은 appid, PS 는 concept id 를 쓴다
+                  (PS 스토어 주소는 titleId 가 아니라 concept id 기준).
+                  concept id 가 없는 항목은 링크를 걸지 않는다.
     제목        → 일반 텍스트
     리뷰 배지   → 리뷰 글 (링크) 겸 정렬 기준
     플랫폼 로고 → 출처 표시 (링크 아님)
@@ -90,11 +91,17 @@
       {{- if .minutes }}{{ $mins = .minutes }}{{ else }}{{ $unknown = add $unknown 1 }}{{ end -}}
 
       {{- $store := "" -}}
+      {{- $storeName := "" -}}
       {{- $rev := false -}}
       {{- if eq $plat "steam" -}}
         {{- $store = printf "https://store.steampowered.com/app/%d/" (int .appid) -}}
+        {{- $storeName = "스팀 상점" -}}
         {{- $rev = index $bySteam (printf "%d" (int .appid)) -}}
       {{- else -}}
+        {{- with .conceptId -}}
+          {{- $store = printf "https://store.playstation.com/ko-kr/concept/%v" . -}}
+        {{- end -}}
+        {{- $storeName = "PS 스토어" -}}
         {{- $rev = index $byPsn (printf "%v" .titleId) -}}
       {{- end -}}
 
@@ -106,6 +113,7 @@
             "lastPlayed" (.lastPlayed | default "")
             "icon" (.icon | default "")
             "store" $store
+            "storeName" $storeName
             "rev" $rev) -}}
     {{- end -}}
   {{- end -}}
@@ -161,8 +169,8 @@
               <a class="played-iconlink"
                  href="{{ .store }}"
                  rel="noopener noreferrer"
-                 title="스팀 상점에서 보기"
-                 aria-label="{{ .name }} — 스팀 상점에서 보기">
+                 title="{{ .storeName }}에서 보기"
+                 aria-label="{{ .name }} — {{ .storeName }}에서 보기">
                 {{- if .icon -}}
                   <img class="played-icon" src="{{ .icon }}" alt="" width="32" height="32" loading="lazy">
                 {{- else -}}

@@ -6,7 +6,11 @@
 //   STEAM_API_KEY   https://steamcommunity.com/dev/apikey 에서 발급
 //   STEAM_ID        SteamID64 (17자리 숫자)
 //   STEAM_MIN_MINUTES  선택. 이 시간 미만은 목록에서 제외 (기본 120분)
-//   STEAM_EXCLUDE      선택. 추가로 제외할 appid 를 쉼표로 구분 (아래 EXCLUDED 와 합쳐진다)
+//   STEAM_EXCLUDE      선택. 추가로 제외할 appid 를 쉼표로 구분.
+//                      목록에 남기고 싶지 않은 게임을 빼는 데 쓴다. 스팀 프로필의
+//                      "프로필에서 숨기기" 는 API 에 반영되지 않으므로 이쪽으로 빼야 한다.
+//                      이 경로로 제외된 항목은 이름을 로그에 남기지 않는다
+//                      (공개 레포의 로그는 누구나 볼 수 있다).
 //
 // 주의: 스팀 프로필의 "게임 상세 정보"가 공개여야 API 가 목록을 돌려준다.
 //       비공개면 게임 배열이 아예 오지 않는다.
@@ -59,11 +63,15 @@ const KEY = process.env.STEAM_API_KEY;
 const ID = process.env.STEAM_ID;
 const MIN = Number(process.env.STEAM_MIN_MINUTES ?? 120);
 
-// 환경변수로 넘어온 제외 목록을 합친다
+// 환경변수로 넘어온 제외 목록. 코드에 박은 것과 분리해 둔다 —
+// 이쪽은 이름을 로그에 남기지 않는다.
+const EXCLUDED_PRIVATE = new Set();
 for (const raw of (process.env.STEAM_EXCLUDE ?? '').split(',')) {
   const id = Number(raw.trim());
-  if (Number.isInteger(id) && id > 0) EXCLUDED.add(id);
+  if (Number.isInteger(id) && id > 0) EXCLUDED_PRIVATE.add(id);
 }
+
+const isExcluded = (appid) => EXCLUDED.has(appid) || EXCLUDED_PRIVATE.has(appid);
 
 if (!KEY) fail('STEAM_API_KEY 가 없습니다. .env.local 에 넣거나 환경변수로 주세요.');
 if (!ID) fail('STEAM_ID (SteamID64, 17자리) 가 없습니다.');
@@ -105,7 +113,7 @@ if (!Array.isArray(games)) {
 }
 
 const listed = games
-  .filter((g) => (g.playtime_forever ?? 0) >= MIN && !EXCLUDED.has(g.appid))
+  .filter((g) => (g.playtime_forever ?? 0) >= MIN && !isExcluded(g.appid))
   .sort((a, b) => b.playtime_forever - a.playtime_forever)
   .map((g) => ({
     appid: g.appid,
@@ -118,10 +126,12 @@ const listed = games
       : null,
   }));
 
-// 무엇이 제외됐는지 로그에 남긴다
-const excludedHits = games.filter(
-  (g) => (g.playtime_forever ?? 0) >= MIN && EXCLUDED.has(g.appid)
-);
+// 무엇이 제외됐는지 로그에 남긴다. 단 시크릿으로 넘어온 것은 개수만.
+const overMin = games.filter((g) => (g.playtime_forever ?? 0) >= MIN);
+const excludedHits = overMin.filter((g) => EXCLUDED.has(g.appid));
+const excludedPrivateCount = overMin.filter(
+  (g) => !EXCLUDED.has(g.appid) && EXCLUDED_PRIVATE.has(g.appid)
+).length;
 
 const totalMinutes = games.reduce((sum, g) => sum + (g.playtime_forever ?? 0), 0);
 
@@ -137,9 +147,14 @@ const out = {
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8');
 
-const note = excludedHits.length
-  ? ` (제외 ${excludedHits.length}개: ${excludedHits.map((g) => g.name).join(', ')})`
-  : '';
+const parts = [];
+if (excludedHits.length) {
+  parts.push(`제외 ${excludedHits.length}개: ${excludedHits.map((g) => g.name).join(', ')}`);
+}
+if (excludedPrivateCount) {
+  parts.push(`설정으로 제외 ${excludedPrivateCount}개`);
+}
+const note = parts.length ? ` (${parts.join(' / ')})` : '';
 
 console.log(
   `[sync-steam] 보유 ${games.length}개 중 ${MIN}분 이상 ${listed.length}개를 기록했습니다.${note}\n` +

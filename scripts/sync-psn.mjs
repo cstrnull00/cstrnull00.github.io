@@ -6,6 +6,9 @@
 //   PSN_REFRESH_TOKEN  최초 1회 NPSSO 로 발급 (docs/psn-setup.md 참조)
 //   PSN_MIN_MINUTES    선택. 이 시간 미만은 제외 (기본 120분)
 //                      단 플레이 시간이 "기록 없음"인 항목은 이 필터를 통과한다
+//   PSN_EXCLUDE        선택. 제외할 titleId 를 쉼표로 구분 (아래 EXCLUDED 와 합쳐진다)
+//                      목록에 남기고 싶지 않은 게임을 빼는 데 쓴다. 값이
+//                      시크릿에 있으면 무엇을 뺐는지가 공개 레포에 남지 않는다.
 //
 // 공식 API 가 아니다. psn-api 는 PSN 웹의 비공개 엔드포인트를 쓴다.
 // 소니가 막으면 동작이 멈출 수 있고, 그때는 이 스크립트만 실패한다.
@@ -98,6 +101,17 @@ loadEnvLocal();
 const REFRESH = process.env.PSN_REFRESH_TOKEN;
 const MIN = Number(process.env.PSN_MIN_MINUTES ?? 120);
 
+// 환경변수로 넘어온 제외 목록. 코드에 박은 것과 분리해 둔다 —
+// 이쪽은 이름을 로그에 남기지 않는다.
+const EXCLUDED_PRIVATE = new Set();
+for (const raw of (process.env.PSN_EXCLUDE ?? '').split(',')) {
+  const id = raw.trim();
+  if (id) EXCLUDED_PRIVATE.add(id);
+}
+
+const isExcluded = (titleId) =>
+  EXCLUDED.has(titleId) || EXCLUDED_PRIVATE.has(titleId);
+
 if (!REFRESH) {
   fail(
     'PSN_REFRESH_TOKEN 이 없습니다.\n' +
@@ -173,14 +187,15 @@ if (!titles.length) {
   );
 }
 
-const dropped = titles.filter(
-  (t) => EXCLUDED.has(t.titleId) || NON_GAME_CATEGORY.test(t.category ?? '')
-);
+// 카테고리로 걸러진 것(게임 아님)은 이름을 남긴다 — 공개해도 무해하다.
+const dropped = titles.filter((t) => NON_GAME_CATEGORY.test(t.category ?? ''));
+// 설정으로 뺀 것은 개수만 남긴다.
+const droppedPrivateCount = titles.filter(
+  (t) => !NON_GAME_CATEGORY.test(t.category ?? '') && isExcluded(t.titleId)
+).length;
 
 const mapped = titles
-  .filter(
-    (t) => !EXCLUDED.has(t.titleId) && !NON_GAME_CATEGORY.test(t.category ?? '')
-  )
+  .filter((t) => !isExcluded(t.titleId) && !NON_GAME_CATEGORY.test(t.category ?? ''))
   .map((t) => ({
     titleId: t.titleId,
     name: t.localizedName || t.name,
@@ -189,6 +204,9 @@ const mapped = titles
     lastPlayed: t.lastPlayedDateTime ?? null,
     icon: t.localizedImageUrl || t.imageUrl || null,
     category: t.category ?? null,
+    // PS 스토어 주소는 titleId 가 아니라 concept id 를 쓴다.
+    // store.playstation.com/ko-kr/concept/<conceptId>
+    conceptId: t.concept?.id != null ? String(t.concept.id) : null,
   }));
 
 // 시간이 있는 항목만 커트라인을 적용한다.
@@ -198,6 +216,7 @@ const listed = mapped
   .sort((a, b) => (b.minutes ?? -1) - (a.minutes ?? -1));
 
 const unknown = listed.filter((g) => g.minutes === null).length;
+const noConcept = listed.filter((g) => !g.conceptId).length;
 const totalMinutes = listed.reduce((sum, g) => sum + (g.minutes ?? 0), 0);
 
 const out = {
@@ -214,14 +233,21 @@ const out = {
 mkdirSync(dirname(OUT), { recursive: true });
 writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n', 'utf8');
 
-const droppedNote = dropped.length
-  ? ` (게임 아님 ${dropped.length}개 제외: ${dropped
+const noteParts = [];
+if (dropped.length) {
+  noteParts.push(
+    `게임 아님 ${dropped.length}개 제외: ${dropped
       .map((t) => t.localizedName || t.name)
-      .join(', ')})`
-  : '';
+      .join(', ')}`
+  );
+}
+if (droppedPrivateCount) {
+  noteParts.push(`설정으로 제외 ${droppedPrivateCount}개`);
+}
+const droppedNote = noteParts.length ? ` (${noteParts.join(' / ')})` : '';
 
 console.log(
   `[sync-psn] 이력 ${titles.length}개 중 ${listed.length}개를 기록했습니다.` +
-    ` (플레이 시간 미기록 ${unknown}개)${droppedNote}\n` +
+    ` (플레이 시간 미기록 ${unknown}개, 상점 링크 없음 ${noConcept}개)${droppedNote}\n` +
     `[sync-psn] → data/played/psn.json`
 );

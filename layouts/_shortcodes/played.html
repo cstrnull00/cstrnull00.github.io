@@ -4,7 +4,9 @@
 
   리뷰 글과 연결하려면 그 글의 프론트매터에 앱 ID 를 적어 두면 된다.
     steam_appid: 1158310
-  그러면 제목·배지가 그 글로 연결된다. 스팀 상점 링크는 우측 아이콘으로 항상 나간다.
+  그러면 제목·배지가 그 글로 연결된다.
+  스팀 상점으로는 좌측 게임 아이콘이 연결되고, 우측 스팀 로고는 출처 표시일 뿐
+  링크가 아니다.
 
   정렬·펼치기는 JS 로 처리한다. JS 가 없으면 전체 행이 그냥 다 보이고
   컨트롤만 숨겨진 채 표로 읽힌다(점진적 향상).
@@ -78,11 +80,17 @@
         {{- $h := math.Floor (div .minutes 60.0) -}}
         <tr data-minutes="{{ int .minutes }}" data-last="{{ with .lastPlayed }}{{ (time.AsTime .).Unix }}{{ end }}">
           <td class="played-title">
-            {{- with .icon -}}
-              <img class="played-icon" src="{{ . }}" alt="" width="32" height="32" loading="lazy">
-            {{- else -}}
-              <span class="played-icon played-icon-none" aria-hidden="true"></span>
-            {{- end -}}
+            <a class="played-iconlink"
+               href="https://store.steampowered.com/app/{{ $appid }}/"
+               rel="noopener noreferrer"
+               title="스팀 상점에서 보기"
+               aria-label="{{ .name }} — 스팀 상점에서 보기">
+              {{- with .icon -}}
+                <img class="played-icon" src="{{ . }}" alt="" width="32" height="32" loading="lazy">
+              {{- else -}}
+                <span class="played-icon played-icon-none" aria-hidden="true"></span>
+              {{- end -}}
+            </a>
             {{ if $link -}}
               <a class="played-review" href="{{ $link }}">{{ .name }}<span class="played-badge">리뷰</span></a>
             {{- else -}}
@@ -95,13 +103,10 @@
           <td class="played-last played-last-col">
             {{- with .lastPlayed }}{{ (time.AsTime .).Format "2006-01" }}{{ else }}&mdash;{{ end -}}
           </td>
-          <td class="played-store">
-            <a href="https://store.steampowered.com/app/{{ $appid }}/"
-               rel="noopener noreferrer"
-               title="스팀 상점에서 보기"
-               aria-label="{{ .name }} — 스팀 상점에서 보기">
-              {{- with $steamIcon }}{{ . | safeHTML }}{{ else }}Steam{{ end -}}
-            </a>
+          {{- /* 출처 표시용. 링크가 아니므로 접근성 트리에서는 숨긴다
+                 (상점으로는 좌측 게임 아이콘이 연결된다) */ -}}
+          <td class="played-store" aria-hidden="true">
+            {{- with $steamIcon }}{{ . | safeHTML }}{{ end -}}
           </td>
         </tr>
         {{- end }}

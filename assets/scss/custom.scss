@@ -343,23 +343,37 @@
   background-color: rgba(127, 127, 127, 0.15);
 }
 
+/* 상점 링크. 클릭할 수 있다는 것을 알 수 있게
+   호버·포커스에서 테마 강조색 테두리를 입힌다. */
+.played-iconlink {
+  display: inline-block;
+  line-height: 0;
+  border-radius: 3px;
+}
+
+.played-iconlink .played-icon {
+  transition: box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.played-iconlink:hover .played-icon,
+.played-iconlink:focus-visible .played-icon {
+  box-shadow: 0 0 0 2px var(--accent-color);
+}
+
+.played-iconlink:hover .played-icon-none,
+.played-iconlink:focus-visible .played-icon-none {
+  opacity: 0.7;
+}
+
 /* 스팀 로고 (assets/icons/brand-steam.svg — Simple Icons, CC0).
-   외곽선형은 18px 에서 뭉개지므로 면으로 채운 버전을 쓴다. */
+   외곽선형은 작은 크기에서 뭉개져 면으로 채운 버전을 쓴다.
+   좌측 게임 아이콘과 같은 32px. */
 .played-store svg {
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 32px;
+  height: 32px;
   vertical-align: middle;
-}
-
-.played-store a {
-  display: inline-flex;
-  opacity: 0.5;
-  transition: opacity 0.15s ease;
-}
-
-.played-store a:hover,
-.played-store a:focus-visible {
-  opacity: 1;
+  /* 링크가 아니라 출처 표시다. 32px 로 키우면 눈에 띄므로 더 연하게 둔다. */
+  opacity: 0.32;
 }
 
 /* 스크린 리더에만 읽히는 헤더 */
@@ -400,5 +414,10 @@
     width: 24px;
     height: 24px;
     margin-right: 0.4rem;
+  }
+
+  .played-store svg {
+    width: 24px;
+    height: 24px;
   }
 }

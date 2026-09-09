@@ -28,8 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # 스텝의 if 에서는 secrets 컨텍스트를 쓸 수 없어 여기서 넘긴다.
+      # (runner 컨텍스트는 잡 레벨 env 에서 쓸 수 없으므로 경로는 스텝에서 만든다)
       HAS_PSN_ROTATION: ${{ secrets.GH_SECRETS_TOKEN != '' }}
-      PSN_TOKEN_FILE: ${{ runner.temp }}/psn_refresh_token
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -70,7 +70,7 @@ jobs:
         continue-on-error: true
         env:
           PSN_REFRESH_TOKEN: ${{ secrets.PSN_REFRESH_TOKEN }}
-          PSN_TOKEN_OUT: ${{ env.PSN_TOKEN_FILE }}
+          PSN_TOKEN_OUT: ${{ runner.temp }}/psn_refresh_token
         run: node scripts/sync-psn.mjs
 
       # 리프레시 토큰은 교환할 때마다 새로 발급된다(약 60일 유효).
@@ -81,8 +81,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_SECRETS_TOKEN }}
         run: |
-          if [ -s "$PSN_TOKEN_FILE" ]; then
-            gh secret set PSN_REFRESH_TOKEN --repo "$GITHUB_REPOSITORY" < "$PSN_TOKEN_FILE"
+          f="${{ runner.temp }}/psn_refresh_token"
+          if [ -s "$f" ]; then
+            gh secret set PSN_REFRESH_TOKEN --repo "$GITHUB_REPOSITORY" < "$f"
             echo "PSN 리프레시 토큰을 갱신했습니다."
           else
             echo "새 토큰 파일이 비어 있습니다 — 갱신 건너뜀." >&2

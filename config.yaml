@@ -10,6 +10,10 @@ timeZone: "Asia/Seoul"
 
 enableGitInfo: true
 
+# robots.txt 를 생성한다. 내용은 layouts/robots.txt 에서 정의하며,
+# 사이트맵 위치를 명시해 크롤러가 유입 링크 없이도 전체 페이지를 찾게 한다.
+enableRobotsTXT: true
+
 ignoreFiles:
   - ".*glossary.*"
 

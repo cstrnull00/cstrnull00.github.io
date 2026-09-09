@@ -249,10 +249,10 @@
   opacity: 0.85;
 }
 
-/* 리뷰 열은 대부분 비어 있다. 배지만 가운데 놓는다. */
+/* 리뷰 열은 대부분 비어 있다. 배지만 가운데 놓되 좌우는 좁게. */
 .played-col-rev {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 0.4rem;
+  padding-right: 0.4rem;
 }
 
 .played-table tr.is-hidden {
@@ -391,9 +391,12 @@
 .played-badge {
   display: inline-block;
   text-decoration: none;
-  padding: 0.05rem 0.35rem;
-  border-radius: 3px;
-  font-size: 0.72rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  /* 제목 옆에 끼어 있을 때는 작아야 했지만, 전용 열로 옮긴 뒤에는
+     본문과 비슷한 크기여야 읽힌다. */
+  font-size: 0.85rem;
+  line-height: 1.4;
   background-color: var(--accent-color);
   color: var(--accent-color-text);
   vertical-align: middle;

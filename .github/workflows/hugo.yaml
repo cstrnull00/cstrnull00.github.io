@@ -9,7 +9,9 @@ on:
     - cron: "0 18 * * 0"
 
 permissions:
-  contents: read
+  # 동기화한 데이터를 레포에 커밋한다. 그래야 API 가 실패해도 페이지가
+  # "지난주 실제 데이터 + 진짜 갱신 날짜"로 남는다 (예시 데이터로 되돌아가지 않음).
+  contents: write
   pages: write
   id-token: write
 
@@ -53,6 +55,21 @@ jobs:
           STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
           STEAM_ID: ${{ secrets.STEAM_ID }}
         run: node scripts/sync-steam.mjs
+
+      # 받아온 데이터를 커밋해 다음 실패 때의 폴백으로 남긴다.
+      # GITHUB_TOKEN 으로 푸시하면 워크플로가 재실행되지 않으므로 루프는 없다.
+      - name: Commit synced data
+        if: github.ref == 'refs/heads/main'
+        run: |
+          if git diff --quiet -- data/played; then
+            echo "데이터 변경 없음 — 커밋 생략"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/played
+          git commit -m "Chore: Update played data [skip ci]"
+          git push
 
       - name: Build with Hugo
         run: hugo --minify

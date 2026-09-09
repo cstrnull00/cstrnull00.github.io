@@ -50,7 +50,9 @@ params:
   article:
     math: false
     toc: true
-    readingTime: true
+    # 글자 수로 계산한 예상 읽기 시간. 분석 글에서는 "20분 정도"가
+    # 편집 일정처럼 읽혀 오해를 주므로 끈다.
+    readingTime: false
     license:
       enabled: false
 

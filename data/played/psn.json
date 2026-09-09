@@ -1,0 +1,443 @@
+{
+  "platform": "psn",
+  "updated": "2026-09-09T06:13:50.873Z",
+  "minMinutes": 120,
+  "ownedGames": 63,
+  "listedGames": 54,
+  "unknownDuration": 0,
+  "totalMinutes": 396104,
+  "games": [
+    {
+      "titleId": "PPSA01652_00",
+      "name": "YouTube",
+      "minutes": 252292,
+      "lastPlayed": "2025-11-09T14:26:13.850000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202009/3017/wYAvR9akyRjDjy75S4zCLAGi.png",
+      "category": "ps5_native_media_app"
+    },
+    {
+      "titleId": "PPSA01616_00",
+      "name": "Netflix",
+      "minutes": 14787,
+      "lastPlayed": "2025-03-02T14:17:46.000000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202010/1422/i0AxG1FE1AMNq0KrcXepdYrd.png",
+      "category": "ps5_native_media_app"
+    },
+    {
+      "titleId": "PPSA27360_00",
+      "name": "EA SPORTS FC™ 26",
+      "minutes": 13057,
+      "lastPlayed": "2026-07-05T06:24:59.330000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202608/0314/5217c783f0198d437a0e0e97848d0a3a61c4af84262fd5f2.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA03335_00",
+      "name": "왓챠",
+      "minutes": 8690,
+      "lastPlayed": "2025-03-02T14:18:15.670000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202102/2410/NraCgN2ySCjiGlbglV4nksrK.png",
+      "category": "ps5_web_based_media_app"
+    },
+    {
+      "titleId": "PPSA23479_00",
+      "name": "MLB® The Show™ 25",
+      "minutes": 7954,
+      "lastPlayed": "2025-12-21T03:05:06.110000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202509/0922/42277abc2f6993a5c8194cfb77f82b36e0f9ba510f7a4403.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA25016_00",
+      "name": "MLB® The Show 21™",
+      "minutes": 7835,
+      "lastPlayed": "2021-09-10T13:19:12.580000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202101/0722/KF4GiVmKeA75MZpzEn32ev3g.png",
+      "category": "unknown"
+    },
+    {
+      "titleId": "PPSA22180_00",
+      "name": "EA SPORTS FC™ 25",
+      "minutes": 7277,
+      "lastPlayed": "2025-11-15T10:36:01.630000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202409/2712/1e1c42b14d92280e17bda697b8c4ae13ff9f91bdb10fca89.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA03041_00",
+      "name": "Red Dead Redemption 2",
+      "minutes": 5931,
+      "lastPlayed": "2022-02-27T01:49:40.070000Z",
+      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA08519_00/12/i_3da1cf7c41dc7652f9b639e1680d96436773658668c7dc3930c441291095713b/i/icon0.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "PPSA13392_00",
+      "name": "EA SPORTS FC™ 24",
+      "minutes": 5560,
+      "lastPlayed": "2024-12-15T05:21:26.250000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202406/1122/7a3b10ed3abad7f4f23f7f148e7e48e78e2cc8dc0c541090.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA01416_00",
+      "name": "MLB® The Show 21™",
+      "minutes": 4912,
+      "lastPlayed": "2024-06-16T23:49:34.250000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202101/0722/KF4GiVmKeA75MZpzEn32ev3g.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA08340_00",
+      "name": "마블 스파이더맨 2",
+      "minutes": 4174,
+      "lastPlayed": "2026-08-19T04:06:27.400000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202306/1300/5a52270c8384a851164c66a3c4ab28f7c43e1691c69e22f4.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA17357_00",
+      "name": "MLB® The Show™ 20",
+      "minutes": 3753,
+      "lastPlayed": "2021-02-07T00:19:23.640000Z",
+      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202009/2919/IK4MUYX5kmkoqcxVW36xc8ky.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "PPSA06433_00",
+      "name": "용과 같이8",
+      "minutes": 3345,
+      "lastPlayed": "2024-05-06T12:46:05.650000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202309/0601/135fac816bb015a7880b5063f8c7498340e09ff444d89ecc.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA06130_00",
+      "name": "용과 같이 0 맹세의 장소",
+      "minutes": 3259,
+      "lastPlayed": "2021-08-10T07:39:18.730000Z",
+      "icon": "https://image.api.playstation.com/cdn/HP0177/CUSA06130_00/9L6coM78VrbrBgvWXD5V4XXSnp5kS6nRk4Ozu6nwybPu0qHCA1c7MmbE9Ih8m8V5.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "CUSA08024_00",
+      "name": "페르소나 5",
+      "minutes": 3017,
+      "lastPlayed": "2022-03-26T00:36:56.350000Z",
+      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA06638_00/2/i_5e687f798b89158348af41505923859c110c0ba4010fc7c949d8cffaa5743510/i/icon0.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "PPSA03210_00",
+      "name": "Ghost of Tsushima",
+      "minutes": 2900,
+      "lastPlayed": "2023-07-24T05:12:58.470000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202010/0222/niMUubpU9y1PxNvYmDfb8QFD.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA09436_00",
+      "name": "디지몬 스토리 사이버 슬루스 해커스 메모리",
+      "minutes": 2866,
+      "lastPlayed": "2021-05-20T07:30:24.660000Z",
+      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA09436_00/8/i_a265ee3891190030bb575a968f54ff7c1daba622b37ee2c605b0b5867e5f7f6d/i/icon0_09.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "PPSA08334_00",
+      "name": "God of War Ragnarök",
+      "minutes": 2768,
+      "lastPlayed": "2023-01-30T05:24:30.490000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202503/2016/b69c06fb108299866057126b0d3a0530bdf96a39d2ce1cb9.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA01593_00",
+      "name": "호그와트 레거시",
+      "minutes": 2736,
+      "lastPlayed": "2024-07-13T23:10:28.380000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202503/2716/ce2e7f5896365b4e35a192b1f7592b590fee98827644ddb4.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA01773_00",
+      "name": "FINAL FANTASY VII REMAKE",
+      "minutes": 2528,
+      "lastPlayed": "2026-02-22T05:47:19.750000Z",
+      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA07187_00/5/i_3a90c0e006f2193b1adc12b9424372f4044439cadd6d91fda06c0a86c9c6acf2/i/icon0.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA02690_00",
+      "name": "용과 같이7 빛과 어둠의 행방　International",
+      "minutes": 2505,
+      "lastPlayed": "2021-11-01T13:49:29.130000Z",
+      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202012/2408/UGV7pFPeIFDNn2cD5yGR6CcA.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA15607_00",
+      "name": "Disney+",
+      "minutes": 2434,
+      "lastPlayed": "2022-10-03T10:33:52.770000Z",
+      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA15362_00/1/i_60c1f77bac313d5e85b78658a4e68f8bbb4a57456a2352dd3b1bbbb6eb3c4cbf/i/icon0.png",
+      "category": "ps4_nongame_mini_app"
+    },
+    {
+      "titleId": "PPSA02015_00",
+      "name": "DEATH STRANDING 2: ON THE BEACH",
+      "minutes": 2406,
+      "lastPlayed": "2025-07-06T10:24:23.310000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202511/2115/ae183c63bbeb38d05ecce96aa7f693b4a3769a1835020b63.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA01971_00",
+      "name": "DEATH STRANDING",
+      "minutes": 2376,
+      "lastPlayed": "2023-09-10T14:44:26.010000Z",
+      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202009/2921/40aD0BqRUHyHdXdC6nwtwON5.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA24700_00",
+      "name": "디지몬 스토리 타임 스트레인저",
+      "minutes": 2204,
+      "lastPlayed": "2025-10-23T14:25:35.930000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202505/1402/1f3c429abe5a0108581297cf0bfef91bbf1981903d620b44.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA07413_00",
+      "name": "God of War",
+      "minutes": 1859,
+      "lastPlayed": "2024-11-21T07:58:07.080000Z",
+      "icon": "https://image.api.playstation.com/cdn/UP9000/CUSA07408_00/9zb3GbJG9h7AbP94R56l7DfqEpoBzljO.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "CUSA14204_00",
+      "name": "EA SPORTS™ UFC® 4",
+      "minutes": 1693,
+      "lastPlayed": "2023-09-11T02:06:37.370000Z",
+      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA14204_00/3/i_501e50289fc4ddea6de767ead1adc2f898850405a6eaaa868c80e4bb38c4458a/i/icon0.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "PPSA02167_00",
+      "name": "BLEACH 리버스 오브 소울즈",
+      "minutes": 1633,
+      "lastPlayed": "2026-08-19T02:35:28.190000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202503/1407/be2ca36862560b5a7e207cfc961b88b1123faaca3aee64dc.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA09615_00",
+      "name": "용과 같이 극2",
+      "minutes": 1603,
+      "lastPlayed": "2021-09-24T16:33:04.240000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202511/1905/a1ca0ac2cf45552b9c8c9e4fad449aef1f6ff7f3afa1895d.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "CUSA01399_00",
+      "name": "UNCHARTED: The Nathan Drake Collection™",
+      "minutes": 1547,
+      "lastPlayed": "2020-12-07T06:39:14.320000Z",
+      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202011/1101/zC3kulm2Ho3ZE38ZUYHW7WMK.png",
+      "category": "unknown"
+    },
+    {
+      "titleId": "PPSA01472_00",
+      "name": "Marvel's Spider-Man",
+      "minutes": 1176,
+      "lastPlayed": "2024-07-28T08:32:33.430000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202011/0402/C784xeOFo2wViCf4m5bxgoeH.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA12613_00",
+      "name": "DEATH STRANDING",
+      "minutes": 1158,
+      "lastPlayed": "2021-08-03T05:15:05.230000Z",
+      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202009/2921/40aD0BqRUHyHdXdC6nwtwON5.png",
+      "category": "unknown"
+    },
+    {
+      "titleId": "CUSA08392_00",
+      "name": "Detroit: Become Human™",
+      "minutes": 1150,
+      "lastPlayed": "2021-09-25T14:33:28.360000Z",
+      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202010/2119/wl4DB5QGzlEHAXy1KLUVgOAu.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "PPSA17599_00",
+      "name": "클레르 옵스퀴르: 33 원정대",
+      "minutes": 1134,
+      "lastPlayed": "2025-05-01T10:39:56.330000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202501/2217/e5833a53529ff9879e87689f1e8b04d45ba7e6c97fa791e2.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA07644_00",
+      "name": "The Last of Us™ Part I",
+      "minutes": 1115,
+      "lastPlayed": "2024-07-28T08:09:06.220000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202206/0720/eEczyEMDd2BLa3dtkGJVE9Id.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA04800_00",
+      "name": "용과 같이 극",
+      "minutes": 970,
+      "lastPlayed": "2021-08-14T11:32:25.540000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202508/0800/461d8ae27f592596c66864b0001a9b387358a966e1f3e97e.png",
+      "category": "unknown"
+    },
+    {
+      "titleId": "CUSA00912_00",
+      "name": "UNCHARTED: 레거시 오브 시브즈 컬렉션",
+      "minutes": 967,
+      "lastPlayed": "2021-03-25T07:59:46.670000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202111/2000/99ZoithzyuODz2Msa0FqvTGC.png",
+      "category": "unknown"
+    },
+    {
+      "titleId": "CUSA09151_00",
+      "name": "진격의거인２",
+      "minutes": 927,
+      "lastPlayed": "2023-04-28T22:53:26.910000Z",
+      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA09151_00/2/i_7f3999e332e100ecdff2f75a3048015b806750f15a9f1499c2485749b7b605ed/i/icon0_09.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "CUSA09554_00",
+      "name": "Monster Hunter: World",
+      "minutes": 836,
+      "lastPlayed": "2021-01-11T04:07:22.200000Z",
+      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA07708_00/4/i_f67bf14d3e83d266c618db72087c180869334fbbbc1b972936848e2489190681/i/icon0.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "PPSA10666_00",
+      "name": "FINAL FANTASY XVI",
+      "minutes": 787,
+      "lastPlayed": "2025-03-05T13:51:04.320000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202211/1404/RMELUDlp2uzJ3EmsVhzr00A6.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA21568_00",
+      "name": "아스트로봇",
+      "minutes": 777,
+      "lastPlayed": "2026-04-12T10:49:30.380000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202406/0500/8f15268257b878597757fcc5f2c9545840867bc71fc863b1.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA01604_00",
+      "name": "Disney+",
+      "minutes": 737,
+      "lastPlayed": "2023-09-16T03:27:45.620000Z",
+      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA15362_00/1/i_60c1f77bac313d5e85b78658a4e68f8bbb4a57456a2352dd3b1bbbb6eb3c4cbf/i/icon0.png",
+      "category": "ps5_native_media_app"
+    },
+    {
+      "titleId": "PPSA01325_00",
+      "name": "ASTRO's PLAYROOM",
+      "minutes": 663,
+      "lastPlayed": "2024-11-18T23:43:47.100000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202502/1908/3d17c33239dab88c7e2f24af50140b3f6fa555e6030d5704.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA01419_00",
+      "name": "Marvel’s Spider-Man: Miles Morales",
+      "minutes": 547,
+      "lastPlayed": "2023-01-24T09:32:37.580000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202008/1020/T45iRN1bhiWcJUzST6UFGBvO.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA01852_00",
+      "name": "저지 아이즈 : 사신의 유언",
+      "minutes": 542,
+      "lastPlayed": "2022-11-18T14:02:52.000000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202101/2607/vbdL5aDbaZlNiLwf79lmoSrG.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA01476_00",
+      "name": "Ratchet & Clank: Rift Apart",
+      "minutes": 514,
+      "lastPlayed": "2023-10-09T16:25:20.390000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202101/2921/DwVjpbKOsFOyPdNzmSTSWuxG.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA23226_00",
+      "name": "검은 신화: 오공",
+      "minutes": 466,
+      "lastPlayed": "2024-11-16T11:59:20.480000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202405/2117/bd406f42e9352fdb398efcf21a4ffe575b2306ac40089d21.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "PPSA08670_00",
+      "name": "FINAL FANTASY VII REBIRTH",
+      "minutes": 434,
+      "lastPlayed": "2024-11-16T12:01:40.280000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202308/3005/6de6b1c4b0c475b5c28fd2011655ab8206ed846926fa1671.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA09893_00",
+      "name": "Marvel's Spider-Man",
+      "minutes": 417,
+      "lastPlayed": "2021-10-04T05:46:56.280000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202011/0402/C784xeOFo2wViCf4m5bxgoeH.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "CUSA05662_00",
+      "name": "METAL GEAR SOLID V: THE DEFINITIVE EXPERIENCE",
+      "minutes": 233,
+      "lastPlayed": "2021-09-25T08:42:36.050000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202010/0205/QUS1HpQKsV8GQSs0WaZGWnuq.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "PPSA01784_00",
+      "name": "Apple TV",
+      "minutes": 226,
+      "lastPlayed": "2023-11-26T11:56:31.730000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202511/0401/e475edcf525575724a59f1a2854927d77dd08ffa4c3722eb.png",
+      "category": "ps5_native_media_app"
+    },
+    {
+      "titleId": "CUSA00559_00",
+      "name": "The Last of Us™ Remastered",
+      "minutes": 154,
+      "lastPlayed": "2022-01-09T08:02:24.660000Z",
+      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202011/1020/FKgazVvG7BcWouCr39mIiXkW.png",
+      "category": "ps4_game"
+    },
+    {
+      "titleId": "PPSA03540_00",
+      "name": "UFC™ 5",
+      "minutes": 153,
+      "lastPlayed": "2026-01-05T13:23:47.420000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202309/0421/418704276d35ce02e8cb532c6ca3826cf866ad2ec66c0b17.png",
+      "category": "ps5_native_game"
+    },
+    {
+      "titleId": "CUSA06592_00",
+      "name": "NieR:Automata",
+      "minutes": 120,
+      "lastPlayed": "2020-11-06T04:07:00.830000Z",
+      "icon": "https://image.api.playstation.com/gs2-sec/acpkgo/prod/CUSA04551_00/2/i_cdee925ec8ea903fb9f7f6eda4471a56c2e6cd32c495ee44f04e7ac082c0ae21/i/icon0.png",
+      "category": "unknown"
+    }
+  ]
+}

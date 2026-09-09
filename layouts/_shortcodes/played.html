@@ -7,8 +7,8 @@
 
   한 행의 역할 분담:
     게임 아이콘 → 스팀 상점 (링크)
-    제목        → 리뷰 글 (링크, 리뷰가 있을 때만)
-    리뷰 배지   → 표시 겸 정렬 기준 (링크 아님)
+    제목        → 일반 텍스트
+    리뷰 배지   → 리뷰 글 (링크) 겸 정렬 기준
     스팀 로고   → 출처 표시 (링크 아님)
 
   정렬은 열 머리글을 눌러서 한다. 머리글은 th 안의 button 이라 키보드로도
@@ -101,11 +101,7 @@
                 <span class="played-icon played-icon-none" aria-hidden="true"></span>
               {{- end -}}
             </a>
-            {{ if $rev -}}
-              <a class="played-name" href="{{ $rev.url }}">{{ .name }}</a>
-            {{- else -}}
-              {{ .name }}
-            {{- end }}
+            {{ .name }}
           </td>
           <td class="played-col-hours">
             {{- if ge $h 1.0 }}{{ lang.FormatNumber 0 $h }}시간{{ else }}{{ lang.FormatNumber 0 .minutes }}분{{ end -}}
@@ -114,7 +110,7 @@
             {{- with .lastPlayed }}{{ (time.AsTime .).Format "2006-01" }}{{ else }}&mdash;{{ end -}}
           </td>
           <td class="played-col-rev">
-            {{- if $rev }}<span class="played-badge">리뷰</span>{{ end -}}
+            {{- if $rev }}<a class="played-badge" href="{{ $rev.url }}" aria-label="{{ .name }} 리뷰 읽기">리뷰</a>{{ end -}}
           </td>
           {{- /* 출처 표시용. 링크가 아니므로 접근성 트리에서는 숨긴다 */ -}}
           <td class="played-col-src" aria-hidden="true">

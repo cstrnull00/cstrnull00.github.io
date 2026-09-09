@@ -386,8 +386,8 @@
   white-space: nowrap;
 }
 
-/* 리뷰 배지. 링크가 아니라 표시 겸 정렬 기준이다.
-   리뷰 글로는 제목이 연결된다. */
+/* 리뷰 배지. 이것이 리뷰 글로 가는 링크다 (제목은 일반 텍스트).
+   테마의 링크 색·밑줄을 덮어야 칩 모양이 유지된다. */
 .played-badge {
   display: inline-block;
   text-decoration: none;
@@ -400,6 +400,15 @@
   background-color: var(--accent-color);
   color: var(--accent-color-text);
   vertical-align: middle;
+  transition: opacity 0.15s ease;
+}
+
+.played-badge:hover,
+.played-badge:focus-visible {
+  /* 테마가 링크 호버 색을 바꾸므로 다시 못박는다 */
+  color: var(--accent-color-text);
+  text-decoration: none;
+  opacity: 0.8;
 }
 
 @media (max-width: 560px) {

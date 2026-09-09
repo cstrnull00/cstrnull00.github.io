@@ -331,6 +331,11 @@
   text-align: center;
 }
 
+/* 머리글 버튼은 inline-flex 라 text-align 이 먹지 않는다 */
+.played-table th.played-col-src button {
+  justify-content: center;
+}
+
 /* 스팀 API 가 주는 32x32 게임 아이콘.
    동기화 전(icon: null)이면 같은 크기의 빈 자리를 둔다. */
 .played-icon {

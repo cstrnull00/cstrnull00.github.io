@@ -186,7 +186,9 @@
           <th scope="col" class="played-col-rev" data-sort="review" aria-sort="none">
             <button type="button">리뷰</button>{{/* 정렬 기준은 총점 */}}
           </th>
-          <th scope="col" class="played-col-src">플랫폼</th>
+          <th scope="col" class="played-col-src" data-sort="platform" aria-sort="none">
+            <button type="button">플랫폼</button>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -194,6 +196,7 @@
         {{- $h := -1.0 -}}
         {{- if .minutes }}{{ $h = math.Floor (div .minutes 60.0) }}{{ end -}}
         <tr data-name="{{ .name }}"
+            data-platform="{{ .platform }}"
             data-minutes="{{ if .minutes }}{{ int .minutes }}{{ end }}"
             data-last="{{ with .lastPlayed }}{{ (time.AsTime .).Unix }}{{ end }}"
             data-score="{{ with .rev }}{{ .score }}{{ end }}">
@@ -284,10 +287,14 @@
       var expanded = false;
 
       // 기준별 기본 방향. 이름만 오름차순이 자연스럽다.
-      var defaultDir = { name: 1, hours: -1, recent: -1, review: -1 };
+      var defaultDir = { name: 1, platform: 1, hours: -1, recent: -1, review: -1 };
+
+      // 문자열로 비교하는 기준. 값이 같으면 플레이 시간으로 가른다.
+      var TEXT_KEYS = { name: 'data-name', platform: 'data-platform' };
 
       function value(tr) {
-        if (key === 'name') return tr.getAttribute('data-name') || '';
+        var textAttr = TEXT_KEYS[key];
+        if (textAttr) return tr.getAttribute(textAttr) || '';
         if (key === 'hours') return num(tr, 'data-minutes');
         if (key === 'recent') return num(tr, 'data-last');
         return num(tr, 'data-score');
@@ -296,8 +303,10 @@
       function compare(a, b) {
         var va = value(a);
         var vb = value(b);
-        if (key === 'name') {
-          return String(va).localeCompare(String(vb), 'ko') * dir;
+        if (TEXT_KEYS[key]) {
+          var c = String(va).localeCompare(String(vb), 'ko');
+          if (c !== 0) return c * dir;
+          return num(b, 'data-minutes') - num(a, 'data-minutes');
         }
         // 값이 없는 항목(0)은 정렬 방향과 무관하게 항상 뒤로 보낸다
         if (va === 0 && vb !== 0) return 1;

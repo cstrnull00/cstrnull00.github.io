@@ -1,28 +1,12 @@
 {
   "platform": "psn",
-  "updated": "2026-09-09T06:13:50.873Z",
+  "updated": "2026-09-09T06:16:36.445Z",
   "minMinutes": 120,
   "ownedGames": 63,
-  "listedGames": 54,
+  "listedGames": 48,
   "unknownDuration": 0,
-  "totalMinutes": 396104,
+  "totalMinutes": 116938,
   "games": [
-    {
-      "titleId": "PPSA01652_00",
-      "name": "YouTube",
-      "minutes": 252292,
-      "lastPlayed": "2025-11-09T14:26:13.850000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202009/3017/wYAvR9akyRjDjy75S4zCLAGi.png",
-      "category": "ps5_native_media_app"
-    },
-    {
-      "titleId": "PPSA01616_00",
-      "name": "Netflix",
-      "minutes": 14787,
-      "lastPlayed": "2025-03-02T14:17:46.000000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202010/1422/i0AxG1FE1AMNq0KrcXepdYrd.png",
-      "category": "ps5_native_media_app"
-    },
     {
       "titleId": "PPSA27360_00",
       "name": "EA SPORTS FC™ 26",
@@ -30,14 +14,6 @@
       "lastPlayed": "2026-07-05T06:24:59.330000Z",
       "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202608/0314/5217c783f0198d437a0e0e97848d0a3a61c4af84262fd5f2.png",
       "category": "ps5_native_game"
-    },
-    {
-      "titleId": "PPSA03335_00",
-      "name": "왓챠",
-      "minutes": 8690,
-      "lastPlayed": "2025-03-02T14:18:15.670000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202102/2410/NraCgN2ySCjiGlbglV4nksrK.png",
-      "category": "ps5_web_based_media_app"
     },
     {
       "titleId": "PPSA23479_00",
@@ -174,14 +150,6 @@
       "lastPlayed": "2021-11-01T13:49:29.130000Z",
       "icon": "https://image.api.playstation.com/vulcan/img/rnd/202012/2408/UGV7pFPeIFDNn2cD5yGR6CcA.png",
       "category": "ps5_native_game"
-    },
-    {
-      "titleId": "CUSA15607_00",
-      "name": "Disney+",
-      "minutes": 2434,
-      "lastPlayed": "2022-10-03T10:33:52.770000Z",
-      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA15362_00/1/i_60c1f77bac313d5e85b78658a4e68f8bbb4a57456a2352dd3b1bbbb6eb3c4cbf/i/icon0.png",
-      "category": "ps4_nongame_mini_app"
     },
     {
       "titleId": "PPSA02015_00",
@@ -336,14 +304,6 @@
       "category": "ps5_native_game"
     },
     {
-      "titleId": "PPSA01604_00",
-      "name": "Disney+",
-      "minutes": 737,
-      "lastPlayed": "2023-09-16T03:27:45.620000Z",
-      "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA15362_00/1/i_60c1f77bac313d5e85b78658a4e68f8bbb4a57456a2352dd3b1bbbb6eb3c4cbf/i/icon0.png",
-      "category": "ps5_native_media_app"
-    },
-    {
       "titleId": "PPSA01325_00",
       "name": "ASTRO's PLAYROOM",
       "minutes": 663,
@@ -406,14 +366,6 @@
       "lastPlayed": "2021-09-25T08:42:36.050000Z",
       "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202010/0205/QUS1HpQKsV8GQSs0WaZGWnuq.png",
       "category": "ps4_game"
-    },
-    {
-      "titleId": "PPSA01784_00",
-      "name": "Apple TV",
-      "minutes": 226,
-      "lastPlayed": "2023-11-26T11:56:31.730000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202511/0401/e475edcf525575724a59f1a2854927d77dd08ffa4c3722eb.png",
-      "category": "ps5_native_media_app"
     },
     {
       "titleId": "CUSA00559_00",

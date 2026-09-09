@@ -189,3 +189,134 @@
 #main-menu .menu-bottom-section ol > li {
   list-style: none;
 }
+
+/* 플레이한 게임 목록 (layouts/_shortcodes/played.html)
+   data/played/steam.json 을 표로 렌더한다. */
+.played-notice,
+.played-empty {
+  padding: 0.6rem 0.9rem;
+  border-left: 3px solid #d97706;
+  background-color: rgba(217, 119, 6, 0.08);
+  font-size: 0.9rem;
+}
+
+.played-summary {
+  font-size: 0.9rem;
+  color: var(--card-text-color-secondary);
+}
+
+.played-note {
+  opacity: 0.7;
+}
+
+.played-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.92rem;
+}
+
+.played-table th,
+.played-table td {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0.55rem 0.5rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+[data-scheme='dark'] .played-table th,
+[data-scheme='dark'] .played-table td {
+  border-bottom-color: #374151;
+}
+
+.played-table th {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* 시간·아이콘 열은 폭을 고정해 제목이 넓게 쓰이도록 */
+.played-hours,
+.played-store {
+  white-space: nowrap;
+  width: 1%;
+  font-variant-numeric: tabular-nums;
+}
+
+.played-store {
+  text-align: center;
+}
+
+/* 스팀 API 가 주는 32x32 게임 아이콘.
+   동기화 전(icon: null)이면 같은 크기의 빈 자리를 둔다. */
+.played-icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 3px;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.played-icon-none {
+  background-color: rgba(127, 127, 127, 0.15);
+}
+
+/* 스팀 로고 (assets/icons/brand-steam.svg — Simple Icons, CC0).
+   외곽선형은 18px 에서 뭉개지므로 면으로 채운 버전을 쓴다. */
+.played-store svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  vertical-align: middle;
+}
+
+.played-store a {
+  display: inline-flex;
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
+.played-store a:hover,
+.played-store a:focus-visible {
+  opacity: 1;
+}
+
+/* 스크린 리더에만 읽히는 헤더 */
+.played-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* 배지도 링크 안에 있어 함께 클릭된다.
+   앵커의 밑줄이 배지까지 번지지 않게 끊는다. */
+.played-review:hover .played-badge,
+.played-review:focus-visible .played-badge {
+  text-decoration: none;
+}
+
+.played-badge {
+  display: inline-block;
+  margin-left: 0.4rem;
+  text-decoration: none;
+  padding: 0.05rem 0.35rem;
+  border-radius: 3px;
+  font-size: 0.72rem;
+  background-color: var(--accent-color);
+  color: var(--accent-color-text);
+  vertical-align: middle;
+}
+
+@media (max-width: 560px) {
+  .played-table {
+    font-size: 0.85rem;
+  }
+
+  .played-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.4rem;
+  }
+}

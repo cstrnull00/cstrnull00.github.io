@@ -1,0 +1,52 @@
+{
+  "sample": true,
+  "updated": "2026-09-09T00:00:00.000Z",
+  "minMinutes": 120,
+  "ownedGames": 6,
+  "listedGames": 6,
+  "totalMinutes": 41820,
+  "games": [
+    {
+      "appid": 1158310,
+      "name": "Crusader Kings III",
+      "minutes": 14760,
+      "lastPlayed": "2026-06-14T00:00:00.000Z",
+      "icon": null
+    },
+    {
+      "appid": 292030,
+      "name": "The Witcher 3: Wild Hunt",
+      "minutes": 9300,
+      "lastPlayed": "2025-11-02T00:00:00.000Z",
+      "icon": null
+    },
+    {
+      "appid": 1174180,
+      "name": "Red Dead Redemption 2",
+      "minutes": 7620,
+      "lastPlayed": "2025-08-21T00:00:00.000Z",
+      "icon": null
+    },
+    {
+      "appid": 1771300,
+      "name": "Kingdom Come: Deliverance II",
+      "minutes": 5400,
+      "lastPlayed": "2026-08-30T00:00:00.000Z",
+      "icon": null
+    },
+    {
+      "appid": 990080,
+      "name": "Hogwarts Legacy",
+      "minutes": 3120,
+      "lastPlayed": "2024-03-11T00:00:00.000Z",
+      "icon": null
+    },
+    {
+      "appid": 1235140,
+      "name": "Yakuza: Like a Dragon",
+      "minutes": 1620,
+      "lastPlayed": null,
+      "icon": null
+    }
+  ]
+}

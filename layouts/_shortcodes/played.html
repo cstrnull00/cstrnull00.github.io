@@ -1,0 +1,97 @@
+{{- /*
+  플레이한 게임 목록.
+  데이터는 scripts/sync-steam.mjs 가 만드는 data/played/steam.json 에서 읽는다.
+
+  리뷰 글과 연결하려면 그 글의 프론트매터에 앱 ID 를 적어 두면 된다.
+    steam_appid: 990080
+  그러면 제목이 그 글로 연결되고 "리뷰" 배지가 붙는다.
+  스팀 상점 링크는 리뷰가 있든 없든 우측 아이콘으로 항상 나간다.
+
+  주의: JSON 숫자는 Hugo 에서 float64 로 들어온다. appid 를 그대로 출력하면
+  7자리 이상이 지수 표기(1.15831e+06)가 되므로 반드시 int 로 캐스팅한다.
+*/ -}}
+
+{{- $steam := index site.Data "played" "steam" -}}
+
+{{- if not $steam -}}
+  <p class="played-empty">
+    아직 동기화된 데이터가 없습니다. <code>node scripts/sync-steam.mjs</code> 를 먼저 실행하세요.
+  </p>
+{{- else -}}
+
+  {{- /* steam_appid 를 선언한 글을 앱 ID → 링크로 모아 둔다 */ -}}
+  {{- $byApp := dict -}}
+  {{- range site.RegularPages -}}
+    {{- $p := . -}}
+    {{- with $p.Params.steam_appid -}}
+      {{- $byApp = merge $byApp (dict (printf "%d" (int .)) $p.RelPermalink) -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $steamIcon := "" -}}
+  {{- with resources.Get "icons/brand-steam.svg" -}}
+    {{- $steamIcon = .Content -}}
+  {{- end -}}
+
+  {{- $hours := math.Floor (div $steam.totalMinutes 60.0) -}}
+
+  <div class="played">
+    {{- if $steam.sample }}
+    <p class="played-notice">
+      아래는 렌더링 확인용 <strong>예시 데이터</strong>입니다.
+      <code>node scripts/sync-steam.mjs</code> 를 실행하면 실제 기록으로 교체됩니다.
+    </p>
+    {{- end }}
+
+    <p class="played-summary">
+      {{ lang.FormatNumber 0 $steam.listedGames }}개 ·
+      누적 {{ lang.FormatNumber 0 $hours }}시간 ·
+      {{ (time.AsTime $steam.updated).Format "2006-01-02" }} 기준
+      {{- $minH := div $steam.minMinutes 60.0 -}}
+      <span class="played-note">({{ if ge $minH 1.0 }}{{ lang.FormatNumber 0 $minH }}시간{{ else }}{{ lang.FormatNumber 0 $steam.minMinutes }}분{{ end }} 이상만 표시)</span>
+    </p>
+
+    <table class="played-table">
+      <thead>
+        <tr>
+          <th scope="col">게임</th>
+          <th scope="col">플레이 시간</th>
+          <th scope="col"><span class="played-sr">스팀 상점</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{- range $steam.games }}
+        {{- $appid := int .appid -}}
+        {{- $link := index $byApp (printf "%d" $appid) -}}
+        {{- $h := math.Floor (div .minutes 60.0) -}}
+        <tr>
+          <td class="played-title">
+            {{- with .icon -}}
+              <img class="played-icon" src="{{ . }}" alt="" width="32" height="32" loading="lazy">
+            {{- else -}}
+              <span class="played-icon played-icon-none" aria-hidden="true"></span>
+            {{- end -}}
+            {{ if $link -}}
+              <a class="played-review" href="{{ $link }}">{{ .name }}<span class="played-badge">리뷰</span></a>
+            {{- else -}}
+              {{ .name }}
+            {{- end }}
+          </td>
+          <td class="played-hours">
+            {{- if ge $h 1.0 }}{{ lang.FormatNumber 0 $h }}시간{{ else }}{{ lang.FormatNumber 0 .minutes }}분{{ end -}}
+          </td>
+          <td class="played-store">
+            <a href="https://store.steampowered.com/app/{{ $appid }}/"
+               rel="noopener noreferrer"
+               title="스팀 상점에서 보기"
+               aria-label="{{ .name }} — 스팀 상점에서 보기">
+              {{- with $steamIcon }}{{ . | safeHTML }}{{ else }}Steam{{ end -}}
+            </a>
+          </td>
+        </tr>
+        {{- end }}
+      </tbody>
+    </table>
+  </div>
+
+{{- end -}}

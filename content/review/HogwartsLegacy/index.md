@@ -5,6 +5,8 @@ title: '호그와트 레거시'
 image: images/HogwartsLegacy01.webp
 categories:
   - 게임 리뷰
+# 플레이한 게임 목록에서 이 글로 연결된다 (layouts/_shortcodes/played.html)
+steam_appid: 990080
 tags:
   - 오픈월드
   - 액션 RPG

@@ -13,3 +13,6 @@ CLAUDE.local.md
 
 # Hugo 가 js.Build 용으로 자동 생성 (경로가 OS 별로 달라짐)
 assets/jsconfig.json
+
+# Steam API 키 등 로컬 비밀값 (커밋 금지)
+.env.local

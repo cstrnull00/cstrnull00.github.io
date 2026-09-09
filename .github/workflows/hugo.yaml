@@ -4,6 +4,9 @@ on:
   push:
     branches: ["main"]
   workflow_dispatch:
+  schedule:
+    # 매주 월요일 03:00 KST (일요일 18:00 UTC) — 플레이 기록 갱신용
+    - cron: "0 18 * * 0"
 
 permissions:
   contents: read
@@ -36,6 +39,20 @@ jobs:
           # 올릴 때는 로컬에서 같은 버전으로 빌드해보고 변경할 것.
           hugo-version: '0.165.0'
           extended: true # Stack 도 extended 필요 (SCSS 트랜스파일)
+
+      # 플레이 기록을 새로 받아 온다. 실패해도 빌드는 계속한다 —
+      # 그 경우 레포에 커밋된 data/played/steam.json 으로 빌드된다.
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Sync Steam library
+        continue-on-error: true
+        env:
+          STEAM_API_KEY: ${{ secrets.STEAM_API_KEY }}
+          STEAM_ID: ${{ secrets.STEAM_ID }}
+        run: node scripts/sync-steam.mjs
 
       - name: Build with Hugo
         run: hugo --minify

@@ -288,10 +288,22 @@
   opacity: 0.7;
 }
 
+.played-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1em 0;
+}
+
+.played-table-scroll:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -2px;
+}
+
 .played-table {
   width: 100%;
+  min-width: 540px;
   border-collapse: collapse;
-  margin: 1em 0;
+  margin: 0;
   font-size: 0.95em;
 }
 
@@ -461,8 +473,4 @@
     margin-right: 6px;
   }
 
-  /* 5열은 좁은 화면에 안 들어간다. 장식인 출처 로고 열을 접는다. */
-  .played-col-src {
-    display: none;
-  }
 }

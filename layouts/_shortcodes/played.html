@@ -171,6 +171,7 @@
       <span class="played-note">({{ if ge $minH 1.0 }}{{ lang.FormatNumber 0 $minH }}시간{{ else }}{{ lang.FormatNumber 0 $minFloor }}분{{ end }} 이상만 표시{{ if gt $unknown 0 }} · 플레이 시간 미기록 {{ $unknown }}개{{ end }})</span>
     </p>
 
+    <div class="played-table-scroll" role="region" aria-label="플레이한 게임 목록 — 좌우로 스크롤할 수 있습니다" tabindex="0">
     <table class="played-table">
       <thead>
         <tr>
@@ -255,6 +256,7 @@
         {{- end }}
       </tbody>
     </table>
+    </div>
 
     <button type="button" class="played-more" hidden></button>
   </div>

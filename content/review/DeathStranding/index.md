@@ -11,7 +11,6 @@ categories:
   - 게임 리뷰
 tags:
   - 오픈월드
-  - 코지마 히데오
 ---
 
 **개발** | 코지마 프로덕션(Kojima Productions)  

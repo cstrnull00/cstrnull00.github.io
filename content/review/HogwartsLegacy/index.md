@@ -10,7 +10,7 @@ steam_appid: 990080
 psn_title_id: PPSA01593_00
 tags:
   - 오픈월드
-  - 액션 RPG
+  - RPG
 ---
 
 **개발** | 아발란체 소프트웨어(Avalanche Software)  

@@ -116,3 +116,11 @@ menu:
       url: https://github.com/cstrnull00
       params:
         icon: brand-github
+    # 이 주소는 이미 커밋 작성자 정보로 공개되어 있다(51개 커밋).
+    # 링크로 두는 것이 새 노출은 아니지만, 렌더된 페이지에 있으면
+    # 스팸 수집기에는 더 잘 걸린다.
+    - identifier: email
+      name: Email
+      url: mailto:thack9849@gmail.com
+      params:
+        icon: mail

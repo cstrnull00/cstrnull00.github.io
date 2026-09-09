@@ -9,8 +9,6 @@ categories:
   - 게임 리뷰
 tags:
   - 오픈월드
-  - 액션 어드벤처
-  - PS4
 ---
 
 **개발** | 서커 펀치 프로덕션(Sucker Punch Productions)  

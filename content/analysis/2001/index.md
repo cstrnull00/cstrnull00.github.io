@@ -9,7 +9,6 @@ categories:
 steam_appid: 1158310
 tags:
   - 시뮬레이션
-  - 콘텐츠 분석
 ---
 
 ## 재미 요소

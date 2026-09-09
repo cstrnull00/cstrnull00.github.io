@@ -9,8 +9,7 @@ psn_title_id: PPSA02690_00
 categories:
   - 게임 리뷰
 tags:
-  - 턴제 RPG
-  - 용과 같이
+  - RPG
 ---
 
 **개발** | 용과 같이 스튜디오(Ryu Ga Gotoku Studio)  

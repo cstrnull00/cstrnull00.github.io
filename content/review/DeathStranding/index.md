@@ -3,6 +3,10 @@ date: '2023-09-10T21:30:26+09:00'
 draft: false
 title: '데스 스트랜딩'
 image: images/DeathStranding01.webp
+# 플레이한 게임 목록에서 이 글로 연결된다 (layouts/_shortcodes/played.html)
+psn_title_id:
+  - PPSA01971_00
+  - CUSA12613_00
 categories:
   - 게임 리뷰
 tags:

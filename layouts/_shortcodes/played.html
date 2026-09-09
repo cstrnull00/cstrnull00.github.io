@@ -44,11 +44,21 @@
     {{- $date := 0 -}}
     {{- if not $p.Date.IsZero -}}{{ $date = $p.Date.Unix }}{{- end -}}
     {{- $entry := dict "url" $p.RelPermalink "date" $date -}}
+
+    {{- /* 같은 게임이 여러 행으로 오는 경우가 있다 — PS4/PS5 판이 따로
+           집계되거나(데스 스트랜딩), 스팀과 PS 양쪽에 있는 경우(용과 같이 7).
+           그래서 단일 값과 목록을 모두 받는다. */ -}}
     {{- with $p.Params.steam_appid -}}
-      {{- $bySteam = merge $bySteam (dict (printf "%d" (int .)) $entry) -}}
+      {{- $ids := cond (reflect.IsSlice .) . (slice .) -}}
+      {{- range $ids -}}
+        {{- $bySteam = merge $bySteam (dict (printf "%d" (int .)) $entry) -}}
+      {{- end -}}
     {{- end -}}
     {{- with $p.Params.psn_title_id -}}
-      {{- $byPsn = merge $byPsn (dict (printf "%v" .) $entry) -}}
+      {{- $ids := cond (reflect.IsSlice .) . (slice .) -}}
+      {{- range $ids -}}
+        {{- $byPsn = merge $byPsn (dict (printf "%v" .) $entry) -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 

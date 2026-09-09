@@ -3,6 +3,8 @@ date: '2023-08-27T19:31:11+09:00'
 draft: false
 title: '고스트 오브 쓰시마'
 image: images/GhostOfTsushima01.webp
+# 플레이한 게임 목록에서 이 글로 연결된다 (layouts/_shortcodes/played.html)
+psn_title_id: PPSA03210_00
 categories:
   - 게임 리뷰
 tags:

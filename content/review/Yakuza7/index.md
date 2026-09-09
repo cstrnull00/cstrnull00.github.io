@@ -3,6 +3,9 @@ date: '2023-09-24T23:34:32+09:00'
 draft: false
 title: '용과 같이 7: 빛과 어둠의 행방'
 image: images/Yakuza701.webp
+# 플레이한 게임 목록에서 이 글로 연결된다 (layouts/_shortcodes/played.html)
+steam_appid: 1235140
+psn_title_id: PPSA02690_00
 categories:
   - 게임 리뷰
 tags:

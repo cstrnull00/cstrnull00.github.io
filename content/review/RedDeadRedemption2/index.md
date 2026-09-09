@@ -3,6 +3,8 @@ date: '2023-10-08T21:30:51+09:00'
 draft: false
 title: '레드 데드 리뎀션 2'
 image: images/RedDeadRedemption201.webp
+# 플레이한 게임 목록에서 이 글로 연결된다 (layouts/_shortcodes/played.html)
+psn_title_id: CUSA03041_00
 categories:
   - 게임 리뷰
 tags:

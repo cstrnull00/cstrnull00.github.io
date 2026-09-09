@@ -7,6 +7,7 @@ categories:
   - 게임 리뷰
 # 플레이한 게임 목록에서 이 글로 연결된다 (layouts/_shortcodes/played.html)
 steam_appid: 990080
+psn_title_id: PPSA01593_00
 tags:
   - 오픈월드
   - 액션 RPG

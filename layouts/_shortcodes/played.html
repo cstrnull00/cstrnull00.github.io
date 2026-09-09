@@ -4,12 +4,16 @@
 
   리뷰 글과 연결하려면 그 글의 프론트매터에 앱 ID 를 적어 두면 된다.
     steam_appid: 1158310
-  그러면 제목·배지가 그 글로 연결된다.
-  스팀 상점으로는 좌측 게임 아이콘이 연결되고, 우측 스팀 로고는 출처 표시일 뿐
-  링크가 아니다.
 
-  정렬·펼치기는 JS 로 처리한다. JS 가 없으면 전체 행이 그냥 다 보이고
-  컨트롤만 숨겨진 채 표로 읽힌다(점진적 향상).
+  한 행의 역할 분담:
+    게임 아이콘 → 스팀 상점 (링크)
+    제목        → 리뷰 글 (링크, 리뷰가 있을 때만)
+    리뷰 배지   → 표시 겸 정렬 기준 (링크 아님)
+    스팀 로고   → 출처 표시 (링크 아님)
+
+  정렬은 열 머리글을 눌러서 한다. 머리글은 th 안의 button 이라 키보드로도
+  동작하고, aria-sort 로 현재 기준·방향을 알린다.
+  JS 가 없으면 정렬만 안 되고 전체 행이 그냥 표로 읽힌다(점진적 향상).
 
   주의: JSON 숫자는 Hugo 에서 float64 로 들어온다. appid 를 그대로 출력하면
   7자리 이상이 지수 표기(1.15831e+06)가 되므로 반드시 int 로 캐스팅한다.
@@ -23,12 +27,14 @@
   </p>
 {{- else -}}
 
-  {{- /* steam_appid 를 선언한 글을 앱 ID → 링크로 모아 둔다 */ -}}
+  {{- /* steam_appid 를 선언한 글을 앱 ID → (주소, 작성일) 로 모아 둔다 */ -}}
   {{- $byApp := dict -}}
   {{- range site.RegularPages -}}
     {{- $p := . -}}
     {{- with $p.Params.steam_appid -}}
-      {{- $byApp = merge $byApp (dict (printf "%d" (int .)) $p.RelPermalink) -}}
+      {{- $d := 0 -}}
+      {{- if not $p.Date.IsZero -}}{{ $d = $p.Date.Unix }}{{- end -}}
+      {{- $byApp = merge $byApp (dict (printf "%d" (int .)) (dict "url" $p.RelPermalink "date" $d)) -}}
     {{- end -}}
   {{- end -}}
 
@@ -56,29 +62,33 @@
       <span class="played-note">({{ if ge $minH 1.0 }}{{ lang.FormatNumber 0 $minH }}시간{{ else }}{{ lang.FormatNumber 0 $steam.minMinutes }}분{{ end }} 이상만 표시)</span>
     </p>
 
-    <div class="played-controls" hidden>
-      <span class="played-controls-label">정렬</span>
-      <div class="played-sortgroup" role="group" aria-label="정렬 기준">
-        <button type="button" class="played-sort is-on" data-sort="hours" aria-pressed="true">플레이 시간</button>
-        <button type="button" class="played-sort" data-sort="recent" aria-pressed="false">최근 플레이</button>
-      </div>
-    </div>
-
     <table class="played-table">
       <thead>
         <tr>
-          <th scope="col">게임</th>
-          <th scope="col">플레이 시간</th>
-          <th scope="col" class="played-last-col">마지막 플레이</th>
-          <th scope="col"><span class="played-sr">스팀 상점</span></th>
+          <th scope="col" class="played-col-name" data-sort="name" aria-sort="none">
+            <button type="button">게임</button>
+          </th>
+          <th scope="col" class="played-col-hours" data-sort="hours" aria-sort="descending">
+            <button type="button">플레이 시간</button>
+          </th>
+          <th scope="col" class="played-col-last" data-sort="recent" aria-sort="none">
+            <button type="button">마지막 플레이</button>
+          </th>
+          <th scope="col" class="played-col-rev" data-sort="review" aria-sort="none">
+            <button type="button">리뷰</button>
+          </th>
+          <th scope="col" class="played-col-src" aria-hidden="true"></th>
         </tr>
       </thead>
       <tbody>
         {{- range $steam.games }}
         {{- $appid := int .appid -}}
-        {{- $link := index $byApp (printf "%d" $appid) -}}
+        {{- $rev := index $byApp (printf "%d" $appid) -}}
         {{- $h := math.Floor (div .minutes 60.0) -}}
-        <tr data-minutes="{{ int .minutes }}" data-last="{{ with .lastPlayed }}{{ (time.AsTime .).Unix }}{{ end }}">
+        <tr data-name="{{ .name }}"
+            data-minutes="{{ int .minutes }}"
+            data-last="{{ with .lastPlayed }}{{ (time.AsTime .).Unix }}{{ end }}"
+            data-review="{{ with $rev }}{{ .date }}{{ end }}">
           <td class="played-title">
             <a class="played-iconlink"
                href="https://store.steampowered.com/app/{{ $appid }}/"
@@ -91,21 +101,23 @@
                 <span class="played-icon played-icon-none" aria-hidden="true"></span>
               {{- end -}}
             </a>
-            {{ if $link -}}
-              <a class="played-review" href="{{ $link }}">{{ .name }}<span class="played-badge">리뷰</span></a>
+            {{ if $rev -}}
+              <a class="played-name" href="{{ $rev.url }}">{{ .name }}</a>
             {{- else -}}
               {{ .name }}
             {{- end }}
           </td>
-          <td class="played-hours">
+          <td class="played-col-hours">
             {{- if ge $h 1.0 }}{{ lang.FormatNumber 0 $h }}시간{{ else }}{{ lang.FormatNumber 0 .minutes }}분{{ end -}}
           </td>
-          <td class="played-last played-last-col">
+          <td class="played-col-last">
             {{- with .lastPlayed }}{{ (time.AsTime .).Format "2006-01" }}{{ else }}&mdash;{{ end -}}
           </td>
-          {{- /* 출처 표시용. 링크가 아니므로 접근성 트리에서는 숨긴다
-                 (상점으로는 좌측 게임 아이콘이 연결된다) */ -}}
-          <td class="played-store" aria-hidden="true">
+          <td class="played-col-rev">
+            {{- if $rev }}<span class="played-badge">리뷰</span>{{ end -}}
+          </td>
+          {{- /* 출처 표시용. 링크가 아니므로 접근성 트리에서는 숨긴다 */ -}}
+          <td class="played-col-src" aria-hidden="true">
             {{- with $steamIcon }}{{ . | safeHTML }}{{ end -}}
           </td>
         </tr>
@@ -129,35 +141,47 @@
     function init(root) {
       var table = root.querySelector('.played-table');
       var tbody = table && table.querySelector('tbody');
-      var controls = root.querySelector('.played-controls');
       var moreBtn = root.querySelector('.played-more');
-      if (!tbody || !controls || !moreBtn) return;
+      if (!tbody || !moreBtn) return;
 
       var rows = Array.prototype.slice.call(tbody.rows);
       if (!rows.length) return;
 
+      var headers = table.querySelectorAll('thead th[data-sort]');
       var limit = num(root, 'data-initial') || 20;
-      var sort = 'hours';
+
+      // 서버가 플레이 시간 내림차순으로 내려준다
+      var key = 'hours';
+      var dir = -1; // -1 내림차순, 1 오름차순
       var expanded = false;
 
-      // 서버가 이미 플레이 시간 내림차순으로 내려준다
-      var byHours = rows.slice();
+      // 기준별 기본 방향. 이름만 오름차순이 자연스럽다.
+      var defaultDir = { name: 1, hours: -1, recent: -1, review: -1 };
 
-      // 기록이 없는 항목(data-last 빈 값 → 0)은 뒤로 보낸다
-      var byRecent = rows.slice().sort(function (a, b) {
-        var d = num(b, 'data-last') - num(a, 'data-last');
-        if (d !== 0) return d;
+      function value(tr) {
+        if (key === 'name') return tr.getAttribute('data-name') || '';
+        if (key === 'hours') return num(tr, 'data-minutes');
+        if (key === 'recent') return num(tr, 'data-last');
+        return num(tr, 'data-review');
+      }
+
+      function compare(a, b) {
+        var va = value(a);
+        var vb = value(b);
+        if (key === 'name') {
+          return String(va).localeCompare(String(vb), 'ko') * dir;
+        }
+        // 값이 없는 항목(0)은 정렬 방향과 무관하게 항상 뒤로 보낸다
+        if (va === 0 && vb !== 0) return 1;
+        if (vb === 0 && va !== 0) return -1;
+        if (va !== vb) return (va < vb ? -1 : 1) * dir;
+        // 동점이면 플레이 시간이 긴 쪽을 먼저
         return num(b, 'data-minutes') - num(a, 'data-minutes');
-      });
-
-      var buttons = root.querySelectorAll('.played-sort');
+      }
 
       function render() {
-        var order = sort === 'recent' ? byRecent : byHours;
+        var order = rows.slice().sort(compare);
         for (var i = 0; i < order.length; i++) tbody.appendChild(order[i]);
-
-        if (sort === 'recent') table.classList.add('by-recent');
-        else table.classList.remove('by-recent');
 
         var shown = expanded ? order.length : Math.min(limit, order.length);
         for (var j = 0; j < order.length; j++) {
@@ -175,17 +199,24 @@
           moreBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
         }
 
-        for (var k = 0; k < buttons.length; k++) {
-          var on = buttons[k].getAttribute('data-sort') === sort;
-          if (on) buttons[k].classList.add('is-on');
-          else buttons[k].classList.remove('is-on');
-          buttons[k].setAttribute('aria-pressed', on ? 'true' : 'false');
+        for (var k = 0; k < headers.length; k++) {
+          var own = headers[k].getAttribute('data-sort');
+          if (own === key) {
+            headers[k].setAttribute('aria-sort', dir === 1 ? 'ascending' : 'descending');
+          } else {
+            headers[k].setAttribute('aria-sort', 'none');
+          }
         }
       }
 
-      for (var b = 0; b < buttons.length; b++) {
-        buttons[b].addEventListener('click', function (e) {
-          sort = e.currentTarget.getAttribute('data-sort');
+      for (var h = 0; h < headers.length; h++) {
+        headers[h].querySelector('button').addEventListener('click', function (e) {
+          var next = e.currentTarget.parentNode.getAttribute('data-sort');
+          if (next === key) dir = -dir;
+          else {
+            key = next;
+            dir = defaultDir[next] || -1;
+          }
           render();
         });
       }
@@ -195,7 +226,7 @@
         render();
       });
 
-      controls.hidden = false;
+      root.classList.add('is-js');
       render();
     }
   })();

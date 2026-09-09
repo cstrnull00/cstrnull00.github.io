@@ -99,7 +99,10 @@ function durationToMinutes(iso) {
 loadEnvLocal();
 
 const REFRESH = process.env.PSN_REFRESH_TOKEN;
-const MIN = Number(process.env.PSN_MIN_MINUTES ?? 120);
+// 워크플로가 미등록 시크릿을 빈 문자열로 넘긴다. ?? 는 빈 문자열을
+// 걸러내지 못하고 Number('') 는 0 이라 커트라인이 사라진다.
+const RAW_MIN = (process.env.PSN_MIN_MINUTES ?? '').trim();
+const MIN = RAW_MIN === '' ? 120 : Number(RAW_MIN);
 
 // 환경변수로 넘어온 제외 목록. 코드에 박은 것과 분리해 둔다 —
 // 이쪽은 이름을 로그에 남기지 않는다.

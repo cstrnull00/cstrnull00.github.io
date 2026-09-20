@@ -1,9 +1,9 @@
 {
-  "updated": "2026-09-13T20:35:53.866Z",
+  "updated": "2026-09-20T12:23:54.126Z",
   "minMinutes": 120,
   "ownedGames": 112,
   "listedGames": 79,
-  "totalMinutes": 208358,
+  "totalMinutes": 209758,
   "games": [
     {
       "appid": 1158310,
@@ -167,6 +167,13 @@
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/203770/56e9c15cbeb6c1f873f7f1dc757bae7618861484.jpg"
     },
     {
+      "appid": 1868140,
+      "name": "DAVE THE DIVER",
+      "minutes": 2049,
+      "lastPlayed": "2026-09-20T12:15:23.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1868140/2f19d6889f66eae88e8b5a36727d560ec88a00cb.jpg"
+    },
+    {
       "appid": 435150,
       "name": "Divinity: Original Sin 2",
       "minutes": 1968,
@@ -176,8 +183,8 @@
     {
       "appid": 3751260,
       "name": "The Blood of Dawnwalker",
-      "minutes": 1630,
-      "lastPlayed": "2026-09-08T03:50:06.000Z",
+      "minutes": 1837,
+      "lastPlayed": "2026-09-16T11:53:13.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/3751260/49fefdf2ae0e6171985509acec890b756cedc694.jpg"
     },
     {
@@ -256,13 +263,6 @@
       "minutes": 935,
       "lastPlayed": "2026-05-30T13:42:13.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/3768760/feccaf73a3bde702d1978afff6ba6540bf5331fe.jpg"
-    },
-    {
-      "appid": 1868140,
-      "name": "DAVE THE DIVER",
-      "minutes": 856,
-      "lastPlayed": "2024-12-16T05:13:45.000Z",
-      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1868140/2f19d6889f66eae88e8b5a36727d560ec88a00cb.jpg"
     },
     {
       "appid": 3751950,
@@ -408,7 +408,7 @@
       "appid": 4128400,
       "name": "eBaseball™: PRO SPIRIT",
       "minutes": 393,
-      "lastPlayed": "2026-07-22T12:54:33.000Z",
+      "lastPlayed": "2026-09-18T03:36:10.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/4128400/ebb091eafe886097f774de50e38e1fb30c1d6cd8.jpg"
     },
     {

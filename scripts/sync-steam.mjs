@@ -87,11 +87,13 @@ url.searchParams.set('include_appinfo', '1');
 url.searchParams.set('include_played_free_games', '1');
 url.searchParams.set('format', 'json');
 
+const UA = 'cstrnull00-blog/1.0';
+
 console.log('[sync-steam] 라이브러리 조회 중...');
 
 let res;
 try {
-  res = await fetch(url, { headers: { 'User-Agent': 'cstrnull00-blog/1.0' } });
+  res = await fetch(url, { headers: { 'User-Agent': UA } });
 } catch (e) {
   fail(`네트워크 오류: ${e.message}`);
 }
@@ -129,6 +131,45 @@ const listed = games
       : null,
   }));
 
+// 스팀이 주는 img_icon_url 해시가 죽어 있는 경우가 있다. 2026-09 기준
+// Dota 2(570)가 그렇다. API 는 해시를 계속 주는데 CDN 이 404 를 낸다.
+//
+// 그래서 아이콘 URL 을 한 번 확인하고, 죽었으면 해시가 필요 없는
+// capsule 이미지로 바꾼다. capsule 은 가로로 긴 이미지라
+// 렌더 쪽에서 object-fit: cover 로 잘라 쓴다.
+const capsuleFor = (appid) =>
+  `https://cdn.cloudflare.steamstatic.com/steam/apps/${appid}/capsule_184x69.jpg`;
+
+async function alive(url) {
+  try {
+    const r = await fetch(url, { method: 'HEAD', headers: { 'User-Agent': UA } });
+    return r.ok;
+  } catch {
+    // 네트워크 오류면 판단을 보류하고 원래 URL 을 그대로 둔다.
+    return true;
+  }
+}
+
+// 동시 8개씩 확인한다. 79개 기준 몇 초면 끝난다.
+const swapped = [];
+for (let i = 0; i < listed.length; i += 8) {
+  const chunk = listed.slice(i, i + 8);
+  await Promise.all(
+    chunk.map(async (game) => {
+      if (!game.icon) return;
+      if (await alive(game.icon)) return;
+      const fallback = capsuleFor(game.appid);
+      if (await alive(fallback)) {
+        game.icon = fallback;
+        swapped.push(`${game.name} (capsule 로 대체)`);
+      } else {
+        game.icon = null;
+        swapped.push(`${game.name} (이미지 없음)`);
+      }
+    })
+  );
+}
+
 // 무엇이 제외됐는지 로그에 남긴다. 단 시크릿으로 넘어온 것은 개수만.
 const overMin = games.filter((g) => (g.playtime_forever ?? 0) >= MIN);
 const excludedHits = overMin.filter((g) => EXCLUDED.has(g.appid));
@@ -156,6 +197,9 @@ if (excludedHits.length) {
 }
 if (excludedPrivateCount) {
   parts.push(`설정으로 제외 ${excludedPrivateCount}개`);
+}
+if (swapped.length) {
+  parts.push(`아이콘 대체 ${swapped.length}개: ${swapped.join(', ')}`);
 }
 const note = parts.length ? ` (${parts.join(' / ')})` : '';
 

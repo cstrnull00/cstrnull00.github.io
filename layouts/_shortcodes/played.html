@@ -136,6 +136,15 @@
         {{- end -}}
         {{- $storeName = "PS 스토어" -}}
         {{- $rev = index $byPsn (printf "%v" .titleId) -}}
+        {{- /* PS4/PS5 판이 합쳐진 항목은 대표 titleId 하나만 남는다.
+               리뷰가 다른 쪽 id 로 연결돼 있을 수 있으므로 전부 확인한다. */ -}}
+        {{- if not $rev -}}
+          {{- range .titleIds -}}
+            {{- if not $rev -}}
+              {{- $rev = index $byPsn (printf "%v" .) -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
       {{- end -}}
 
       {{- $rows = $rows | append (dict

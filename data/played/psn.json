@@ -3,7 +3,7 @@
   "updated": "2026-09-20T14:21:41.493Z",
   "minMinutes": 120,
   "ownedGames": 63,
-  "listedGames": 48,
+  "listedGames": 45,
   "unknownDuration": 0,
   "totalMinutes": 116938,
   "games": [
@@ -17,6 +17,19 @@
       "conceptId": "10011898"
     },
     {
+      "titleId": "PPSA01416_00",
+      "name": "MLB® The Show 21™",
+      "minutes": 12747,
+      "lastPlayed": "2024-06-16T23:49:34.250000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202101/0722/KF4GiVmKeA75MZpzEn32ev3g.png",
+      "category": "ps5_native_game",
+      "conceptId": "10000668",
+      "titleIds": [
+        "CUSA25016_00",
+        "PPSA01416_00"
+      ]
+    },
+    {
       "titleId": "PPSA23479_00",
       "name": "MLB® The Show™ 25",
       "minutes": 7954,
@@ -24,15 +37,6 @@
       "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202509/0922/42277abc2f6993a5c8194cfb77f82b36e0f9ba510f7a4403.png",
       "category": "ps5_native_game",
       "conceptId": "10011213"
-    },
-    {
-      "titleId": "CUSA25016_00",
-      "name": "MLB® The Show 21™",
-      "minutes": 7835,
-      "lastPlayed": "2021-09-10T13:19:12.580000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202101/0722/KF4GiVmKeA75MZpzEn32ev3g.png",
-      "category": "unknown",
-      "conceptId": "10000668"
     },
     {
       "titleId": "PPSA22180_00",
@@ -62,15 +66,6 @@
       "conceptId": "10007176"
     },
     {
-      "titleId": "PPSA01416_00",
-      "name": "MLB® The Show 21™",
-      "minutes": 4912,
-      "lastPlayed": "2024-06-16T23:49:34.250000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202101/0722/KF4GiVmKeA75MZpzEn32ev3g.png",
-      "category": "ps5_native_game",
-      "conceptId": "10000668"
-    },
-    {
       "titleId": "PPSA08340_00",
       "name": "마블 스파이더맨 2",
       "minutes": 4174,
@@ -87,6 +82,19 @@
       "icon": "https://image.api.playstation.com/vulcan/img/rnd/202009/2919/IK4MUYX5kmkoqcxVW36xc8ky.png",
       "category": "ps4_game",
       "conceptId": "235275"
+    },
+    {
+      "titleId": "PPSA01971_00",
+      "name": "DEATH STRANDING",
+      "minutes": 3534,
+      "lastPlayed": "2023-09-10T14:44:26.010000Z",
+      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202009/2921/40aD0BqRUHyHdXdC6nwtwON5.png",
+      "category": "ps5_native_game",
+      "conceptId": "234585",
+      "titleIds": [
+        "PPSA01971_00",
+        "CUSA12613_00"
+      ]
     },
     {
       "titleId": "PPSA06433_00",
@@ -179,15 +187,6 @@
       "conceptId": "10001538"
     },
     {
-      "titleId": "PPSA01971_00",
-      "name": "DEATH STRANDING",
-      "minutes": 2376,
-      "lastPlayed": "2023-09-10T14:44:26.010000Z",
-      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202009/2921/40aD0BqRUHyHdXdC6nwtwON5.png",
-      "category": "ps5_native_game",
-      "conceptId": "234585"
-    },
-    {
       "titleId": "PPSA24700_00",
       "name": "디지몬 스토리 타임 스트레인저",
       "minutes": 2204,
@@ -233,6 +232,19 @@
       "conceptId": "228780"
     },
     {
+      "titleId": "PPSA01472_00",
+      "name": "Marvel's Spider-Man",
+      "minutes": 1593,
+      "lastPlayed": "2024-07-28T08:32:33.430000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202011/0402/C784xeOFo2wViCf4m5bxgoeH.png",
+      "category": "ps5_native_game",
+      "conceptId": "10000762",
+      "titleIds": [
+        "PPSA01472_00",
+        "CUSA09893_00"
+      ]
+    },
+    {
       "titleId": "CUSA01399_00",
       "name": "UNCHARTED: The Nathan Drake Collection™",
       "minutes": 1547,
@@ -240,24 +252,6 @@
       "icon": "https://image.api.playstation.com/vulcan/img/rnd/202011/1101/zC3kulm2Ho3ZE38ZUYHW7WMK.png",
       "category": "unknown",
       "conceptId": "205353"
-    },
-    {
-      "titleId": "PPSA01472_00",
-      "name": "Marvel's Spider-Man",
-      "minutes": 1176,
-      "lastPlayed": "2024-07-28T08:32:33.430000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202011/0402/C784xeOFo2wViCf4m5bxgoeH.png",
-      "category": "ps5_native_game",
-      "conceptId": "10000762"
-    },
-    {
-      "titleId": "CUSA12613_00",
-      "name": "DEATH STRANDING",
-      "minutes": 1158,
-      "lastPlayed": "2021-08-03T05:15:05.230000Z",
-      "icon": "https://image.api.playstation.com/vulcan/img/rnd/202009/2921/40aD0BqRUHyHdXdC6nwtwON5.png",
-      "category": "unknown",
-      "conceptId": "234585"
     },
     {
       "titleId": "CUSA08392_00",
@@ -393,15 +387,6 @@
       "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202308/3005/6de6b1c4b0c475b5c28fd2011655ab8206ed846926fa1671.png",
       "category": "ps5_native_game",
       "conceptId": "10003999"
-    },
-    {
-      "titleId": "CUSA09893_00",
-      "name": "Marvel's Spider-Man",
-      "minutes": 417,
-      "lastPlayed": "2021-10-04T05:46:56.280000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202011/0402/C784xeOFo2wViCf4m5bxgoeH.png",
-      "category": "ps4_game",
-      "conceptId": "10000762"
     },
     {
       "titleId": "CUSA05662_00",

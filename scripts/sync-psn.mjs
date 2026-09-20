@@ -212,9 +212,50 @@ const mapped = titles
     conceptId: t.concept?.id != null ? String(t.concept.id) : null,
   }));
 
+// PSN 은 같은 게임이라도 PS4 판(CUSA...)과 PS5 판(PPSA...)에 다른 titleId 를
+// 준다. 그대로 두면 한 게임이 두 줄로 쪼개져 플레이 시간과 순위가 실제보다
+// 낮게 잡힌다. concept id 는 두 판이 공유하므로 이것을 기준으로 합친다.
+//
+// 대표 항목은 마지막 플레이가 최신인 쪽으로 한다 (보통 PS5 판).
+// 합쳐진 titleId 는 titleIds 에 모두 남긴다. 리뷰 글이 어느 쪽 id 로
+// 연결돼 있어도 찾을 수 있어야 하기 때문이다.
+function mergeByConcept(games) {
+  const groups = new Map();
+  for (const g of games) {
+    // concept id 가 없으면 합칠 근거가 없으므로 titleId 로 단독 취급한다.
+    const key = g.conceptId ? `c:${g.conceptId}` : `t:${g.titleId}`;
+    const cur = groups.get(key);
+    if (!cur) {
+      groups.set(key, { ...g, titleIds: [g.titleId] });
+      continue;
+    }
+    cur.titleIds.push(g.titleId);
+    // 시간은 더한다. 한쪽만 null 이면 있는 쪽을 쓴다.
+    cur.minutes =
+      cur.minutes === null && g.minutes === null
+        ? null
+        : (cur.minutes ?? 0) + (g.minutes ?? 0);
+    // 최신 플레이 쪽 정보를 대표로 삼는다.
+    const newer = (g.lastPlayed ?? '') > (cur.lastPlayed ?? '');
+    if (newer) {
+      cur.lastPlayed = g.lastPlayed;
+      cur.titleId = g.titleId;
+      cur.name = g.name;
+      cur.icon = g.icon;
+      cur.category = g.category;
+    }
+  }
+  return [...groups.values()].map((g) =>
+    g.titleIds.length > 1 ? g : (({ titleIds, ...rest }) => rest)(g)
+  );
+}
+
+const merged = mergeByConcept(mapped);
+const mergedCount = mapped.length - merged.length;
+
 // 시간이 있는 항목만 커트라인을 적용한다.
 // 기록이 없는 항목(2020년 이전 플레이)은 걸러낼 근거가 없으므로 남긴다.
-const listed = mapped
+const listed = merged
   .filter((g) => g.minutes === null || g.minutes >= MIN)
   .sort((a, b) => (b.minutes ?? -1) - (a.minutes ?? -1));
 
@@ -246,6 +287,10 @@ if (dropped.length) {
 }
 if (droppedPrivateCount) {
   noteParts.push(`설정으로 제외 ${droppedPrivateCount}개`);
+}
+if (mergedCount) {
+  const names = listed.filter((g) => g.titleIds).map((g) => g.name);
+  noteParts.push(`PS4/PS5 판 합침 ${mergedCount}건: ${names.join(', ')}`);
 }
 const droppedNote = noteParts.length ? ` (${noteParts.join(' / ')})` : '';
 

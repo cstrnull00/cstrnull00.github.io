@@ -25,3 +25,8 @@ assets/jsconfig.json
 
 # Node (동기화 스크립트 의존성)
 node_modules/
+
+# 포트폴리오·작업 산출물. 공개 레포이므로 절대 커밋하지 않는다.
+# (2026-09-20 f29003e 에서 git add -A 로 97개가 쓸려 들어간 적 있음)
+output/
+tmp/

@@ -5,8 +5,9 @@ on:
     branches: ["main"]
   workflow_dispatch:
   schedule:
-    # 매주 월요일 03:00 KST (일요일 18:00 UTC) — 플레이 기록 갱신용
-    - cron: "0 18 * * 0"
+    # 매일 03:00 KST (18:00 UTC). 플레이 기록 갱신용.
+    # PSN 토큰 갱신 워크플로(04:00 KST)보다 한 시간 앞에 둔다.
+    - cron: "0 18 * * *"
 
 permissions:
   # 동기화한 데이터를 레포에 커밋한다. 그래야 API 가 실패해도 페이지가
@@ -15,6 +16,7 @@ permissions:
   pages: write
   id-token: write
 
+# 워크플로 레벨은 배포 직렬화용.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -26,6 +28,13 @@ defaults:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # 이 잡도 PSN 리프레시 토큰을 교환하므로 keepalive 워크플로와 같은
+    # 그룹으로 묶어 직렬화한다. 토큰은 교환할 때마다 이전 것이 죽기 때문에
+    # 두 워크플로가 동시에 교환하면 한쪽이 무효한 토큰을 저장할 수 있다.
+    # (스케줄은 한 시간 벌려 두었지만 재실행이나 수동 실행으로 겹칠 수 있다)
+    concurrency:
+      group: psn-token
+      cancel-in-progress: false
     env:
       # 스텝의 if 에서는 secrets 컨텍스트를 쓸 수 없어 여기서 넘긴다.
       # (runner 컨텍스트는 잡 레벨 env 에서 쓸 수 없으므로 경로는 스텝에서 만든다)

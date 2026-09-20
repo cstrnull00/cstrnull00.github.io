@@ -1,11 +1,11 @@
 {
   "platform": "psn",
-  "updated": "2026-09-20T14:21:41.493Z",
+  "updated": "2026-09-20T14:49:27.033Z",
   "minMinutes": 120,
   "ownedGames": 63,
   "listedGames": 45,
   "unknownDuration": 0,
-  "totalMinutes": 116938,
+  "totalMinutes": 117042,
   "games": [
     {
       "titleId": "PPSA27360_00",
@@ -25,8 +25,8 @@
       "category": "ps5_native_game",
       "conceptId": "10000668",
       "titleIds": [
-        "CUSA25016_00",
-        "PPSA01416_00"
+        "PPSA01416_00",
+        "CUSA25016_00"
       ]
     },
     {
@@ -162,11 +162,15 @@
     {
       "titleId": "PPSA01773_00",
       "name": "FINAL FANTASY VII REMAKE",
-      "minutes": 2528,
+      "minutes": 2604,
       "lastPlayed": "2026-02-22T05:47:19.750000Z",
       "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA07187_00/5/i_3a90c0e006f2193b1adc12b9424372f4044439cadd6d91fda06c0a86c9c6acf2/i/icon0.png",
       "category": "ps5_native_game",
-      "conceptId": "228744"
+      "conceptId": "228744",
+      "titleIds": [
+        "PPSA01773_00",
+        "CUSA16170_00"
+      ]
     },
     {
       "titleId": "PPSA02690_00",
@@ -189,11 +193,15 @@
     {
       "titleId": "PPSA24700_00",
       "name": "디지몬 스토리 타임 스트레인저",
-      "minutes": 2204,
+      "minutes": 2232,
       "lastPlayed": "2025-10-23T14:25:35.930000Z",
       "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202505/1402/1f3c429abe5a0108581297cf0bfef91bbf1981903d620b44.png",
       "category": "ps5_native_game",
-      "conceptId": "10011861"
+      "conceptId": "10011861",
+      "titleIds": [
+        "PPSA24700_00",
+        "PPSA25915_00"
+      ]
     },
     {
       "titleId": "CUSA07413_00",

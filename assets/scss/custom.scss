@@ -1,3 +1,27 @@
+/* 목록 카드의 대표 이미지는 고정 높이로 자르지 않고 원본 비율로 표시한다. */
+.article-list article .article-image img {
+  height: auto;
+}
+
+/* 섹션 목록: 높이를 맞추되 원본 전체를 표시하고, 좁은 화면의 제목 공간을 확보한다. */
+.article-list--compact article .article-details {
+  min-width: 0;
+}
+
+.article-list--compact article .article-image {
+  flex: 0 1 auto;
+  max-width: 35%;
+
+  img {
+    display: block;
+    width: auto;
+    height: var(--image-size);
+    max-width: 100%;
+    object-fit: contain;
+    object-position: right center;
+  }
+}
+
 /* 인물 비교표 (용과 같이 7)
    원본의 colspan/rowspan을 살리기 위해 본문에 HTML 표로 작성했고,
    전신샷이 본문 폭까지 늘어나지 않도록 여기서 높이를 제한한다. */

@@ -38,15 +38,14 @@
         {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}
         {{ if $image }}
         <div class="article-image">
-            {{ partial "helper/thumbnail-image" (dict 
+            {{ partial "helper/responsive-image" (dict
                 "Resource" $image.Resource
-                "Width" 60
-                "Height" 60
-                "Resize" .Site.Params.ImageProcessing.Thumbnail.Enabled
+                "Widths" (cond .Site.Params.ImageProcessing.Thumbnail.Enabled (slice 160 320) nil)
                 "Attributes" (dict
                     "src" $image.Permalink
                     "alt" .Title
                     "loading" "lazy"
+                    "sizes" "160px"
                     "width" $image.Width
                     "height" $image.Height
                 )

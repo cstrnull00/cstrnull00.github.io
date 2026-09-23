@@ -53,6 +53,51 @@
   }
 }
 
+/* 이미지 캡션: 이미지 문단 바로 다음의 *기울임* 한 줄을 캡션으로 보고 붙인다.
+   테마는 이미지를 p.no-text > .gallery 로 감싸고 둘 다 아래 여백을 주므로,
+   문단 사이 기본 여백까지 합쳐져 캡션이 이미지에서 35px 가량 떨어진다. */
+.article-content p.no-text:has(+ p > em:only-child),
+.article-content p.no-text:has(+ p > em:only-child) .gallery {
+  margin-bottom: 0;
+}
+
+/* figure 안의 이미지 아래로 줄 높이만큼 틈이 남아 있어서 위쪽 여백은 따로 주지 않는다 */
+.article-content p.no-text + p:has(> em:only-child) {
+  margin-top: 0;
+}
+
+/* 인용 블록 안의 표: 리뷰 끝의 별점표에 쓴다.
+   일반 표는 테두리를 그대로 두고, 인용 블록 안에서만 테두리·줄무늬·머리글을 없앤다. */
+.article-content blockquote table {
+  margin: 0;
+  font-size: 1em;
+}
+
+.article-content blockquote th,
+.article-content blockquote td {
+  border: 0;
+  padding: 0.15em 1.2em 0.15em 0;
+}
+
+.article-content blockquote tr:nth-child(even) {
+  background-color: transparent;
+}
+
+.article-content blockquote thead {
+  display: none;
+}
+
+/* 항목·별점 열은 내용 폭만큼만 차지하고, 남는 폭은 한 줄 평이 쓴다 */
+.article-content blockquote td:not(:last-child) {
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* 빈 행은 총점 앞의 간격으로 쓴다 */
+.article-content blockquote td:empty {
+  height: 0.8em;
+}
+
 /* Stack 용 추가: details / lastmod */
 .post-details {
   border: 1px solid var(--card-separator-color, #e5e7eb);

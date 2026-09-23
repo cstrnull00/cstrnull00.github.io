@@ -139,6 +139,44 @@
   height: 0.8em;
 }
 
+/* 휴대폰: 바깥 여백(15px)과 카드 안쪽 여백(20px)이 겹쳐 본문 폭이 좁아지므로 둘 다 줄이고,
+   본문 글자도 16px 에서 15px 로 한 단계 줄여 한 줄에 들어가는 글자 수를 늘린다 */
+@media (max-width: 639.98px) {
+  :root {
+    --container-padding: 4px;
+    --card-padding: 10px;
+    --article-font-size: 1.5rem;
+  }
+
+  /* 세 칸짜리 표(별점표)는 항목·별점을 한 줄에, 한 줄 평을 그 아래 전체 폭으로 쌓는다 */
+  .article-content blockquote table,
+  .article-content blockquote tbody {
+    display: block;
+  }
+
+  .article-content blockquote tr:has(> td:nth-child(3)) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 0.6em;
+  }
+
+  .article-content blockquote tr:has(> td:nth-child(3)) td {
+    width: auto;
+    padding: 0;
+  }
+
+  .article-content blockquote tr:has(> td:nth-child(3)) td:nth-child(3) {
+    grid-column: 1 / -1;
+    white-space: normal;
+    padding-bottom: 0.5em;
+  }
+
+  .article-content blockquote tr:has(> td:nth-child(3)) td:empty {
+    height: 0.4em;
+    padding: 0;
+  }
+}
+
 /* Stack 용 추가: details / lastmod */
 .post-details {
   border: 1px solid var(--card-separator-color, #e5e7eb);

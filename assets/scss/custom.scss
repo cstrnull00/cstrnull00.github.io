@@ -436,7 +436,10 @@
   opacity: 0.7;
 }
 
+/* position: relative 가 없으면 표 안의 화면 낭독기용 글자(.played-sr, position: absolute)가
+   이 스크롤 영역 바깥을 기준으로 놓여 잘리지 않고, 좁은 화면에서 페이지 전체가 가로로 밀린다 */
 .played-table-scroll {
+  position: relative;
   max-width: 100%;
   overflow-x: auto;
   margin: 1em 0;

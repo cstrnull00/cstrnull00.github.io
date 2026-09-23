@@ -139,13 +139,37 @@
   height: 0.8em;
 }
 
-/* 휴대폰: 바깥 여백(15px)과 카드 안쪽 여백(20px)이 겹쳐 본문 폭이 좁아지므로 둘 다 줄이고,
+/* 휴대폰: 바깥 여백(15px)과 카드 안쪽 여백(20px)이 겹쳐 본문 폭이 좁아진다.
+   바깥 여백을 없애 카드를 화면 끝까지 붙이고, 글자와 화면 끝 사이는 카드 안쪽 16px 만 남긴다.
    본문 글자도 16px 에서 15px 로 한 단계 줄여 한 줄에 들어가는 글자 수를 늘린다 */
 @media (max-width: 639.98px) {
   :root {
-    --container-padding: 4px;
-    --card-padding: 10px;
+    --container-padding: 0px;
+    --card-padding: 16px;
+    --card-border-radius: 0px;
     --article-font-size: 1.5rem;
+  }
+
+  /* 바깥 여백이 없어진 만큼 프로필·제목·아이콘과 메뉴 버튼은 따로 안쪽으로 들인다 */
+  /* 테마의 footer.site-footer 규칙이 더 구체적이라 .main-container 를 붙여 우선한다 */
+  .left-sidebar,
+  .main-container footer.site-footer,
+  .main-container .section-title {
+    padding-inline: var(--card-padding);
+  }
+
+  #toggle-menu {
+    right: var(--card-padding);
+  }
+
+  /* 테마는 이미지를 카드 끝까지 넓히는데, 카드가 화면 끝에 붙으면 캡션 글자도 화면 끝에 닿는다 */
+  .article-content figure figcaption {
+    padding-inline: var(--card-padding);
+  }
+
+  /* 펼친 메뉴는 테마처럼 화면 양 끝까지 채운다 */
+  #main-menu {
+    margin-inline: calc(var(--card-padding) * -1);
   }
 
   /* 세 칸짜리 표(별점표)는 항목·별점을 한 줄에, 한 줄 평을 그 아래 전체 폭으로 쌓는다 */

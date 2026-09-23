@@ -21,6 +21,12 @@ markup:
   goldmark:
     renderer:
       unsafe: true
+    # 본문에서 <<작품명>> 으로 쓰면 《작품명》 으로 바뀐다.
+    # ***작품명***와 처럼 강조 뒤에 조사가 붙으면 강조가 깨지는 문제를 피하려고 쓴다.
+    extensions:
+      typographer:
+        leftAngleQuote: "《"
+        rightAngleQuote: "》"
   highlight:
     noClasses: false
   tableOfContents:

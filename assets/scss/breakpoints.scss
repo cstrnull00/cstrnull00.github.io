@@ -1,0 +1,23 @@
+// 테마(themes/stack/assets/scss/breakpoints.scss)를 덮어쓴다.
+// 테마는 서브모듈이라 직접 고치지 않고, 같은 경로의 파일을 프로젝트 assets 에 두어 대신 읽히게 한다.
+//
+// md 는 좌측 메뉴가 세로 사이드바로 바뀌는 기준이다. 테마 기본값 768px 에서는
+// 1920px 모니터를 절반으로 분할한 창(약 960px)에서도 사이드바가 펼쳐져 본문이 좁아졌다.
+// 1000px 로 올려, 절반 분할 창까지는 모바일처럼 상단 메뉴로 보이게 한다.
+$breakpoints: (
+    sm: 640px,
+    md: 1000px,
+    lg: 1024px,
+    xl: 1280px,
+    2xl: 1536px,
+);
+
+@mixin respond($breakpoint) {
+    @if not map-has-key($breakpoints, $breakpoint) {
+        @warn "'#{$breakpoint}' is not a valid breakpoint";
+    } @else {
+        @media (min-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}

@@ -54,7 +54,7 @@ params:
 
   sidebar:
     compact: false
-    subtitle: "게임 시스템 기획자의 리뷰와 콘텐츠 분석"
+    subtitle: "게임 리뷰와 콘텐츠 분석"
     avatar: img/avatar.png
 
   article:

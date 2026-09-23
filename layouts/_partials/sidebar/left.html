@@ -8,6 +8,13 @@
     <header>
         {{ with .Site.Params.sidebar.avatar }}
             {{- $avatar := partial "helper/image" (dict "Image" . "Resources" resources "Context" $) -}}
+            {{- /* 화면에는 100px 로 보이므로 고해상도 폰까지 고려해 300px 로 줄여 내보낸다.
+                   줄인 파일 이름에는 내용 해시가 붙어, 이미지를 바꾸면 주소도 바뀌어
+                   브라우저가 예전 이미지를 캐시에서 계속 쓰는 일이 없다. */ -}}
+            {{- with $avatar.Resource -}}
+                {{- $small := .Resize "300x" -}}
+                {{- $avatar = dict "Permalink" $small.RelPermalink "Width" $small.Width "Height" $small.Height -}}
+            {{- end -}}
             <figure class="site-avatar">
                 <a href="{{ $.Site.Home.RelPermalink }}">
                     <img src="{{ $avatar.Permalink }}" 

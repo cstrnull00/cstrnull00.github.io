@@ -66,6 +66,23 @@
   margin-top: 0;
 }
 
+/* 이미지 캡션 전용 문법: ![캡션](이미지)
+   테마의 gallery.ts 가 이미지의 대체 텍스트를 figcaption 으로 만든다.
+   본문과 구분되도록 회색·작은 글씨로, 기울이지 않고 이미지에 바짝 붙인다. */
+/* 이미지를 감싼 링크가 인라인이라 줄 높이만큼 틈이 생긴다. 블록으로 바꿔 캡션을 붙인다. */
+.article-content figure:has(figcaption) .image-link,
+.article-content figure:has(figcaption) img {
+  display: block;
+}
+
+.article-content figure figcaption {
+  margin-top: 0.3em;
+  font-size: 1.3rem;
+  font-style: normal;
+  line-height: 1.4;
+  color: var(--card-text-color-secondary);
+}
+
 /* 인용 블록 안의 표: 리뷰 끝의 별점표에 쓴다.
    일반 표는 테두리를 그대로 두고, 인용 블록 안에서만 테두리·줄무늬·머리글을 없앤다. */
 .article-content blockquote table {

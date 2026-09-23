@@ -121,9 +121,7 @@ tags:
 
 ### 필요의 방
 
-![](./images/HogwartsLegacy03.webp)
-
-*필요의 방*
+![필요의 방](./images/HogwartsLegacy03.webp)
 
  필요의 방은 본작에서 가장 재미있는 콘텐츠 중 하나였다. 동물들을 포획해 이들과 상호작용하며 재료를 얻을 수도, 마법 식물을 재배하고 마법약을 만들 수도 있으며, 장비를 식별하고 강화하거나 방을 꾸미는 행동을 할 수 있다. 집요정의 퀘스트를 해결할 때마다 넓어지는 방에 맞춰 각종 장식품을 인테리어하는 재미가 쏠쏠했다.
 
@@ -135,13 +133,9 @@ tags:
 
 ## 비주얼
 
-![](./images/HogwartsLegacy04.webp)![](./images/HogwartsLegacy05.webp)
+![가을의 호그와트](./images/HogwartsLegacy04.webp)![밤의 호그와트](./images/HogwartsLegacy05.webp)
 
-*가을의 호그와트 밤의 호그와트*
-
-![](./images/HogwartsLegacy06.webp)
-
-*대연회장*
+![대연회장](./images/HogwartsLegacy06.webp)
 
  호그와트 내외부, 각종 자연 환경을 아주 뛰어나게 묘사하였다. 해리 포터 프랜차이즈가 이미 영상화되었던 전적이 있었던만큼 해당 비주얼을 매우 충실하게 옮겼다고 볼 수 있겠다. 인물들의 경우 약간의 데포르메가 된 스타일로 보이는데 오히려 작품의 분위기와 잘 맞는 적절한 선택이었던 것 같다.
 

@@ -10,6 +10,13 @@ timeZone: "Asia/Seoul"
 
 enableGitInfo: true
 
+# 최종 수정일은 프론트매터에 lastmod 를 직접 적은 글에만 표시한다.
+# git 커밋 날짜를 쓰면 표기 정리 같은 일괄 작업마다 모든 글의 수정일이
+# 바뀌어, 내용이 갱신된 것처럼 읽힌다. lastmod 가 없으면 게시일(date)로
+# 채워지고, 두 값이 같으면 테마가 수정일 줄을 숨긴다.
+frontmatter:
+  lastmod: [lastmod, date]
+
 # robots.txt 를 생성한다. 내용은 layouts/robots.txt 에서 정의하며,
 # 사이트맵 위치를 명시해 크롤러가 유입 링크 없이도 전체 페이지를 찾게 한다.
 enableRobotsTXT: true

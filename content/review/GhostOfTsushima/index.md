@@ -9,15 +9,22 @@ categories:
   - 게임 리뷰
 tags:
   - 오픈월드
+# 게임 기본 정보 (layouts/_shortcodes/game-info.html)
+developers:
+  - 서커 펀치 프로덕션(Sucker Punch Productions)
+publishers:
+  - 소니 인터랙티브 엔터테인먼트(Sony Interactive Entertainment)
+platforms: [PS4, PS5]
+releases:
+  - date: '2020-07-17'
+    platforms: [PS4]
+  - date: '2021-08-20'
+    platforms: [PS5]
+    note: 디렉터스 컷
+rating: 청소년 이용불가
 ---
 
-> | | |
-> |:--|:--|
-> | **개발** | 서커 펀치 프로덕션(Sucker Punch Productions) |
-> | **유통** | 소니 인터랙티브 엔터테인먼트(Sony Interactive Entertainment) |
-> | **출시** | 2020년 7월 17일 / 2021년 8월 20일(디렉터스 컷) |
-> | **플랫폼** | PS4 / PS5(디렉터스 컷) |
-> | **심의 등급** | 청소년 이용불가 |
+{{% game-info %}}
 
  1274년, 몽골은 고려를 넘어 일본으로 향했다. 이윽고 쓰시마에 상륙한 여몽 연합군은 반나절만에 쓰시마 군을 전멸시키고 이키를 넘어 본토 규슈의 하카타 만에 상륙했다. 전세계를 휩쓴 몽골의 군세는 이렇게 쉽게 일본마저 집어삼키는듯 했지만, 마침 불어닥친 태풍, 이른바 신풍(神風)이 연합군의 함대를 침몰시켰고, 몽골은 후퇴할 수밖에 없었다.
 

@@ -1,0 +1,93 @@
+{{- /*
+  리뷰 첫머리의 게임 기본 정보 표. 값은 전부 그 글의 프론트매터에서 읽는다.
+  본문에 표를 직접 적지 않는 이유는 손이 두 번 가면 프론트매터와 어긋나기 때문이다.
+
+  본문에서는 마크다운으로 렌더되도록 {{% game-info %}} 로 부른다.
+
+  프론트매터:
+    developers: [CD 프로젝트 레드(CD PROJEKT RED)]   개발 (택소노미)
+    publishers: [반다이 남코(Bandai Namco)]          유통 (택소노미)
+    platforms: [PS4, Xbox One, PC, NS]               플랫폼 (택소노미)
+    releases:                                        출시 — 출시일마다 플랫폼을 묶는다
+      - date: '2015-05-18'
+        platforms: [PS4, Xbox One, PC]
+      - date: '2019-10-15'
+        platforms: [NS]
+        note: 디렉터스 컷                             (선택) 출시일 뒤 괄호로 붙는다
+    rating: 청소년 이용불가                           심의 등급
+
+  platforms 는 releases 의 플랫폼을 모두 모은 것이어야 한다. 택소노미는
+  최상위 키만 읽기 때문에 따로 적을 수밖에 없어, 어긋나면 빌드 로그에 경고한다.
+
+  플랫폼 표기: PS4, PS5, Xbox One, XSX|S, PC, NS
+
+  플랫폼 이름 앞에 로고를 붙인다. 끄려면 {{% game-info icons=false %}} 로 부른다.
+*/ -}}
+
+{{- $p := .Page -}}
+
+{{- /* 플랫폼 로고 (layouts/_partials/platform-logo.html).
+       icons=false 는 불리언, icons="false" 는 문자열로 들어온다 */ -}}
+{{- $icons := ne (printf "%v" (.Get "icons")) "false" -}}
+
+{{- /* 택소노미 용어 → 용어 페이지. 표기 그대로(.Data.Term)로 찾는다. */ -}}
+{{- $terms := dict -}}
+{{- range slice "developers" "publishers" "platforms" -}}
+  {{- $tax := . -}}
+  {{- $m := dict -}}
+  {{- range $p.GetTerms $tax -}}
+    {{- $m = merge $m (dict .Data.Term .) -}}
+  {{- end -}}
+  {{- $terms = merge $terms (dict $tax $m) -}}
+{{- end -}}
+
+{{- /* 표 칸 안이라 | 는 이스케이프해야 한다 (XSX|S) */ -}}
+{{- define "_partials/game-info/link.html" -}}
+  {{- $label := replace .name "|" `\|` -}}
+  {{- $logo := .logo | default "" | safeHTML -}}
+  {{- with index .terms .name -}}
+    [{{ $logo }}{{ $label }}]({{ .RelPermalink }})
+  {{- else -}}
+    {{ $logo }}{{ $label }}
+  {{- end -}}
+{{- end -}}
+
+{{- $dev := slice -}}
+{{- range $p.Params.developers -}}
+  {{- $dev = $dev | append (partial "game-info/link.html" (dict "name" . "terms" $terms.developers)) -}}
+{{- end -}}
+{{- $pub := slice -}}
+{{- range $p.Params.publishers -}}
+  {{- $pub = $pub | append (partial "game-info/link.html" (dict "name" . "terms" $terms.publishers)) -}}
+{{- end -}}
+
+{{- $dates := slice -}}
+{{- $plats := slice -}}
+{{- $seen := slice -}}
+{{- range $p.Params.releases -}}
+  {{- $d := (time.AsTime .date).Format "2006년 1월 2일" -}}
+  {{- with .note }}{{ $d = printf "%s(%s)" $d . }}{{ end -}}
+  {{- $dates = $dates | append $d -}}
+  {{- $group := slice -}}
+  {{- range .platforms -}}
+    {{- $group = $group | append (partial "game-info/link.html" (dict "name" . "terms" $terms.platforms "logo" (cond $icons (partial "platform-logo.html" .) ""))) -}}
+    {{- $seen = $seen | append . -}}
+  {{- end -}}
+  {{- $plats = $plats | append (delimit $group ", ") -}}
+{{- end -}}
+
+{{- $declared := $p.Params.platforms | default slice -}}
+{{- if or (complement $declared (uniq $seen)) (complement (uniq $seen) $declared) -}}
+  {{- warnf "[game-info] %s: platforms %v 와 releases 의 플랫폼 %v 이 다릅니다" $p.RelPermalink $declared (uniq $seen) -}}
+{{- end -}}
+{{- if not (and $dev $pub $dates $p.Params.rating) -}}
+  {{- warnf "[game-info] %s: 기본 정보가 빠졌습니다 (developers, publishers, releases, rating)" $p.RelPermalink -}}
+{{- end }}
+
+> | | |
+> |:--|:--|
+> | **개발** | {{ delimit $dev " / " }} |
+> | **유통** | {{ delimit $pub " / " }} |
+> | **출시** | {{ delimit $dates " / " }} |
+> | **플랫폼** | {{ delimit $plats " / " | safeHTML }} |
+> | **심의 등급** | {{ $p.Params.rating }} |

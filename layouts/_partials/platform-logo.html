@@ -1,0 +1,25 @@
+{{- /*
+  플랫폼 이름 → 로고 SVG (assets/icons). 로고가 없는 이름이면 빈 문자열.
+  같은 계열은 로고가 같아 이름과 함께 쓴다 (PS4/PS5, Xbox One/XSX|S).
+
+  크기는 글자 크기(1em)를 따르고 색은 currentColor 라, 본문 표에서도
+  목록 페이지 제목에서도 주변 글자에 맞춰 그려진다.
+
+  쓰는 곳: layouts/_shortcodes/game-info.html (본문 표)
+           layouts/platforms/term.html (플랫폼별 페이지 제목)
+           layouts/_partials/article-list/compact.html (플랫폼 목록 항목)
+*/ -}}
+{{- $files := dict
+      "PS4" "brand-playstation"
+      "PS5" "brand-playstation"
+      "Xbox One" "brand-xbox"
+      "XSX|S" "brand-xbox"
+      "PC" "brand-windows"
+      "NS" "brand-nintendo-switch" -}}
+{{- $svg := "" -}}
+{{- with index $files . -}}
+  {{- with resources.Get (printf "icons/%s.svg" .) -}}
+    {{- $svg = replace (trim .Content "\n") "<svg " `<svg class="platform-logo" width="1em" height="1em" style="vertical-align:-0.125em;margin-right:0.3em" ` -}}
+  {{- end -}}
+{{- end -}}
+{{- return $svg -}}

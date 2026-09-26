@@ -11,15 +11,28 @@ categories:
   - 게임 리뷰
 tags:
   - 오픈월드
+# 게임 기본 정보 (layouts/_shortcodes/game-info.html)
+developers:
+  - 코지마 프로덕션(Kojima Productions)
+publishers:
+  - 소니 인터랙티브 엔터테인먼트(Sony Interactive Entertainment)
+  - 505 게임즈(505 Games)
+platforms: [PS4, PC, PS5]
+releases:
+  - date: '2019-11-08'
+    platforms: [PS4]
+  - date: '2020-07-14'
+    platforms: [PC]
+  - date: '2021-09-24'
+    platforms: [PS5]
+    note: 디렉터스 컷
+  - date: '2022-03-30'
+    platforms: [PC]
+    note: 디렉터스 컷
+rating: 청소년 이용불가
 ---
 
-> | | |
-> |:--|:--|
-> | **개발** | 코지마 프로덕션(Kojima Productions) |
-> | **유통** | 소니 인터랙티브 엔터테인먼트(Sony Interactive Entertainment) / 505 게임즈(505 Games) |
-> | **출시** | 2019년 11월 8일 / 2020년 7월 14일 / 2021년 9월 24일(디렉터스 컷) / 2022년 3월 30일(디렉터스 컷) |
-> | **플랫폼** | PS4 / Windows / PS5 |
-> | **심의 등급** | 청소년 이용불가 |
+{{% game-info %}}
 
  전설적인 잠입 액션 게임 <<메탈 기어 솔리드>>(Metal Gear Solid) 시리즈의 아버지 **코지마 히데오**(小島秀夫)는 여러모로 호불호가 갈리는 인물이다. 주류가 아니었던 잠입 액션 게임을 순식간에 메이저한 장르로 끌어올리면서 장르의 문법까지 정립한 메탈 기어 솔리드에서 보여준 게임 플레이에 대한 깊은 이해도, 독특한 게임성, 훌륭한 스토리는 그를 가장 유명한 게임 개발자 중 한 명으로 기억되도록 만들었지만, 장황한 연출과 지나치게 긴 컷신, 무의미한 정보의 범람 등은 가장 호불호가 갈리는 개발자 중 하나로도 지목되게 만들었다.
 

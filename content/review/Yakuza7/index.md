@@ -10,15 +10,23 @@ categories:
   - 게임 리뷰
 tags:
   - RPG
+# 게임 기본 정보 (layouts/_shortcodes/game-info.html)
+developers:
+  - 용과 같이 스튜디오(Ryu Ga Gotoku Studio)
+publishers:
+  - 세가(SEGA)
+platforms: [PS4, PC, Xbox One, XSX|S, PS5]
+releases:
+  - date: '2020-01-16'
+    platforms: [PS4]
+  - date: '2020-11-10'
+    platforms: [PC, Xbox One, XSX|S]
+  - date: '2021-02-25'
+    platforms: [PS5]
+rating: 청소년 이용불가
 ---
 
-> | | |
-> |:--|:--|
-> | **개발** | 용과 같이 스튜디오(Ryu Ga Gotoku Studio) |
-> | **유통** | 세가(SEGA) |
-> | **출시** | 2020년 1월 16일 / 2020년 11월 10일 / 2021년 2월 25일 |
-> | **플랫폼** | PS4 / PC, XBO, XSX\|S /PS5 |
-> | **심의 등급** | 청소년 이용불가 |
+{{% game-info %}}
 
  2005년 처음 <<용과 같이>>(Yakuza)가 나왔을 때만 하더라도 이 시리즈가 전세계적으로 인기를 끌 것이라 예상한 사람은 많지 않았을 것이다. 고작 한 동네를 배경으로 해서 벌어지는 야쿠자의 이야기라니, 이미 수많은 게이머들은 <<엘더스크롤 2: 대거폴>>(The Elder Scrolls II: Daggerfall)이나 <<GTA 3>>(Grand Theft Auto III)와 같은  넓은 세상에 적응해 있었고, 도쿄의 가부키쵸는 전세계인의 이목을 끌기는 그다지 매력적인 장소는 아니었다. 하지만 마틴 스코세이지가 그랬던가, '가장 개인적인 것이 가장 창의적인 것이다'라고. 가장 지역적인 이 장소에서 벌어지는 시대착오적 이야기는 일본 내에서는 물론 일본 바깥에서도 큰 호응을 얻으며 시리즈를 계속 이어나가게 되었다.
 

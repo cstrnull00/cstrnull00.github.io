@@ -10,15 +10,19 @@ steam_appid: 3751260
 tags:
   - RPG
   - 선택
+# 게임 기본 정보 (layouts/_shortcodes/game-info.html)
+developers:
+  - 레벨 울브즈(Rebel Wolves)
+publishers:
+  - 반다이 남코(Bandai Namco)
+platforms: [PC, PS5, XSX|S]
+releases:
+  - date: '2026-09-03'
+    platforms: [PC, PS5, XSX|S]
+rating: 청소년 이용불가
 ---
 
-> | | |
-> |:--|:--|
-> | **개발** | 레벨 울브즈(Rebel Wolves) |
-> | **유통** | 반다이 남코(Bandai Namco) |
-> | **출시** | 2026년 9월 3일 |
-> | **플랫폼** | PC, PS5, XSX |
-> | **심의 등급** | 청소년 이용불가 |
+{{% game-info %}}
 
  [<<사이버펑크 2077>>](/analysis/openworldandfreedom/)(Cyberpunk 2077)의 주인공 V는 게임 초반에 시한부 선고를 받는다. 머릿속에 박힌 칩이 V의 의식을 서서히 잠식해 가고, 남은 시간은 그리 길지 않다. 하지만 정작 플레이어는 서두를 이유가 없다. 메인 퀘스트를 미뤄 두고 나이트 시티 곳곳을 누비며 서브 퀘스트를 하더라도 V의 상태는 조금도 나빠지지 않기 때문이다. 서사가 강조되는 오픈월드 게임에서 이처럼 서사와 게임 플레이가 어긋나는 경우는 드물지 않다.
 

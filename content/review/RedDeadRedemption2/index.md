@@ -10,15 +10,21 @@ categories:
 tags:
   - 오픈월드
   - 서사
+# 게임 기본 정보 (layouts/_shortcodes/game-info.html)
+developers:
+  - 락스타 스튜디오(Rockstar Studio)
+publishers:
+  - 락스타 게임즈(Rockstar Games)
+platforms: [PS4, Xbox One, PC]
+releases:
+  - date: '2018-10-26'
+    platforms: [PS4, Xbox One]
+  - date: '2019-11-05'
+    platforms: [PC]
+rating: 청소년 이용불가
 ---
 
-> | | |
-> |:--|:--|
-> | **개발** | 락스타 스튜디오(Rockstar Studio) |
-> | **유통** | 락스타 게임즈(Rockstar Games) |
-> | **출시** | 2018년 10월 26일 / 2019년 11월 5일 |
-> | **플랫폼** | PS4, XBO / PC |
-> | **심의 등급** | 청소년 이용불가 |
+{{% game-info %}}
 
  오픈월드의 명가 락스타 게임즈의 간판 게임이라고 하면 단연 <<GTA>>(Grand Theft Auto) 시리즈를 꼽을 수 있다. 광대하면서도 특정 현대 도시를 디테일하게 구현한 맵, 다양한 상호작용, 매력적인 캐릭터와 서사, 살아있는 듯한 세계에 살벌하게 드러나는 현대 사회에 대한 풍자, 무엇보다도 폭력이 난무하는 자유로운 행동들은 GTA 시리즈를 명작의 반열에 오르게 하였다.
 

@@ -10,15 +10,21 @@ steam_appid: 292030
 tags:
   - 오픈월드
   - RPG
+# 게임 기본 정보 (layouts/_shortcodes/game-info.html)
+developers:
+  - CD 프로젝트 레드(CD PROJEKT RED)
+publishers:
+  - 반다이 남코(Bandai Namco)
+platforms: [PS4, Xbox One, PC, NS]
+releases:
+  - date: '2015-05-18'
+    platforms: [PS4, Xbox One, PC]
+  - date: '2019-10-15'
+    platforms: [NS]
+rating: 청소년 이용불가
 ---
 
-> | | |
-> |:--|:--|
-> | **개발** | CD 프로젝트 레드(CD PROJEKT RED) |
-> | **유통** | 반다이 남코(Bandai Namco) |
-> | **출시** | 2015년 5월 18일 / 2019년 10월 15일 |
-> | **플랫폼** | PS4, XONE, PC / NS |
-> | **심의 등급** | 청소년 이용불가 |
+{{% game-info %}}
 
  20세기 <<반지의 제왕>>(The Lord of the Rings)의 등장 이래 수많은 판타지 소설이 등장했고, 수많은 게임들이 등장했다. 이 수많은 세계들은 대개 톨킨의 세계관을 바탕으로 했고[^1], 거기서 수많은 변형이 있었지만 결국 그 본류는 톨킨이 집대성한 그리스 로마 신화, 북유럽 신화, 켈트 신화와 영국의 민담, 그리고 기독교 문화와 성경에 있다.
 

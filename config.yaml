@@ -14,6 +14,15 @@ enableGitInfo: true
 # 사이트맵 위치를 명시해 크롤러가 유입 링크 없이도 전체 페이지를 찾게 한다.
 enableRobotsTXT: true
 
+# 기본값(categories, tags)에 게임 기본 정보를 더한다. 리뷰의 프론트매터에서
+# 읽으며, 본문의 기본 정보 표도 같은 값으로 그린다 (layouts/_shortcodes/game-info.html).
+taxonomies:
+  category: categories
+  tag: tags
+  developer: developers
+  publisher: publishers
+  platform: platforms
+
 ignoreFiles:
   - ".*glossary.*"
 

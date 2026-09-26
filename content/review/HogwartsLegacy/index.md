@@ -11,15 +11,26 @@ psn_title_id: PPSA01593_00
 tags:
   - 오픈월드
   - RPG
+# 게임 기본 정보 (layouts/_shortcodes/game-info.html)
+developers:
+  - 아발란체 소프트웨어(Avalanche Software)
+publishers:
+  - 포트키 게임즈(Portkey Games)
+  - 워너 브라더스 인터랙티브 엔터테인먼트(Warner Bros. Interactive Entertainment)
+platforms: [PS5, XSX|S, PC, PS4, Xbox One, NS]
+releases:
+  - date: '2023-02-10'
+    platforms: [PS5, XSX|S]
+  - date: '2023-02-11'
+    platforms: [PC]
+  - date: '2023-05-05'
+    platforms: [PS4, Xbox One]
+  - date: '2023-11-14'
+    platforms: [NS]
+rating: 12세 이용가
 ---
 
-> | | |
-> |:--|:--|
-> | **개발** | 아발란체 소프트웨어(Avalanche Software) |
-> | **유통** | 포트키 게임즈(Portkey Games) / 워너 브라더스 인터랙티브 엔터테인먼트(Warner Bros. Interactive Entertainment) |
-> | **출시** | 2023년 2월 10일 / 2023년 2월 11일 / 2023년 5월 5일 / 2023년 11월 14일 |
-> | **플랫폼** | PS5, XSX\|S / PC / PS4, XBO / NS |
-> | **심의 등급** | 12세 이용가 |
+{{% game-info %}}
 
  아마존에서 가장 많이 팔린 소설, 워너 브라더스 역사상 가장 성공한 프랜차이즈, 공식적으로 판매량이 확인된 소설 중 세계에서 가장 많이 팔린 소설 시리즈. <<해리 포터>>(Harry Potter) 시리즈를 수식하는 수많은 수식어들이다. 몇 번이나 퇴짜 맞은 후 가까스로 한 중소 출판사에서 출간한 가난한 싱글 맘의 데뷔작은 전세계적인 신드롬을 불러일으키며 5억 부 이상이 팔렸고, 불과 출간 4년 만에 영화화까지 이루어지며 새로운 신화의 시작을 알렸다.
 

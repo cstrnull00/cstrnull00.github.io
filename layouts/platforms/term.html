@@ -1,0 +1,45 @@
+{{- /*
+  플랫폼 용어 페이지 (/platforms/ps5/ 등). 테마의 list.html 을 바탕으로
+  제목 앞에 플랫폼 로고를 붙였다 (layouts/_partials/platform-logo.html).
+  용어 페이지에는 대표 이미지와 하위 섹션이 없어 그 부분은 뺐다.
+  테마를 올릴 때 list.html 이 바뀌었으면 여기에도 반영할 것.
+*/ -}}
+{{ define "main" }}
+    <header>
+        <h3 class="section-title">
+            {{ if eq .Parent (.GetPage "/") }}
+                {{ T "list.section" }}
+            {{ else }}
+                {{ .Parent.Title }}
+            {{ end }}
+        </h3>
+
+        <div class="section-card">
+            <div class="section-details">
+                <h3 class="section-count">{{ T "list.page" (len .Pages) }}</h3>
+                <h1 class="section-term">{{ partial "platform-logo.html" .Data.Term | safeHTML }}{{ .Title }}</h1>
+                {{ with .Params.description }}
+                    <h2 class="section-description">{{ . }}</h2>
+                {{ end }}
+            </div>
+        </div>
+    </header>
+
+    {{/* List only pages that are not a subsection */}}
+    {{ $paginator := partial "helper/paginator.html" . }}
+    {{ with $paginator }}
+        <section class="article-list--compact">
+            {{ range .Pages }}
+                {{ partial "article-list/compact" . }}
+            {{ end }}
+        </section>
+    {{ end }}
+
+    {{- partial "pagination.html" . -}}
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" (dict "Context" . "Scope" "homepage") }}
+{{ end }}

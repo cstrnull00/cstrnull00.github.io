@@ -2,6 +2,10 @@
     <a href="{{ .RelPermalink }}">
         <div class="article-details">
             <h2 class="article-title">
+                {{- /* 플랫폼 목록(/platforms/)의 항목에는 로고를 붙인다 */ -}}
+                {{- if and (eq .Kind "term") (eq .Data.Plural "platforms") -}}
+                    {{- partial "platform-logo.html" .Data.Term | safeHTML -}}
+                {{- end -}}
                 {{- .Title -}}
             </h2>
             

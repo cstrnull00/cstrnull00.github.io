@@ -3,6 +3,9 @@ date: '2023-10-01'
 draft: false
 title: '크루세이더 킹즈 3'
 image: images/CrusaderKings301.webp
+# 폴더 이름을 2001 에서 바꾸면서, 이미 공개된 옛 주소를 새 주소로 넘긴다
+aliases:
+  - /analysis/2001/
 categories:
   - 콘텐츠 분석
 # 플레이한 게임 목록에서 이 글로 연결된다 (layouts/_shortcodes/played.html)

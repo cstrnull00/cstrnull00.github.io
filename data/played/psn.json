@@ -1,6 +1,6 @@
 {
   "platform": "psn",
-  "updated": "2026-09-27T20:40:26.631Z",
+  "updated": "2026-09-28T22:49:49.581Z",
   "minMinutes": 120,
   "ownedGames": 63,
   "listedGames": 45,
@@ -155,7 +155,7 @@
       "name": "호그와트 레거시",
       "minutes": 2736,
       "lastPlayed": "2024-07-13T23:10:28.380000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202503/2716/ce2e7f5896365b4e35a192b1f7592b590fee98827644ddb4.png",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202208/0921/dR9KJAKDW2izPbptHQbh3rnj.png",
       "category": "ps5_native_game",
       "conceptId": "232447"
     },

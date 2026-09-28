@@ -1,9 +1,9 @@
 {
-  "updated": "2026-09-27T20:40:25.727Z",
+  "updated": "2026-09-28T22:49:48.277Z",
   "minMinutes": 120,
   "ownedGames": 112,
   "listedGames": 79,
-  "totalMinutes": 209758,
+  "totalMinutes": 209863,
   "games": [
     {
       "appid": 1158310,
@@ -169,8 +169,8 @@
     {
       "appid": 1868140,
       "name": "DAVE THE DIVER",
-      "minutes": 2049,
-      "lastPlayed": "2026-09-20T12:15:23.000Z",
+      "minutes": 2154,
+      "lastPlayed": "2026-09-28T07:33:32.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1868140/2f19d6889f66eae88e8b5a36727d560ec88a00cb.jpg"
     },
     {

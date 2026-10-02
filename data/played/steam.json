@@ -1,15 +1,15 @@
 {
-  "updated": "2026-10-01T22:12:07.975Z",
+  "updated": "2026-10-02T21:40:03.025Z",
   "minMinutes": 120,
-  "ownedGames": 112,
+  "ownedGames": 114,
   "listedGames": 79,
-  "totalMinutes": 209998,
+  "totalMinutes": 210078,
   "games": [
     {
       "appid": 1158310,
       "name": "Crusader Kings III",
-      "minutes": 37039,
-      "lastPlayed": "2026-10-01T12:02:25.000Z",
+      "minutes": 37048,
+      "lastPlayed": "2026-10-02T03:45:28.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1158310/8a0d88dfaff790ea1aa2b9fcf50d4e3b4f49cf56.jpg"
     },
     {
@@ -323,8 +323,8 @@
     {
       "appid": 3321460,
       "name": "Crimson Desert Enhanced",
-      "minutes": 608,
-      "lastPlayed": "2026-05-21T05:03:57.000Z",
+      "minutes": 625,
+      "lastPlayed": "2026-10-02T08:50:14.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/3321460/f260267377759a5fea6b651817c9a413c6b562b0.jpg"
     },
     {

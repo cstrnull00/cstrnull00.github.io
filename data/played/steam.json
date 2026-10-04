@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-03T20:25:57.229Z",
+  "updated": "2026-10-04T20:44:15.240Z",
   "minMinutes": 120,
   "ownedGames": 113,
-  "listedGames": 79,
-  "totalMinutes": 210143,
+  "listedGames": 80,
+  "totalMinutes": 210447,
   "games": [
     {
       "appid": 1158310,
@@ -410,6 +410,13 @@
       "minutes": 393,
       "lastPlayed": "2026-09-18T03:36:10.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/4128400/ebb091eafe886097f774de50e38e1fb30c1d6cd8.jpg"
+    },
+    {
+      "appid": 1205520,
+      "name": "Pentiment",
+      "minutes": 388,
+      "lastPlayed": "2026-10-04T14:25:02.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1205520/fb2423048d6ffa29b01f11e3a32d7b3cd1b8c4cd.jpg"
     },
     {
       "appid": 1363080,

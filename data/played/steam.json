@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-04T20:44:15.240Z",
+  "updated": "2026-10-05T23:32:41.245Z",
   "minMinutes": 120,
   "ownedGames": 113,
   "listedGames": 80,
-  "totalMinutes": 210447,
+  "totalMinutes": 210633,
   "games": [
     {
       "appid": 1158310,
@@ -342,6 +342,13 @@
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1623730/f5523077a8f4c923c2e8d8c17794b3319035fa73.jpg"
     },
     {
+      "appid": 1205520,
+      "name": "Pentiment",
+      "minutes": 574,
+      "lastPlayed": "2026-10-05T01:59:19.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1205520/fb2423048d6ffa29b01f11e3a32d7b3cd1b8c4cd.jpg"
+    },
+    {
       "appid": 1404210,
       "name": "Red Dead Online",
       "minutes": 572,
@@ -410,13 +417,6 @@
       "minutes": 393,
       "lastPlayed": "2026-09-18T03:36:10.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/4128400/ebb091eafe886097f774de50e38e1fb30c1d6cd8.jpg"
-    },
-    {
-      "appid": 1205520,
-      "name": "Pentiment",
-      "minutes": 388,
-      "lastPlayed": "2026-10-04T14:25:02.000Z",
-      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1205520/fb2423048d6ffa29b01f11e3a32d7b3cd1b8c4cd.jpg"
     },
     {
       "appid": 1363080,

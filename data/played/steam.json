@@ -1,15 +1,15 @@
 {
-  "updated": "2026-10-08T22:43:11.618Z",
+  "updated": "2026-10-09T22:05:02.527Z",
   "minMinutes": 120,
   "ownedGames": 113,
   "listedGames": 80,
-  "totalMinutes": 210915,
+  "totalMinutes": 211123,
   "games": [
     {
       "appid": 1158310,
       "name": "Crusader Kings III",
-      "minutes": 37330,
-      "lastPlayed": "2026-10-08T07:14:41.000Z",
+      "minutes": 37538,
+      "lastPlayed": "2026-10-09T07:14:19.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1158310/8a0d88dfaff790ea1aa2b9fcf50d4e3b4f49cf56.jpg"
     },
     {

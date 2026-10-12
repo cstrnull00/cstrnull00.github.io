@@ -1,9 +1,9 @@
-{{- /* 안내문 상자. 스포일러 고지, NDA 고지처럼 남의 글이 아닌 안내에 쓴다.
+{{- /* 안내문 상자. 스포일러 고지처럼 남의 글이 아닌 안내에 쓴다.
        인용 블록(>)은 custom.scss 가 따옴표를 붙이므로 안내문에는 이것을 쓴다.
        컨플루언스의 경고 패널처럼 본문과 확 구분되게 색 바탕에 아이콘을 단다.
        type: warning(기본, 노랑, !) / info(파랑, i)
        사용: {{% notice %}}이 글에는 결말이 포함되어 있다.{{% /notice %}}
-             {{% notice type="info" title="NDA" %}}...{{% /notice %}} */ -}}
+             {{% notice type="info" title="참고" %}}...{{% /notice %}} */ -}}
 {{- $type := .Get "type" | default "warning" -}}
 {{- $title := .Get "title" -}}
 <div class="post-notice post-notice--{{ $type }}" role="note">

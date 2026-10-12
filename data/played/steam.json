@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-12T11:17:45.731Z",
+  "updated": "2026-10-12T15:13:05.110Z",
   "minMinutes": 120,
   "ownedGames": 113,
   "listedGames": 80,
-  "totalMinutes": 211178,
+  "totalMinutes": 211247,
   "games": [
     {
       "appid": 1158310,
@@ -314,6 +314,13 @@
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/821880/64d40e6abeee5b5e27f35512946671a778e4a765.jpg"
     },
     {
+      "appid": 1205520,
+      "name": "Pentiment",
+      "minutes": 643,
+      "lastPlayed": "2026-10-12T14:59:04.000Z",
+      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1205520/fb2423048d6ffa29b01f11e3a32d7b3cd1b8c4cd.jpg"
+    },
+    {
       "appid": 8870,
       "name": "BioShock Infinite",
       "minutes": 630,
@@ -340,13 +347,6 @@
       "minutes": 575,
       "lastPlayed": "2026-03-19T03:24:08.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1623730/f5523077a8f4c923c2e8d8c17794b3319035fa73.jpg"
-    },
-    {
-      "appid": 1205520,
-      "name": "Pentiment",
-      "minutes": 574,
-      "lastPlayed": "2026-10-05T01:59:19.000Z",
-      "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1205520/fb2423048d6ffa29b01f11e3a32d7b3cd1b8c4cd.jpg"
     },
     {
       "appid": 1404210,

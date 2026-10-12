@@ -1,7 +1,9 @@
 // 각주 보강 (layouts/_partials/footer/custom.html 에서 불러온다)
 //
 // 1. 본문의 각주 번호에 마우스를 올리면 각주 내용을 말풍선으로 보여 준다 (나무위키 방식).
-//    터치 기기는 호버가 없으므로 첫 탭에 말풍선을 열고, 말풍선 안의 링크로 각주까지 내려간다.
+//    터치로 누르면 이동하지 않고 말풍선을 열며, 말풍선 안의 링크로 각주까지 내려간다.
+//    터치 여부는 기기 단위(hover 미디어 쿼리)가 아니라 매번 누른 입력(pointerType)으로 판단한다.
+//    일부 휴대폰 브라우저는 (hover: hover) 로 응답해서 기기 단위 판단이 틀린다.
 // 2. 문서 끝 각주 목록의 번호 [1] 을 누르면 본문의 그 자리로 올라간다.
 //    Goldmark 가 붙이는 ↩ 링크는 번호와 같은 곳을 가리키므로 첫 번째 것은 숨긴다.
 (() => {
@@ -10,7 +12,11 @@
   const refs = content.querySelectorAll("a.footnote-ref");
   if (!refs.length) return;
 
-  const noHover = window.matchMedia("(hover: none)").matches;
+  // 마지막으로 누른 입력의 종류. 탭하면 브라우저가 흉내 낸 마우스 이벤트도 뒤따르므로
+  // 마우스 이벤트만 보고는 터치인지 알 수 없다.
+  let lastPointer = "mouse";
+  document.addEventListener("pointerdown", (e) => { lastPointer = e.pointerType; }, true);
+  const isTouch = () => lastPointer === "touch" || lastPointer === "pen";
 
   // 테마의 smoothAnchors.ts 와 같은 방식으로 부드럽게 이동하고, 도착한 곳을 잠깐 표시한다.
   function jumpTo(hash) {
@@ -57,8 +63,9 @@
 
   let current = null;
   let hideTimer = null;
+  let openedByTouch = false;
 
-  function contentFor(ref) {
+  function contentFor(ref, withGo) {
     const li = document.getElementById(decodeURI(ref.getAttribute("href").slice(1)));
     if (!li) return null;
     const clone = li.cloneNode(true);
@@ -69,7 +76,7 @@
     label.className = "footnote-popup__label";
     label.textContent = `[${ref.textContent.trim()}]`;
     frag.append(label, ...clone.childNodes);
-    if (noHover) {
+    if (withGo) {
       const go = document.createElement("a");
       go.className = "footnote-popup__go";
       go.href = ref.getAttribute("href");
@@ -100,14 +107,15 @@
     popup.style.top = `${top + window.scrollY}px`;
   }
 
-  function show(ref) {
+  function show(ref, byTouch = false) {
     clearTimeout(hideTimer);
-    if (current === ref && !popup.hidden) return;
-    const frag = contentFor(ref);
+    if (current === ref && !popup.hidden && openedByTouch === byTouch) return;
+    const frag = contentFor(ref, byTouch);
     if (!frag) return;
     popup.replaceChildren(frag);
     popup.hidden = false;
     current = ref;
+    openedByTouch = byTouch;
     ref.setAttribute("aria-describedby", "footnote-popup");
     popup.id = "footnote-popup";
     place(ref);
@@ -118,23 +126,25 @@
     popup.hidden = true;
     if (current) current.removeAttribute("aria-describedby");
     current = null;
+    openedByTouch = false;
   }
 
   function hideSoon() {
+    if (openedByTouch) return; // 탭으로 연 말풍선은 다른 곳을 누를 때까지 둔다
     clearTimeout(hideTimer);
     hideTimer = setTimeout(hide, 150);
   }
 
-  // 본문 번호 → 각주, 남아 있는 ↩ → 본문도 같은 방식으로 이동한다 (터치 기기의 본문 번호는 아래에서 따로 처리)
+  // 본문 번호 → 각주, 남아 있는 ↩ → 본문도 같은 방식으로 이동한다 (터치로 누른 본문 번호는 아래에서 따로 처리)
   content.querySelectorAll(".footnotes a.footnote-backref").forEach((a) => a.addEventListener("click", onJumpClick));
 
   refs.forEach((ref) => {
-    if (!noHover) ref.addEventListener("click", onJumpClick);
-    if (!noHover) {
-      ref.addEventListener("mouseenter", () => show(ref));
-      ref.addEventListener("mouseleave", hideSoon);
-    }
-    ref.addEventListener("focus", () => show(ref));
+    ref.addEventListener("click", onJumpClick);
+    // 마우스일 때만. 터치에서는 pointerType 이 "touch" 라 걸러진다
+    ref.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") show(ref); });
+    ref.addEventListener("pointerleave", (e) => { if (e.pointerType === "mouse") hideSoon(); });
+    // 키보드(Tab)로 왔을 때만. 탭하면 링크에 포커스가 가는 브라우저가 있어 :focus-visible 로 가른다
+    ref.addEventListener("focus", () => { if (ref.matches(":focus-visible")) show(ref); });
     ref.addEventListener("blur", hideSoon);
   });
 
@@ -144,25 +154,24 @@
   popup.addEventListener("focusin", () => clearTimeout(hideTimer));
   popup.addEventListener("focusout", hideSoon);
 
-  // 터치 기기: 첫 탭은 말풍선만 연다. 테마의 부드러운 이동(요소에 직접 붙은 클릭 처리)보다
-  // 먼저 가로채야 하므로 document 의 캡처 단계에서 처리한다.
-  if (noHover) {
-    document.addEventListener(
-      "click",
-      (e) => {
-        const ref = e.target.closest && e.target.closest("a.footnote-ref");
-        if (ref && content.contains(ref)) {
-          e.preventDefault();
-          e.stopPropagation();
-          if (current === ref && !popup.hidden) hide();
-          else show(ref);
-          return;
-        }
-        if (!popup.hidden && !popup.contains(e.target)) hide();
-      },
-      true
-    );
-  }
+  // 터치로 누르면 이동하지 않고 말풍선만 연다(같은 번호를 다시 누르면 닫는다).
+  // 요소에 직접 붙은 이동 처리(위의 onJumpClick, 테마의 smoothAnchors)보다 먼저 가로채야 하므로
+  // document 의 캡처 단계에서 처리한다.
+  document.addEventListener(
+    "click",
+    (e) => {
+      const ref = e.target.closest && e.target.closest("a.footnote-ref");
+      if (ref && content.contains(ref) && isTouch()) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (current === ref && !popup.hidden && openedByTouch) hide();
+        else show(ref, true);
+        return;
+      }
+      if (!popup.hidden && !popup.contains(e.target) && !(ref && content.contains(ref))) hide();
+    },
+    true
+  );
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") hide();

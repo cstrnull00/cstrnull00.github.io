@@ -638,3 +638,90 @@
   }
 
 }
+
+/* 인용 블록: 테마 기본값(배경 rgb(248 248 248), 테두리 = 카드 구분선 색)은 흰 카드 위에서
+   거의 보이지 않는다. 배경을 한 단계 진하게, 왼쪽 테두리는 강조색 계열로 바꾼다. */
+:root {
+  --blockquote-background-color: #eef0f5;
+  --blockquote-border-color: #9aa5b8;
+}
+
+:root[data-scheme="dark"] {
+  --blockquote-background-color: #363636;
+  --blockquote-border-color: #8c8c8c;
+}
+
+.article-content blockquote {
+  border-inline-start-color: var(--blockquote-border-color);
+}
+
+/* 각주 (assets/js/footnotes.js) */
+
+/* 각주 목록: 기본 번호 대신 스크립트가 넣는 [1] 링크를 쓴다 */
+.article-content .footnotes ol {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.article-content .footnote-number {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* [1] 링크와 같은 곳을 가리키는 ↩ 는 숨긴다 (같은 각주를 여러 번 인용했을 때의 ↩ 는 남는다) */
+.article-content .footnote-backref--dup {
+  display: none;
+}
+
+/* 이동한 곳을 잠깐 표시 */
+@keyframes footnote-flash {
+  from { background-color: var(--blockquote-background-color); }
+  to { background-color: transparent; }
+}
+
+.article-content .footnote-flash {
+  animation: footnote-flash 1.6s ease-out;
+  border-radius: 4px;
+}
+
+/* 본문 각주 번호에 올렸을 때 뜨는 말풍선 */
+.footnote-popup {
+  position: absolute;
+  z-index: 100;
+  max-width: unquote("min(36rem, calc(100vw - 16px))"); /* LibSass 가 min() 을 자기 함수로 읽지 않게 */
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--card-separator-color);
+  border-radius: 8px;
+  background: var(--card-background);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
+  color: var(--card-text-color-main);
+  font-size: 1.4rem;
+  line-height: 1.6;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+
+  &[hidden] {
+    display: none;
+  }
+
+  p {
+    display: inline;
+    margin: 0;
+  }
+
+  a {
+    color: var(--accent-color);
+  }
+}
+
+.footnote-popup__label {
+  margin-right: 0.4em;
+  font-weight: 600;
+  color: var(--card-text-color-secondary);
+}
+
+.footnote-popup__go {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 1.3rem;
+}

@@ -1,0 +1,7 @@
+{{/* 테마의 빈 훅(themes/stack/layouts/_partials/footer/custom.html)을 덮어쓴다.
+     각주 말풍선과 각주 목록 번호 링크. 각주가 없는 글에서는 스크립트가 바로 끝난다. */}}
+{{- if .IsPage -}}
+  {{- with resources.Get "js/footnotes.js" | minify | fingerprint -}}
+    <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+  {{- end -}}
+{{- end -}}

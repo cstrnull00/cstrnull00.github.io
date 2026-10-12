@@ -720,8 +720,19 @@
   color: var(--card-text-color-secondary);
 }
 
-.footnote-popup__go {
+/* 터치로 연 말풍선의 "각주로 이동": 각주 내용과 섞이지 않게 구분선 아래 오른쪽에 둔다 */
+.footnote-popup .footnote-popup__go {
   display: block;
-  margin-top: 0.6rem;
+  margin-top: 0.8rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--card-separator-color);
+  text-align: right;
   font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--card-text-color-secondary);
+  text-decoration: none;
+
+  &::after {
+    content: " ↓";
+  }
 }

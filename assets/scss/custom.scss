@@ -900,3 +900,15 @@
 .article-content h4 + blockquote {
   margin-top: 1.2rem;
 }
+
+/* 펜티먼트 리뷰: 보랏빛 필체 강조 (<span class="purple-ink">) */
+:root {
+  --purple-ink: #8e2f7a;
+}
+:root[data-scheme="dark"] {
+  --purple-ink: #e3a0d4;
+}
+.purple-ink {
+  color: var(--purple-ink);
+  font-weight: 700;
+}

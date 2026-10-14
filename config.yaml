@@ -82,12 +82,18 @@ params:
     license:
       enabled: false
 
-  # 우측 사이드바를 비움. 위젯 목록이 비면 <aside> 자체가 렌더되지 않아
+  # 홈은 우측 사이드바를 비움. 위젯 목록이 비면 <aside> 자체가 렌더되지 않아
   # 2단 레이아웃이 된다. 검색은 좌측 사이드바 하단으로 옮김
   # (layouts/_partials/sidebar/left.html 오버라이드).
+  #
+  # 글 페이지에는 목차 위젯만 둔다 (2026-10-14). 1600px 이상에서는 본문 오른쪽 여백에 고정 목차 (본문 폭은 줄이지 않는다, custom.scss).
+  # 그보다 좁으면 테마가 본문 위에 접이식 목차 상자를 그리는데, 휴대폰에서 상자가 따로 떠 보이고
+  # 펼치면 본문을 한 화면 넘게 밀어내 일부러 꺼 두었었다. 그 상자는 custom.scss 에서 숨기고,
+  # 휴대폰은 오른쪽 아래 "목차" 버튼과 하단 시트로 대신한다 (assets/js/toc-sheet.js).
   widgets:
     homepage: []
-    page: []
+    page:
+      - type: toc
 
   colorScheme:
     toggle: true

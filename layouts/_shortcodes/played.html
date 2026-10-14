@@ -26,6 +26,8 @@
 
 {{- $steam := index hugo.Data "played" "steam" -}}
 {{- $psn := index hugo.Data "played" "psn" -}}
+{{- /* 검색용 한글 이름 (data/played/names_ko.yaml). 화면에는 보이지 않는다. */ -}}
+{{- $namesKo := index hugo.Data "played" "names_ko" | default dict -}}
 
 {{- $sources := slice -}}
 {{- with $steam }}{{ $sources = $sources | append (dict "key" "steam" "d" .) }}{{ end -}}
@@ -64,7 +66,9 @@
       {{- if and (gt $n 0) (le $n 100) }}{{ $score = $n }}{{ end -}}
     {{- end -}}
 
-    {{- $entry := dict "url" $p.RelPermalink "date" $date "score" $score -}}
+    {{- /* title 은 목록 검색에 쓴다. 스팀 게임 이름은 영어라 "위쳐"로는 찾을 수 없는데,
+           리뷰를 쓴 게임은 리뷰 제목(한국어)으로도 찾히게 한다. */ -}}
+    {{- $entry := dict "url" $p.RelPermalink "date" $date "score" $score "title" $p.Title -}}
 
     {{- /* 같은 게임이 여러 행으로 오는 경우가 있다 — PS4/PS5 판이 따로
            집계되거나(데스 스트랜딩), 스팀과 PS 양쪽에 있는 경우(용과 같이 7).
@@ -120,17 +124,21 @@
     {{- if or (eq $oldest "") (lt (string $d.updated) $oldest) }}{{ $oldest = string $d.updated }}{{ end -}}
 
     {{- range $d.games -}}
+      {{- $g := . -}}
       {{- $mins := -1.0 -}}
       {{- if .minutes }}{{ $mins = .minutes }}{{ else }}{{ $unknown = add $unknown 1 }}{{ end -}}
 
       {{- $store := "" -}}
       {{- $storeName := "" -}}
       {{- $rev := false -}}
+      {{- $ko := slice -}}
       {{- if eq $plat "steam" -}}
         {{- $store = printf "https://store.steampowered.com/app/%d/" (int .appid) -}}
         {{- $storeName = "스팀 상점" -}}
         {{- $rev = index $bySteam (printf "%d" (int .appid)) -}}
+        {{- with $namesKo.steam }}{{ $ko = index . (printf "%d" (int $g.appid)) | default slice }}{{ end -}}
       {{- else -}}
+        {{- with $namesKo.psn }}{{ $ko = index . (lower (printf "%v" $g.titleId)) | default slice }}{{ end -}}
         {{- with .conceptId -}}
           {{- $store = printf "https://store.playstation.com/ko-kr/concept/%v" . -}}
         {{- end -}}
@@ -156,7 +164,8 @@
             "icon" (.icon | default "")
             "store" $store
             "storeName" $storeName
-            "rev" $rev) -}}
+            "rev" $rev
+            "ko" $ko) -}}
     {{- end -}}
   {{- end -}}
 
@@ -179,6 +188,37 @@
       {{- $minH := div $minFloor 60.0 }}
       <span class="played-note">({{ if ge $minH 1.0 }}{{ lang.FormatNumber 0 $minH }}시간{{ else }}{{ lang.FormatNumber 0 $minFloor }}분{{ end }} 이상만 표시{{ if gt $unknown 0 }} · 플레이 시간 미기록 {{ $unknown }}개{{ end }})</span>
     </p>
+
+    {{- /* 검색, 전체/리뷰 전환, (좁은 화면용) 정렬. 스크립트가 켜져야 동작하므로
+           처음엔 숨겨 두고 .is-js 가 붙으면 보인다. 리뷰가 없는 게임이 대부분이라,
+           글로 이어지는 게임만 추려 보는 길을 따로 둔다.
+           정렬 선택은 표 머리글이 정렬 버튼 줄로 쌓이던 좁은 화면에서 머리글 대신 쓴다. */ -}}
+    {{- $reviewed := 0 -}}
+    {{- range $rows }}{{ if .rev }}{{ $reviewed = add $reviewed 1 }}{{ end }}{{ end }}
+    <div class="played-tools">
+      {{- /* 사이드바 검색창과 같은 돋보기 (테마 icons/search.svg). 사이드바처럼 누를 수 있는 버튼이다.
+             입력하는 즉시 목록이 걸러지므로 따로 실행할 검색은 없고, 누르면 검색창으로 들어가고
+             이미 입력한 상태면 휴대폰 자판을 닫는다 (Enter 도 같다). */}}
+      <div class="played-search-box">
+        <input type="search" class="played-search" placeholder="게임 이름으로 찾기 (한글, 영어)"
+               aria-label="게임 이름으로 찾기" autocomplete="off" spellcheck="false" enterkeyhint="search">
+        <button type="button" class="played-search-btn" aria-label="찾기">{{ partial "helper/icon" "search" }}</button>
+      </div>
+      <div class="played-filter" role="group" aria-label="보기">
+        <button type="button" data-filter="all" aria-pressed="true">전체 <span>{{ len $rows }}</span></button>
+        <button type="button" data-filter="review" aria-pressed="false">리뷰 <span>{{ $reviewed }}</span></button>
+      </div>
+      <span class="played-count" aria-live="polite"></span>
+      <label class="played-sort">
+        <span class="played-sr">정렬</span>
+        <select aria-label="정렬">
+          <option value="hours">플레이 시간순</option>
+          <option value="recent">최근 플레이순</option>
+          <option value="review">리뷰 점수순</option>
+          <option value="name">이름순</option>
+        </select>
+      </label>
+    </div>
 
     <div class="played-table-scroll" role="region" aria-label="플레이한 게임 목록 — 좌우로 스크롤할 수 있습니다" tabindex="0">
     <table class="played-table">
@@ -206,6 +246,8 @@
         {{- $h := -1.0 -}}
         {{- if .minutes }}{{ $h = math.Floor (div .minutes 60.0) }}{{ end -}}
         <tr data-name="{{ .name }}"
+            data-search="{{ .name }}{{ with .rev }} {{ .title }}{{ end }}{{ range .ko }} {{ . }}{{ end }}"
+            data-review="{{ if .rev }}1{{ end }}"
             data-platform="{{ .platform }}"
             data-minutes="{{ if .minutes }}{{ int .minutes }}{{ end }}"
             data-last="{{ with .lastPlayed }}{{ (time.AsTime .).Unix }}{{ end }}"
@@ -267,6 +309,7 @@
     </table>
     </div>
 
+    <p class="played-noresult" hidden>찾는 게임이 없습니다. 영어 이름으로도 찾아보세요.</p>
     <button type="button" class="played-more" hidden></button>
   </div>
 
@@ -291,6 +334,23 @@
 
       var headers = table.querySelectorAll('thead th[data-sort]');
       var limit = num(root, 'data-initial') || 20;
+      var search = root.querySelector('.played-search');
+      var filterBtns = root.querySelectorAll('.played-filter button');
+      var sortSelect = root.querySelector('.played-sort select');
+      var reviewOnly = false;
+      var countEl = root.querySelector('.played-count');
+      var noResult = root.querySelector('.played-noresult');
+
+      // 대소문자, 띄어쓰기, ™·®·콜론 같은 기호를 무시한다. "witcher3" 로도 "The Witcher 3" 가 찾힌다.
+      function norm(s) {
+        return String(s || '').toLowerCase().replace(/[\s™®:'’\-–—.,!?&()]/g, '');
+      }
+      for (var r = 0; r < rows.length; r++) rows[r]._search = norm(rows[r].getAttribute('data-search'));
+
+      function matches(tr, q, reviewOnly) {
+        if (reviewOnly && !tr.getAttribute('data-review')) return false;
+        return !q || tr._search.indexOf(q) !== -1;
+      }
 
       // 서버가 플레이 시간 내림차순으로 내려준다
       var key = 'hours';
@@ -331,19 +391,32 @@
         var order = rows.slice().sort(compare);
         for (var i = 0; i < order.length; i++) tbody.appendChild(order[i]);
 
-        var shown = expanded ? order.length : Math.min(limit, order.length);
-        for (var j = 0; j < order.length; j++) {
-          if (j < shown) order[j].classList.remove('is-hidden');
-          else order[j].classList.add('is-hidden');
-        }
+        // 검색이나 필터를 쓰는 동안에는 20개 제한 없이 맞는 것을 모두 보인다
+        var q = norm(search && search.value);
+        var filtering = !!q || reviewOnly;
+        var hits = order.filter(function (tr) { return matches(tr, q, reviewOnly); });
 
-        if (order.length <= limit) {
+        var shown = (expanded || filtering) ? hits.length : Math.min(limit, hits.length);
+        for (var j = 0; j < order.length; j++) order[j].classList.add('is-hidden');
+        for (var m = 0; m < shown; m++) hits[m].classList.remove('is-hidden');
+
+        // 전체/리뷰 개수는 전환 버튼에 이미 있으므로, 검색어가 있을 때만 보인다
+        if (countEl) countEl.textContent = q ? hits.length + '개' : '';
+        for (var f = 0; f < filterBtns.length; f++) {
+          var isReview = filterBtns[f].getAttribute('data-filter') === 'review';
+          filterBtns[f].setAttribute('aria-pressed', isReview === reviewOnly ? 'true' : 'false');
+        }
+        // 머리글로 정렬을 바꿔도 좁은 화면의 정렬 선택이 같은 기준을 가리키게 한다
+        if (sortSelect && sortSelect.querySelector('option[value="' + key + '"]')) sortSelect.value = key;
+        if (noResult) noResult.hidden = !(filtering && hits.length === 0);
+
+        if (filtering || hits.length <= limit) {
           moreBtn.hidden = true;
         } else {
           moreBtn.hidden = false;
           moreBtn.textContent = expanded
             ? '접기'
-            : '나머지 ' + (order.length - limit) + '개 더 보기';
+            : '나머지 ' + (hits.length - limit) + '개 더 보기';
           moreBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
         }
 
@@ -373,6 +446,36 @@
         expanded = !expanded;
         render();
       });
+
+      if (search) {
+        search.addEventListener('input', render);
+        // Enter: 결과는 이미 걸러져 있으니 자판만 닫는다
+        search.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') { e.preventDefault(); search.blur(); }
+        });
+        var searchBtn = root.querySelector('.played-search-btn');
+        if (searchBtn) {
+          // 누르는 순간 검색창이 포커스를 잃으면 "입력 중인지"를 알 수 없으므로 포커스를 뺏지 않는다
+          searchBtn.addEventListener('mousedown', function (e) { e.preventDefault(); });
+          searchBtn.addEventListener('click', function () {
+            if (search.value && document.activeElement === search) search.blur();
+            else search.focus();
+          });
+        }
+      }
+      for (var b = 0; b < filterBtns.length; b++) {
+        filterBtns[b].addEventListener('click', function (e) {
+          reviewOnly = e.currentTarget.getAttribute('data-filter') === 'review';
+          render();
+        });
+      }
+      if (sortSelect) {
+        sortSelect.addEventListener('change', function () {
+          key = sortSelect.value;
+          dir = defaultDir[key] || -1;
+          render();
+        });
+      }
 
       root.classList.add('is-js');
       render();

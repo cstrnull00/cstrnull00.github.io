@@ -1092,6 +1092,264 @@ $toc-width: 248px;
   }
 }
 
+/* 플레이한 게임: 검색, 전체/리뷰 전환, 좁은 화면용 정렬 (layouts/_shortcodes/played.html).
+   스크립트가 켜진 뒤(.is-js)에만 보인다. */
+.played-tools {
+  display: none;
+}
+
+.played.is-js .played-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6em 1em;
+  margin: 1em 0 0;
+}
+
+.played-search-box {
+  position: relative;
+  flex: 1 1 16em;
+  min-width: 0;
+
+  /* 사이드바 검색창의 돋보기 버튼처럼 누를 수 있다 */
+  .played-search-btn {
+    position: absolute;
+    right: 0.3em;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    padding: 0.4em 0.5em;
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: var(--card-text-color-secondary);
+    cursor: pointer;
+
+    svg {
+      width: 1.2em;
+      height: 1.2em;
+    }
+
+    &:hover,
+    &:focus-visible {
+      color: var(--accent-color);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent-color);
+    }
+  }
+}
+
+.played-search {
+  width: 100%;
+  /* 오른쪽은 돋보기 아이콘 자리 */
+  padding: 0.55em 2.6em 0.55em 0.8em;
+
+  /* 크롬 계열이 그리는 지우기(×) 버튼이 돋보기와 같은 자리에 겹친다. Esc 로도 지워진다 */
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  border: 1px solid var(--card-separator-color);
+  border-radius: 6px;
+  background: var(--card-background);
+  color: var(--card-text-color-main);
+  font: inherit;
+  font-size: 0.95em;
+
+  &:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: -1px;
+  }
+}
+
+/* 전체 / 리뷰 전환. 한 덩어리 버튼 두 칸이고, 고른 쪽이 채워진다 */
+.played-filter {
+  display: inline-flex;
+  border: 1px solid var(--card-separator-color);
+  border-radius: 999px;
+  padding: 2px;
+  background: var(--card-background);
+
+  button {
+    border: 0;
+    border-radius: 999px;
+    padding: 0.35em 0.95em;
+    background: transparent;
+    color: var(--card-text-color-secondary);
+    font: inherit;
+    font-size: 0.9em;
+    cursor: pointer;
+    white-space: nowrap;
+
+    span {
+      margin-left: 0.2em;
+      font-variant-numeric: tabular-nums;
+      opacity: 0.75;
+    }
+
+    &[aria-pressed="true"] {
+      background: var(--accent-color);
+      color: var(--accent-color-text);
+      font-weight: 600;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.played-count {
+  font-size: 0.9em;
+  color: var(--card-text-color-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 정렬 선택은 표 머리글을 숨기는 좁은 화면에서만 쓴다. 넓은 화면은 머리글을 눌러 정렬한다 */
+.played-sort {
+  display: none;
+  margin-left: auto;
+
+  select {
+    padding: 0.4em 0.6em;
+    border: 1px solid var(--card-separator-color);
+    border-radius: 6px;
+    background: var(--card-background);
+    color: var(--card-text-color-main);
+    font: inherit;
+    font-size: 0.9em;
+  }
+}
+
+.played-noresult {
+  margin: 1em 0;
+  color: var(--card-text-color-secondary);
+  font-size: 0.95em;
+}
+
+/* 휴대폰: 가로 스크롤 표 대신 한 게임을 두 줄로 쌓는다.
+   1줄: 아이콘 + 이름, 오른쪽에 리뷰 점수
+   2줄: 플레이 시간 · 마지막 플레이 · 플랫폼 (작은 회색 글씨)
+   머리글을 정렬 버튼 줄로 바꿨더니 두 줄로 쌓여 어색했다. 머리글은 숨기고
+   위의 정렬 선택으로 대신한다 (스크립트가 없으면 머리글이 그대로 남는다). */
+@media (max-width: 639.98px) {
+  .played.is-js .played-sort {
+    display: block;
+  }
+
+  .played-table-scroll {
+    overflow-x: visible;
+  }
+
+  .played-table {
+    min-width: 0;
+    display: block;
+
+    thead,
+    tbody {
+      display: block;
+    }
+
+    thead tr {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3em 0.9em;
+      padding-bottom: 0.5em;
+      border-bottom: 1px solid var(--card-separator-color);
+    }
+
+    thead th {
+      display: block;
+      width: auto;
+      padding: 0;
+      border: 0;
+      font-size: 0.9em;
+    }
+  }
+
+  .played.is-js .played-table thead {
+    display: none;
+  }
+
+  .played-table {
+    tbody {
+      border-top: 1px solid var(--card-separator-color);
+    }
+
+    tbody tr {
+      display: grid;
+      grid-template-columns: max-content max-content max-content 1fr auto;
+      grid-template-areas:
+        "title title title title rev"
+        "hours last src . rev";
+      align-items: center;
+      column-gap: 0.8em;
+      padding: 0.6em 0;
+      border-bottom: 1px solid var(--card-separator-color);
+    }
+
+    tbody tr.is-hidden {
+      display: none;
+    }
+
+    /* 테마의 짝수 줄 배경은 필터로 줄이 빠지면 들쭉날쭉해진다. 구분선만 쓴다 */
+    tbody tr:nth-child(even) {
+      background-color: transparent;
+    }
+
+    tbody td {
+      display: block;
+      width: auto;
+      padding: 0;
+      border: 0;
+    }
+
+    td.played-title {
+      grid-area: title;
+    }
+
+    td.played-col-rev {
+      grid-area: rev;
+    }
+
+    td.played-col-hours,
+    td.played-col-last,
+    td.played-col-src {
+      font-size: 0.85em;
+      color: var(--card-text-color-secondary);
+      text-align: left;
+    }
+
+    /* 아이콘(32px) + 여백(8px) 만큼 들여 이름 아래에 줄을 맞춘다 */
+    td.played-col-hours {
+      grid-area: hours;
+      padding-left: 40px;
+    }
+
+    td.played-col-last {
+      grid-area: last;
+
+      &::before {
+        content: "마지막 ";
+      }
+    }
+
+    td.played-col-src {
+      grid-area: src;
+      line-height: 0;
+
+      /* 표에서는 32px 로고지만, 둘째 줄의 작은 글씨 옆에서는 글자 크기에 맞춘다 */
+      svg {
+        width: 1.2em;
+        height: 1.2em;
+      }
+    }
+  }
+}
+
 /* 목차 목록: 오른쪽 고정 목차와 휴대폰 하단 시트가 같이 쓴다 (.toc-nav).
    테마는 단계마다 왼쪽 여백 20px 에 번호 폭까지 더해 3단계면 글자가 한참 밀렸다.
    단계당 1em 으로 줄이고, 지금 읽는 절은 왼쪽 막대 대신 청회색 바탕으로 표시한다.

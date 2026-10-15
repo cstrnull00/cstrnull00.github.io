@@ -915,22 +915,22 @@
 
 /* 목차 (config.yaml 의 widgets.page, assets/js/toc-sheet.js)
 
-   원칙: 홈에서 누른 카드의 커버 이미지가 글에서도 같은 크기로 나와야 한다.
-   그래서 목차가 본문 폭을 가져가면 안 된다.
+   원칙: 홈에서 누른 카드의 커버 이미지가 글에서도 같은 크기, 같은 자리에 나와야 하고,
+   홈은 "사이드바 + 본문"이 화면 가운데 있어야 균형이 맞아 보인다.
+   그래서 목차는 배치에 자리를 차지하지 않는다. 모든 폭에서 오른쪽 아래 "목차" 버튼으로 연다.
 
    테마는 위젯이 하나라도 켜지면 모든 페이지(홈 포함)를 넓은 .extended 로 바꾸고,
-   글에서는 오른쪽 열이 본문을 25% 가져간다. 그 결과 1280px 이상에서 홈 카드는
-   넓어지고 글 카드는 3분의 2로 줄었다 (1600px 에서 홈 1232 대 글 818).
-   아래에서 .extended 를 위젯이 없을 때의 .compact 크기로 되돌리고, 오른쪽 목차는
-   본문 오른쪽의 빈 여백에만 둔다.
+   글에서는 오른쪽 열이 본문을 25% 가져간다. 아래에서 .extended 를 위젯이 없을 때의
+   .compact 크기로 되돌리고 오른쪽 열은 숨긴다. 목차 내용(#TableOfContents)은 스크립트가 복제해 쓴다.
 
-   1600px 이상: 본문 오른쪽 여백에 목차(왼쪽 사이드바와 같은 248px). 본문 + 목차를 한 덩어리로 가운데 두려고
-     전체를 목차 폭의 절반만큼 왼쪽으로 민다. 카드 크기는 홈과 같고 위치만 조금 옮겨진다.
-   그 아래: 테마가 본문 위에 그리는 접이식 상자는 숨기고, 오른쪽 아래 "목차" 버튼과
-     하단 시트로 대신한다.
-   참고, 다른 사이트의 오른쪽 목차 시작점(2026-10-14 실측): Docusaurus 997px,
-   MDN 1072px, GitHub Docs 1400px. 이들은 목차를 위해 본문을 줄이지만, 이 블로그는
-   커버 이미지 크기를 지키기 위해 여백이 생길 때까지 기다린다. */
+   지나간 방식 (2026-10-14~15): 1600px 이상에서 본문 오른쪽 여백에 고정 목차를 두고 전체를
+   왼쪽으로 밀었더니, 홈에서 글로 넘어갈 때 커버가 옆으로 움직였고 홈은 왼쪽으로 쏠려 보였다.
+   밀지 않고 1880px 이상에서만 띄우면 목차가 있는 글이 오른쪽으로 무거워 보였다.
+
+   1000px 이상 (왼쪽 사이드바가 있는 폭): 버튼을 누르면 오른쪽에 세로로 긴
+     목차 패널이 뜬다. 본문을 가리지 않는 오른쪽 여백 위에 겹쳐 뜨고, 배치는 그대로다.
+     페이지는 계속 스크롤되고, 지금 읽는 절 표시가 따라온다.
+   그 아래 (휴대폰): 같은 버튼이 하단 시트를 연다. */
 .article-toc {
   display: none;
 }
@@ -960,61 +960,112 @@
   }
 }
 
-// 왼쪽 사이드바와 같은 폭: 1280 의 20% 에서 좌우 안쪽 여백(20px x 2)을 뺀 248px.
-// 양쪽 열이 같아야 본문 카드가 화면 정가운데 온다.
-$toc-width: 248px;
+.toc-fab {
+  display: inline-flex;
+  position: fixed;
+  right: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom));
+  z-index: 150;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.4rem;
+  /* 흰 버튼은 흰 본문 카드 위에서 묻혔다. 강조색으로 채워 본문과 구별한다
+     (플레이 기록의 "전체 | 리뷰" 전환에서 고른 쪽과 같은 색) */
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent-color);
+  color: var(--accent-color-text);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
+  font-family: inherit;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  /* 스크립트가 시트를 만든 뒤에 보인다 (is-visible). 스크립트가 없으면 숨겨 둔다 */
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
 
-@media (min-width: 1600px) {
-  .container.extended {
-    position: relative;
-    left: calc(-1 * (#{$toc-width} + var(--section-separation)) / 2);
-
-    /* 음수 오른쪽 여백으로 열 자리를 0 으로 만들어 본문 폭을 그대로 두고,
-       목차는 컨테이너 밖 오른쪽 여백으로 넘친다. sticky 는 그대로 동작한다. */
-    .right-sidebar {
-      display: flex;
-      flex-shrink: 0;
-      width: $toc-width;
-      max-width: none;
-      margin-right: calc(-1 * (#{$toc-width} + var(--section-separation)));
-    }
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
   }
 }
 
-@media (max-width: 1599.98px) {
-  .toc-fab {
-    display: inline-flex;
-    position: fixed;
+.toc-sheet {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  z-index: 201;
+  background: var(--card-background);
+  color: var(--card-text-color-main);
+  visibility: hidden;
+}
+
+.toc-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.6rem;
+  border-bottom: 1px solid var(--card-separator-color);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.toc-sheet-close {
+  border: 0;
+  background: none;
+  color: var(--card-text-color-secondary);
+  font-size: 2.4rem;
+  line-height: 1;
+  padding: 0 0.4rem;
+  cursor: pointer;
+}
+
+/* 테마의 .toc-nav 번호·들여쓰기를 그대로 쓰고, 목록 안에서만 스크롤한다 */
+.toc-sheet-nav {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.8rem 1.6rem 1.6rem;
+  font-size: 1.5rem;
+}
+
+/* 1000px 이상: 오른쪽 패널. 버튼 바로 위에 붙어 목차 길이만큼만 위로 자란다.
+   목차가 화면보다 길면 패널 안에서 스크롤한다.
+   폭과 글자는 2026-10-15 에 두 번 키웠다 (248px/14px → 360px/17px). 작아서 읽기 답답했다 */
+@include respond(md) {
+  .toc-sheet {
     right: 16px;
-    bottom: calc(16px + env(safe-area-inset-bottom));
-    z-index: 150;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.9rem 1.4rem;
-    /* 흰 버튼은 흰 본문 카드 위에서 묻혔다. 강조색으로 채워 본문과 구별한다
-       (플레이 기록의 "전체 | 리뷰" 전환에서 고른 쪽과 같은 색) */
-    border: 0;
-    border-radius: 999px;
-    background: var(--accent-color);
-    color: var(--accent-color-text);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.22);
-    font-family: inherit;
-    font-size: 1.4rem;
-    font-weight: 600;
-    cursor: pointer;
-    /* 스크립트가 시트를 만든 뒤에 보인다 (is-visible). 스크립트가 없으면 숨겨 둔다 */
+    bottom: calc(16px + 4.6rem + 12px);
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 16px - 4.6rem - 12px - 32px);
+    border-radius: 12px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
     opacity: 0;
     transform: translateY(8px);
-    pointer-events: none;
-    transition: opacity 0.2s, transform 0.2s;
+    transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
 
-    &.is-visible {
+    &.is-open {
       opacity: 1;
       transform: none;
-      pointer-events: auto;
+      visibility: visible;
     }
   }
 
+  .toc-sheet-header {
+    font-size: 1.7rem;
+  }
+
+  .toc-sheet-nav {
+    padding: 0.8rem 1.2rem 1.2rem;
+    font-size: 1.7rem;
+  }
+}
+
+/* 1000px 미만: 하단 시트 */
+@media (max-width: 999.98px) {
   .toc-sheet-backdrop {
     display: block;
     position: fixed;
@@ -1032,55 +1083,20 @@ $toc-width: 248px;
   }
 
   .toc-sheet {
-    display: flex;
-    flex-direction: column;
-    position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 201;
     max-height: 70vh;
     padding-bottom: env(safe-area-inset-bottom);
     border-radius: 16px 16px 0 0;
-    background: var(--card-background);
-    color: var(--card-text-color-main);
     box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.18);
     transform: translateY(100%);
-    visibility: hidden;
     transition: transform 0.25s ease, visibility 0.25s;
 
     &.is-open {
       transform: none;
       visibility: visible;
     }
-  }
-
-  .toc-sheet-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 1.6rem;
-    border-bottom: 1px solid var(--card-separator-color);
-    font-size: 1.5rem;
-    font-weight: 700;
-  }
-
-  .toc-sheet-close {
-    border: 0;
-    background: none;
-    color: var(--card-text-color-secondary);
-    font-size: 2.4rem;
-    line-height: 1;
-    padding: 0 0.4rem;
-    cursor: pointer;
-  }
-
-  /* 테마의 .toc-nav 번호·들여쓰기를 그대로 쓰고, 시트 안에서만 스크롤한다 */
-  .toc-sheet-nav {
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    padding: 0.8rem 1.6rem 1.6rem;
-    font-size: 1.5rem;
   }
 
   /* 시트가 열린 동안 뒤 페이지가 같이 스크롤되지 않게 */
@@ -1347,7 +1363,7 @@ $toc-width: 248px;
   }
 }
 
-/* 목차 목록: 오른쪽 고정 목차와 휴대폰 하단 시트가 같이 쓴다 (.toc-nav).
+/* 목차 목록: 오른쪽 패널과 휴대폰 하단 시트가 같이 쓴다 (.toc-nav).
    테마는 단계마다 왼쪽 여백 20px 에 번호 폭까지 더해 3단계면 글자가 한참 밀렸다.
    단계당 1em 으로 줄이고, 지금 읽는 절은 왼쪽 막대 대신 청회색 바탕으로 표시한다.
    테마의 막대는 들여쓰기 폭(25 + 35 x 단계 px)에 맞춘 음수 여백으로 그려서,

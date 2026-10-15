@@ -941,23 +941,20 @@
   display: none;
 }
 
-/* .extended 를 테마의 .compact 와 같은 폭으로 (themes/stack/assets/scss/grid.scss) */
-.container.extended {
+/* 컨테이너 폭: 테마는 768 → 1024 → 1280px 로 계단식으로 넓히는데, 이 블로그는 md 를 1000px 로
+   올려 두어서(assets/scss/breakpoints.scss) 창이 1000~1023px 일 때 768px 칸에 갇혀 카드가 930 → 506px 로
+   갑자기 줄었다. 1024~1279px 에서도 칸이 1024px 에 묶여 있다가 1280px 에서 747 → 952px 로 튀었다.
+   사이드바가 생기는 md 부터는 칸을 창 폭에 맞춰 늘리다가 1280px 에서 멈추게 해 계단을 없앤다.
+   (.compact 는 위젯이 없는 페이지, .extended 는 목차 위젯이 켜진 페이지. 둘 다 같은 폭으로 둔다) */
+.container.extended,
+.container.compact {
   @include respond(md) {
-    max-width: 768px;
-    --left-sidebar-max-width: 25%;
-  }
-
-  @include respond(lg) {
-    max-width: 1024px;
-    --left-sidebar-max-width: 20%;
-  }
-
-  @include respond(xl) {
     max-width: 1280px;
     --left-sidebar-max-width: 20%;
   }
+}
 
+.container.extended {
   .right-sidebar {
     display: none;
   }

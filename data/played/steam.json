@@ -1,9 +1,9 @@
 {
-  "updated": "2026-10-15T00:53:06.096Z",
+  "updated": "2026-10-15T12:26:16.382Z",
   "minMinutes": 120,
   "ownedGames": 113,
   "listedGames": 80,
-  "totalMinutes": 211320,
+  "totalMinutes": 211333,
   "games": [
     {
       "appid": 1158310,
@@ -78,8 +78,8 @@
     {
       "appid": 1771300,
       "name": "Kingdom Come: Deliverance II",
-      "minutes": 4840,
-      "lastPlayed": "2026-04-09T03:01:30.000Z",
+      "minutes": 4853,
+      "lastPlayed": "2026-10-15T05:36:53.000Z",
       "icon": "https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/apps/1771300/80e8d75b87433627cafd2a1bcbb5b9f5741e2277.jpg"
     },
     {

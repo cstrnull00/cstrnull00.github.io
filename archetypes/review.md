@@ -20,6 +20,16 @@ releases: []
 #    platforms: []
 #    note:            (선택) 디렉터스 컷 등
 rating:
+# 글 끝 평가 카드 (layouts/_shortcodes/verdict.html). 본문 끝에서 verdict 숏코드로 부른다.
+# 장단점은 본문에서 논증한 판단의 요약. score 는 100점 만점이고 빼도 된다.
+review:
+  score:
+  original: ''
+  verdict: ''
+  pros: []
+  cons: []
 ---
 
 {{ "{{% game-info %}}" }}
+
+{{ "{{% verdict %}}" }}

@@ -1,0 +1,52 @@
+{{- /*
+  리뷰 끝 평가 카드. 값은 전부 그 글의 프론트매터 review 에서 읽는다 (game-info 와 같은 방식).
+  본문에서는 {{% verdict %}} 로 부른다. 놓는 자리는 글마다 정한다 (보통 본문 끝, 각주 앞).
+
+  프론트매터:
+    review:
+      score: 86                                총점 (100점 만점, 선택). 플레이 기록 목록의 배지도 이 값을 읽는다
+      original: 'Pentiment'                    원제 (선택). 왼쪽 칸의 게임 이름 밑에 작게 나온다
+      verdict: '플레이어가 써 내려가는 장미의 이름'  총평 한 줄 (마크다운 가능)
+      pros:                                    좋았던 점 (+)
+        - '...'
+      cons:                                    아쉬운 점 (-)
+        - '...'
+
+  배치: 왼쪽 강조색 칸에 점수·별·게임 이름, 오른쪽에 총평 → 좋았던 점 → 아쉬운 점.
+
+  장단점은 점수의 근거표가 아니라 본문에서 논증한 판단의 요약이다.
+  score 를 빼면 점수 없이 게임 이름과 총평·장단점만 나온다.
+*/ -}}
+{{- $r := .Page.Params.review -}}
+{{- if not $r -}}
+  {{- warnf "verdict: %s 에 review 프론트매터가 없습니다" .Page.File.Path -}}
+{{- else -}}
+<section class="verdict" aria-label="총평">
+  <div class="verdict-side">
+    {{- with $r.score }}
+    <div class="verdict-score" aria-label="총점 {{ . }}점 (100점 만점)">
+      <span class="verdict-num">{{ . }}</span><span class="verdict-max">/100</span>
+      {{- /* 별 다섯 개를 점수 비율만큼 칠한다. 반 개 단위로 끊지 않는다 */}}
+      <span class="verdict-stars" style="--verdict-pct: {{ . }}%" aria-hidden="true"><span>★★★★★</span></span>
+    </div>
+    {{- end }}
+    <p class="verdict-title">{{ $.Page.Title }}</p>
+    {{- with $r.original }}<p class="verdict-original">{{ . }}</p>{{ end }}
+  </div>
+  <div class="verdict-body">
+    {{- with $r.verdict }}
+    <p class="verdict-line">{{ . | markdownify }}</p>
+    {{- end }}
+    {{- with $r.pros }}
+    <ul class="verdict-pros" aria-label="좋았던 점">
+      {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
+    </ul>
+    {{- end }}
+    {{- with $r.cons }}
+    <ul class="verdict-cons" aria-label="아쉬운 점">
+      {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
+    </ul>
+    {{- end }}
+  </div>
+</section>
+{{- end -}}

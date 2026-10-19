@@ -1414,7 +1414,8 @@
 }
 
 /* 리뷰 끝 평가 카드 (layouts/_shortcodes/verdict.html, 2026-10-19)
-   예전의 항목별 별점표를 대신한다. 왼쪽 = 강조색 칸에 점수·별·게임 이름, 오른쪽 = 총평 → 좋았던 점(+) → 아쉬운 점(-).
+   예전의 항목별 별점표를 대신한다. 머리 줄 = 왼쪽 강조색 칸에 점수·별, 오른쪽 인용 블록 바탕에 게임 이름과 총평.
+   그 아래 카드 바탕에 좋았던 점(+)·아쉬운 점(−) 두 묶음.
    강조색은 라이트 모드 남색, 다크 모드 로고 모래색 (제목 줄과 같은 계열). */
 :root {
   --verdict-border: #dde1e8;
@@ -1424,8 +1425,6 @@
   --verdict-line-fg: #2f4858;
   --verdict-plus: #2e8b57;
   --verdict-minus: #c0504d;
-  --verdict-pros-bg: #e8f4ec;
-  --verdict-cons-bg: #fbeceb;
   --verdict-star-off: rgba(255, 255, 255, 0.28);
   --verdict-star-on: #f2c14e;
 }
@@ -1438,51 +1437,53 @@
   --verdict-line-fg: #e3c79f;
   --verdict-plus: #6cc58f;
   --verdict-minus: #e88783;
-  --verdict-pros-bg: rgba(108, 197, 143, 0.12);
-  --verdict-cons-bg: rgba(232, 135, 131, 0.12);
   --verdict-star-off: rgba(255, 255, 255, 0.22);
   --verdict-star-on: #e8b75a;
 }
 
 .article-content .verdict {
-  display: grid;
-  grid-template-columns: 11em 1fr;
   margin: 2em 0;
   border: 1px solid var(--verdict-border);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  background: var(--card-background);
   font-size: 0.95em;
+
+  p {
+    margin: 0;
+  }
+}
+
+.verdict-head {
+  display: flex;
 }
 
 .verdict-side {
+  flex: 0 0 12em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.4em 1em;
-  text-align: center;
+  padding: 1em;
   background: var(--verdict-side-bg);
   color: var(--verdict-side-fg);
 }
 
-.verdict-score {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.article-content .verdict-score {
   line-height: 1;
+  white-space: nowrap;
 }
 
 .verdict-num {
-  font-size: 2.6em;
+  font-size: 2em;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: var(--verdict-side-fg);
 }
 
 .verdict-max {
-  margin-top: 0.15em;
-  font-size: 0.8em;
+  margin-left: 0.2em;
+  font-size: 0.85em;
   color: var(--verdict-side-sub);
 }
 
@@ -1490,8 +1491,8 @@
 .verdict-stars {
   position: relative;
   display: inline-block;
-  margin-top: 0.45em;
-  font-size: 0.95em;
+  margin-top: 0.5em;
+  font-size: 1.05em;
   letter-spacing: 0.05em;
   color: var(--verdict-star-off);
 
@@ -1506,91 +1507,101 @@
   }
 }
 
-.article-content .verdict-title {
-  margin: 0.9em 0 0;
-  font-size: 1.05em;
-  font-weight: 800;
-  line-height: 1.4;
-  color: var(--verdict-side-fg);
-}
-
-.article-content .verdict-original {
-  margin: 0.2em 0 0;
-  font-size: 0.82em;
-  color: var(--verdict-side-sub);
-}
-
-.verdict-body {
+.verdict-summary {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  justify-content: center;
+  gap: 0.35em;
+  padding: 1em 1.4em;
+  background: var(--blockquote-background-color);
 }
 
-/* 총평은 인용 블록과 같은 바탕, 장단점은 각각 초록·빨강 바탕.
-   총평은 굵기를 올리면 검은 글씨가 뭉개지고, 내리면 묻힌다. 굵기는 700 에 두고
-   글자색을 왼쪽 칸과 같은 강조색(라이트 남색, 다크 모래색)으로 바꿔 눈에 띄게 한다 */
+.article-content .verdict-name {
+  font-size: 0.85em;
+  color: var(--card-text-color-tertiary);
+}
+
 .article-content .verdict-line {
-  margin: 0;
-  padding: 1em 1.6em;
   font-size: 1.2em;
   font-weight: 700;
   line-height: 1.5;
   color: var(--verdict-line-fg);
-  background: var(--blockquote-background-color);
+  word-break: keep-all;
 }
 
-.verdict-pros,
-.verdict-cons {
-  flex: 1;
-  margin: 0;
-  padding: 0.9em 1.6em;
-  list-style: none;
+.verdict-group {
+  padding: 1em 1.4em 1.1em;
 
-  li {
+  /* 두 묶음 사이 구분선은 양옆을 띄운다. 묶음 여백은 그대로 둬서 목록 들여쓰기를 맞춘다 */
+  & + & {
     position: relative;
-    margin: 0.3em 0;
-    padding-left: 1.5em;
-    line-height: 1.55;
 
     &::before {
+      content: "";
       position: absolute;
-      left: 0.1em;
-      font-weight: 900;
+      top: 0;
+      left: 1em;
+      right: 1em;
+      border-top: 1px solid var(--verdict-border);
     }
+  }
+
+  ul {
+    margin: 0.5em 0 0;
+    padding-left: 1.8em;
+    list-style: none;
+  }
+
+  li {
+    margin: 0.2em 0;
+    line-height: 1.55;
   }
 }
 
-.verdict-pros {
-  background: var(--verdict-pros-bg);
+.article-content .verdict-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 700;
+
+  &::before {
+    width: 1em;
+    text-align: center;
+    font-weight: 900;
+  }
 }
 
-.verdict-pros li::before {
+.verdict-group--pros .verdict-label::before {
   content: "+";
   color: var(--verdict-plus);
 }
 
-.verdict-cons {
-  background: var(--verdict-cons-bg);
-}
-
-.verdict-cons li::before {
+.verdict-group--cons .verdict-label::before {
   content: "−";
   color: var(--verdict-minus);
 }
 
-
 @media (max-width: 639.98px) {
-  .article-content .verdict {
-    grid-template-columns: 1fr;
+  .verdict-side {
+    flex-basis: 7em;
+    padding: 0.9em 0.5em;
+  }
+
+  .verdict-summary {
+    padding: 0.9em 1em;
   }
 
   .article-content .verdict-line {
-    padding: 0.9em 1.1em;
     font-size: 1.1em;
   }
 
-  .verdict-pros,
-  .verdict-cons {
-    padding: 0.8em 1.1em;
+  .verdict-group {
+    padding: 0.9em 1em 1em;
+
+    ul {
+      padding-left: 1.6em;
+    }
   }
 }

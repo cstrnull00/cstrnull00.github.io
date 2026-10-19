@@ -12,7 +12,8 @@
       cons:                                    아쉬운 점 (-)
         - '...'
 
-  배치: 왼쪽 강조색 칸에 점수·별·게임 이름, 오른쪽에 총평 → 좋았던 점 → 아쉬운 점.
+  배치: 머리 줄 = 왼쪽 강조색 칸에 점수·별, 오른쪽에 게임 이름 / 원제와 총평.
+        그 아래 흰 바탕에 좋았던 점(+)과 아쉬운 점(−)을 제목 붙은 두 묶음으로.
 
   장단점은 점수의 근거표가 아니라 본문에서 논증한 판단의 요약이다.
   score 를 빼면 점수 없이 게임 이름과 총평·장단점만 나온다.
@@ -22,31 +23,36 @@
   {{- warnf "verdict: %s 에 review 프론트매터가 없습니다" .Page.File.Path -}}
 {{- else -}}
 <section class="verdict" aria-label="총평">
-  <div class="verdict-side">
+  <div class="verdict-head">
     {{- with $r.score }}
-    <div class="verdict-score" aria-label="총점 {{ . }}점 (100점 만점)">
-      <span class="verdict-num">{{ . }}</span><span class="verdict-max">/100</span>
+    <div class="verdict-side" aria-label="총점 {{ . }}점 (100점 만점)">
+      <p class="verdict-score"><span class="verdict-num">{{ . }}</span><span class="verdict-max">/100</span></p>
       {{- /* 별 다섯 개를 점수 비율만큼 칠한다. 반 개 단위로 끊지 않는다 */}}
       <span class="verdict-stars" style="--verdict-pct: {{ . }}%" aria-hidden="true"><span>★★★★★</span></span>
     </div>
     {{- end }}
-    <p class="verdict-title">{{ $.Page.Title }}</p>
-    {{- with $r.original }}<p class="verdict-original">{{ . }}</p>{{ end }}
+    <div class="verdict-summary">
+      <p class="verdict-name">{{ $.Page.Title }}{{ with $r.original }}<span class="verdict-original"> / {{ . }}</span>{{ end }}</p>
+      {{- with $r.verdict }}
+      <p class="verdict-line">{{ . | markdownify }}</p>
+      {{- end }}
+    </div>
   </div>
-  <div class="verdict-body">
-    {{- with $r.verdict }}
-    <p class="verdict-line">{{ . | markdownify }}</p>
-    {{- end }}
-    {{- with $r.pros }}
-    <ul class="verdict-pros" aria-label="좋았던 점">
+  {{- with $r.pros }}
+  <div class="verdict-group verdict-group--pros">
+    <p class="verdict-label">좋았던 점</p>
+    <ul>
       {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
     </ul>
-    {{- end }}
-    {{- with $r.cons }}
-    <ul class="verdict-cons" aria-label="아쉬운 점">
+  </div>
+  {{- end }}
+  {{- with $r.cons }}
+  <div class="verdict-group verdict-group--cons">
+    <p class="verdict-label">아쉬운 점</p>
+    <ul>
       {{- range . }}<li>{{ . | markdownify }}</li>{{ end }}
     </ul>
-    {{- end }}
   </div>
+  {{- end }}
 </section>
 {{- end -}}

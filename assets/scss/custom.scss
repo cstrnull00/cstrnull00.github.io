@@ -107,6 +107,13 @@
   color: var(--card-text-color-secondary);
 }
 
+/* 단독 갤러리 사진은 캡션과 같은 폭으로 표시하고 원본 비율을 유지한다.
+   이미지의 HTML width가 본문보다 작을 때 오른쪽에 빈 공간이 남는 것을 막는다. */
+.article-content .gallery > figure:only-child img {
+  width: 100%;
+  height: auto;
+}
+
 /* 인용문 표시: 공식 소개문처럼 남의 글을 옮긴 블록에 흐린 큰 따옴표를 단다.
    인용 블록은 게임 정보 표와 별점표에도 쓰이므로, 표가 없는 블록만 진짜 인용으로 본다. */
 .article-content blockquote:not(:has(table)) {

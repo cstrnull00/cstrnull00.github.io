@@ -40,6 +40,14 @@ markup:
     # 본문에서 <<작품명>> 으로 쓰면 《작품명》 으로 바뀐다.
     # ***작품명***와 처럼 강조 뒤에 조사가 붙으면 강조가 깨지는 문제를 피하려고 쓴다.
     extensions:
+      # <|DLC 제목|>은 〈DLC 제목〉으로 표시한다. 일반 <...>는 건드리지 않는다.
+      # 코드 안의 표기는 Markdown 파서가 그대로 보존한다.
+      passthrough:
+        enable: true
+        delimiters:
+          block: []
+          inline:
+            - ["<|", "|>"]
       typographer:
         leftAngleQuote: "《"
         rightAngleQuote: "》"

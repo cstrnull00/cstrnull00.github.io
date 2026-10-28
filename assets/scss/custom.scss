@@ -1612,3 +1612,102 @@
     }
   }
 }
+
+.category-navigation {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+
+  .category-navigation-link {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden;
+    border-inline-start: 4px solid var(--accent-color);
+    background: var(--card-background);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--shadow-l1);
+    color: var(--card-text-color-main);
+
+    &:hover .category-navigation-title {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 4px;
+    }
+  }
+
+  .category-navigation-next {
+    grid-column: 2;
+    text-align: right;
+    border-inline-start: 0;
+    border-inline-end: 4px solid var(--accent-color);
+  }
+
+  .category-navigation-image {
+    display: block;
+    aspect-ratio: 16 / 7;
+    overflow: hidden;
+    background: var(--blockquote-background-color);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .category-navigation-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 18px 20px;
+  }
+
+  .category-navigation-link:not(:has(.category-navigation-image)) .category-navigation-body {
+    margin-block: auto;
+  }
+
+  .category-navigation-label {
+    color: var(--card-text-color-secondary);
+    font-size: 1.3rem;
+  }
+
+  .category-navigation-title {
+    font-size: 1.7rem;
+    font-weight: 600;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 639.98px) {
+  .category-navigation {
+    gap: 10px;
+
+    .category-navigation-image {
+      aspect-ratio: 16 / 9;
+    }
+
+    .category-navigation-body {
+      padding: 12px 10px;
+      gap: 6px;
+    }
+
+    .category-navigation-label {
+      font-size: 1.2rem;
+    }
+
+    .category-navigation-category {
+      display: none;
+    }
+
+    .category-navigation-title {
+      font-size: 1.4rem;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{{- /* 카테고리의 발행일 순서로 이동한다. 대표글 weight는 무시한다. */ -}}
+{{- $page := . -}}
+{{- $categories := .GetTerms "categories" -}}
+{{- if and (in .Site.Params.mainSections .Section) $categories -}}
+    {{- $category := index $categories 0 -}}
+    {{- $pages := (where $category.RegularPages "Section" "in" .Site.Params.mainSections).ByDate -}}
+    {{- $previous := false -}}
+    {{- $next := false -}}
+    {{- range $index, $candidate := $pages -}}
+        {{- if eq $candidate.RelPermalink $page.RelPermalink -}}
+            {{- if gt $index 0 -}}
+                {{- $previous = index $pages (sub $index 1) -}}
+            {{- end -}}
+            {{- if lt (add $index 1) (len $pages) -}}
+                {{- $next = index $pages (add $index 1) -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+    {{- if or $previous $next }}
+<nav class="category-navigation" aria-label="{{ $category.LinkTitle }} 이전·다음 글">
+    {{ with $previous }}
+    <a class="category-navigation-link category-navigation-previous" href="{{ .RelPermalink }}" rel="prev">
+        {{ partial "article/components/navigation-image" . }}
+        <span class="category-navigation-body">
+            <span class="category-navigation-label">← 이전 글<span class="category-navigation-category"> · {{ $category.LinkTitle }}</span></span>
+            <span class="category-navigation-title">{{ .Title }}</span>
+        </span>
+    </a>
+    {{ end }}
+    {{ with $next }}
+    <a class="category-navigation-link category-navigation-next" href="{{ .RelPermalink }}" rel="next">
+        {{ partial "article/components/navigation-image" . }}
+        <span class="category-navigation-body">
+            <span class="category-navigation-label">다음 글<span class="category-navigation-category"> · {{ $category.LinkTitle }}</span> →</span>
+            <span class="category-navigation-title">{{ .Title }}</span>
+        </span>
+    </a>
+    {{ end }}
+</nav>
+    {{ end -}}
+{{- end -}}

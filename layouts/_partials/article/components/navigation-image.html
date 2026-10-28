@@ -1,0 +1,12 @@
+{{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources "Context" .) -}}
+{{- with $image -}}
+    {{- $src := .Permalink -}}
+    {{- with .Resource -}}
+        {{- if reflect.IsImageResourceProcessable . -}}
+            {{- $src = (.Resize "640x").RelPermalink -}}
+        {{- end -}}
+    {{- end -}}
+    <span class="category-navigation-image">
+        <img src="{{ $src }}" alt="" loading="lazy" decoding="async" width="640" height="280">
+    </span>
+{{- end -}}

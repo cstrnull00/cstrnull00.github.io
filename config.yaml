@@ -136,14 +136,13 @@ menu:
       url: /review/
       weight: 2
       params:
-        icon: categories
+        icon: device-gamepad-2
     - identifier: analysis
       name: 콘텐츠 분석
       url: /analysis/
       weight: 3
       params:
-        # 두 섹션은 같은 성격이므로 동일 아이콘
-        icon: categories
+        icon: report-analytics
 
   social:
     - identifier: github

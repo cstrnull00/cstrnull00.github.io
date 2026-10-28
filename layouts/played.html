@@ -1,0 +1,25 @@
+{{ define "body-class" }}article-page played-page{{ end }}
+
+{{ define "main" }}
+    {{- $totalMinutes := 0.0 -}}
+    {{- $oldest := "" -}}
+    {{- range (slice hugo.Data.played.steam hugo.Data.played.psn) -}}
+        {{- with . -}}
+            {{- $totalMinutes = add $totalMinutes .totalMinutes -}}
+            {{- with .updated -}}
+                {{- if or (eq $oldest "") (lt (string .) $oldest) -}}
+                    {{- $oldest = string . -}}
+                {{- end -}}
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+    {{- $subtitle := "" -}}
+    {{- with $oldest -}}
+        {{- $subtitle = printf "누적 %s시간 · %s 기준" (lang.FormatNumber 0 (math.Floor (div $totalMinutes 60.0))) ((time.AsTime .).Format "2006-01-02") -}}
+    {{- end -}}
+    {{ partial "section-intro" (dict "Page" . "Description" $subtitle) }}
+    <article class="main-article played-content-card">
+        <div class="article-content">{{ .Content }}</div>
+    </article>
+    {{ partialCached "footer/footer" . }}
+{{ end }}

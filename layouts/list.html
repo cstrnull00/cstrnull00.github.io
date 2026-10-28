@@ -1,23 +1,7 @@
 {{ define "main" }}
     {{ $isEditorial := or (and .IsSection (in .Site.Params.mainSections .Section)) (and (eq .Kind "term") (eq .Data.Plural "categories")) }}
     {{ if $isEditorial }}
-    {{- $sectionTitle := .Title -}}
-    {{- $sectionIcon := "" -}}
-    {{- range .Site.Menus.main -}}
-        {{- if eq .Name $sectionTitle -}}
-            {{- $sectionIcon = .Params.Icon -}}
-        {{- end -}}
-    {{- end -}}
-    <header class="section-intro">
-        {{ with $sectionIcon }}<span class="section-intro-icon" aria-hidden="true">{{ partial "helper/icon" . }}</span>{{ end }}
-        <div class="section-intro-copy">
-            <div class="section-intro-heading">
-                <h1>{{ .Title }}</h1>
-                <span class="section-intro-count">{{ T "list.page" (len .RegularPages) }}</span>
-            </div>
-            {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
-        </div>
-    </header>
+    {{ partial "section-intro" (dict "Page" . "CountLabel" (T "list.page" (len .RegularPages))) }}
     {{ else }}
     <header>
         <h3 class="section-title">

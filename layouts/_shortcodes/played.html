@@ -107,22 +107,15 @@
 
   {{- /* 두 소스를 한 목록으로 합친다 */ -}}
   {{- $rows := slice -}}
-  {{- $totalMinutes := 0.0 -}}
-  {{- $minFloor := 0.0 -}}
-  {{- $oldest := "" -}}
-  {{- $unknown := 0 -}}
 
   {{- range $sources -}}
     {{- $plat := .key -}}
     {{- $d := .d -}}
-    {{- $totalMinutes = add $totalMinutes $d.totalMinutes -}}
-    {{- if gt $d.minMinutes $minFloor }}{{ $minFloor = $d.minMinutes }}{{ end -}}
-    {{- if or (eq $oldest "") (lt (string $d.updated) $oldest) }}{{ $oldest = string $d.updated }}{{ end -}}
 
     {{- range $d.games -}}
       {{- $g := . -}}
       {{- $mins := -1.0 -}}
-      {{- if .minutes }}{{ $mins = .minutes }}{{ else }}{{ $unknown = add $unknown 1 }}{{ end -}}
+      {{- if .minutes }}{{ $mins = .minutes }}{{ end -}}
 
       {{- $store := "" -}}
       {{- $storeName := "" -}}
@@ -166,7 +159,6 @@
   {{- end -}}
 
   {{- $rows = sort $rows "sortMinutes" "desc" -}}
-  {{- $hours := math.Floor (div $totalMinutes 60.0) -}}
   {{- $initial := 20 -}}
 
   <div class="played" data-initial="{{ $initial }}">
@@ -176,14 +168,6 @@
       <code>node scripts/sync-steam.mjs</code> 를 실행하면 실제 기록으로 교체됩니다.
     </p>
     {{- end }}
-
-    <p class="played-summary">
-      {{ lang.FormatNumber 0 (len $rows) }}개 ·
-      누적 {{ lang.FormatNumber 0 $hours }}시간 ·
-      {{ (time.AsTime $oldest).Format "2006-01-02" }} 기준
-      {{- $minH := div $minFloor 60.0 }}
-      <span class="played-note">({{ if ge $minH 1.0 }}{{ lang.FormatNumber 0 $minH }}시간{{ else }}{{ lang.FormatNumber 0 $minFloor }}분{{ end }} 이상만 표시{{ if gt $unknown 0 }} · 플레이 시간 미기록 {{ $unknown }}개{{ end }})</span>
-    </p>
 
     {{- /* 검색, 전체/리뷰 전환, (좁은 화면용) 정렬. 스크립트가 켜져야 동작하므로
            처음엔 숨겨 두고 .is-js 가 붙으면 보인다. 리뷰가 없는 게임이 대부분이라,

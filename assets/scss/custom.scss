@@ -52,12 +52,26 @@
 }
 
 /* 섹션 소개는 목록 카드와 구분되는 열린 헤더로 표시한다. */
+:root {
+  --navigation-accent: #2f4858;
+  --navigation-accent-hover: #24384a;
+  --navigation-selected-bg: rgba(47, 72, 88, 0.09);
+  --navigation-hover-bg: rgba(47, 72, 88, 0.05);
+}
+
+:root[data-scheme="dark"] {
+  --navigation-accent: #a8c5dc;
+  --navigation-accent-hover: #c5d8e8;
+  --navigation-selected-bg: rgba(120, 163, 195, 0.18);
+  --navigation-hover-bg: rgba(120, 163, 195, 0.1);
+}
+
 .section-intro {
   display: flex;
   align-items: center;
   gap: 16px;
   padding: 4px 0 14px;
-  border-bottom: 2px solid var(--accent-color);
+  border-bottom: 2px solid var(--navigation-accent);
 
   .section-intro-heading {
     display: flex;
@@ -71,7 +85,7 @@
     align-items: center;
     gap: 10px;
     margin: 0;
-    color: var(--accent-color);
+    color: var(--navigation-accent);
     font-size: 2.6rem;
     line-height: 1.35;
     white-space: nowrap;
@@ -80,7 +94,7 @@
   .section-intro-icon {
     display: inline-flex;
     flex-shrink: 0;
-    color: var(--accent-color);
+    color: var(--navigation-accent);
     transform: translateY(-4px);
 
     svg {
@@ -1846,6 +1860,52 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* 메뉴는 아이콘과 이름을 가깝게 묶고 현재 위치를 옅은 색면으로 표시한다. */
+#main-menu {
+  --menu-icon-separation: 12px;
+  gap: 8px;
+
+  > li:not(.menu-bottom-section) > a {
+    display: flex;
+    width: 100%;
+    min-height: 44px;
+    box-sizing: border-box;
+    padding: 10px 12px;
+    border-radius: 8px;
+
+    &:hover {
+      background: var(--navigation-hover-bg);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 2px;
+    }
+
+    svg {
+      flex-shrink: 0;
+    }
+  }
+
+  > li.current > a {
+    color: var(--navigation-accent);
+    background: var(--navigation-selected-bg);
+
+    .menu-post-count {
+      color: inherit;
+      opacity: 0.8;
+    }
+  }
+
+  .menu-bottom-section {
+    padding-top: 12px;
+  }
+
+  #dark-mode-toggle {
+    padding-inline: 12px;
+  }
+}
+
 /* 제목 아래에 카테고리와 게시일을 한 줄로 묶는다. */
 .article-meta > .inline-meta.article-summary-meta {
   gap: 8px;
@@ -1855,13 +1915,13 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: var(--accent-color);
+    color: var(--navigation-accent);
     font-size: 1.5rem;
     font-weight: 600;
     white-space: nowrap;
 
     &:hover {
-      color: var(--accent-color-darker);
+      color: var(--navigation-accent-hover);
       text-decoration: underline;
       text-underline-offset: 3px;
     }

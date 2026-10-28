@@ -1,3 +1,10 @@
+{{- $page := . -}}
+{{- $hideCategory := false -}}
+{{- if reflect.IsMap . -}}
+    {{- $page = .Page -}}
+    {{- $hideCategory = .HideCategory -}}
+{{- end -}}
+{{- with $page -}}
 <article>
     <a href="{{ .RelPermalink }}">
         <div class="article-details">
@@ -21,12 +28,14 @@
                 */}}
                 <footer class="article-meta">
                     {{/* 제목 아래에 소속 카테고리 표시 */}}
+                    {{- if not $hideCategory -}}
                     {{- with .Params.categories -}}
                         <span class="article-category">
                             {{- range $i, $c := . -}}
                                 {{- if $i }} · {{ end -}}{{- $c -}}
                             {{- end -}}
                         </span>
+                    {{- end -}}
                     {{- end -}}
                     {{- if or $IsTerm .Date.IsZero -}}
                         <span class="article-description">{{- $description -}}</span>
@@ -44,12 +53,12 @@
         <div class="article-image">
             {{ partial "helper/responsive-image" (dict
                 "Resource" $image.Resource
-                "Widths" (cond .Site.Params.ImageProcessing.Thumbnail.Enabled (slice 160 320) nil)
+                "Widths" (cond .Site.Params.ImageProcessing.Thumbnail.Enabled (slice 220 440 660 880) nil)
                 "Attributes" (dict
                     "src" $image.Permalink
                     "alt" .Title
                     "loading" "lazy"
-                    "sizes" "160px"
+                    "sizes" "220px"
                     "width" $image.Width
                     "height" $image.Height
                 )
@@ -58,3 +67,4 @@
         {{ end }}
     </a>
 </article>
+{{- end -}}

@@ -3,22 +3,66 @@
   height: auto;
 }
 
-/* 섹션 목록: 높이를 맞추되 원본 전체를 표시하고, 좁은 화면의 제목 공간을 확보한다. */
+/* 목록 사진에는 얇은 여백을 두고 제목·날짜를 바로 옆에 모은다. */
+.article-list--compact {
+  overflow: hidden;
+}
+
+.article-list--compact article > a:has(.article-image) {
+  gap: 0;
+  padding: 8px;
+}
+
+.article-list--compact article > a:has(.article-image) .article-details {
+  padding: 16px 20px;
+  min-height: 0;
+}
+
 .article-list--compact article .article-details {
   min-width: 0;
 }
 
 .article-list--compact article .article-image {
-  flex: 0 1 auto;
-  max-width: 35%;
+  order: -1;
+  flex: 0 0 220px;
+  width: 220px;
+  max-width: 46%;
+  border-radius: 4px;
+  overflow: hidden;
 
   img {
     display: block;
-    width: auto;
-    height: var(--image-size);
+    width: 100%;
+    height: auto;
     max-width: 100%;
     object-fit: contain;
-    object-position: right center;
+    object-position: left center;
+  }
+}
+
+@media (max-width: 639.98px) {
+  .article-list--compact article > a:has(.article-image) {
+    padding: 6px;
+  }
+
+  .article-list--compact article > a:has(.article-image) .article-details {
+    padding: 8px 12px;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 359.98px) {
+  .article-list--compact article > a:has(.article-image) .article-details {
+    padding-block: 4px;
+  }
+
+  .article-list--compact article .article-title {
+    font-size: 1.4rem;
+    line-height: 1.35;
+  }
+
+  .article-list--compact article .article-meta time {
+    font-size: 1.2rem;
   }
 }
 

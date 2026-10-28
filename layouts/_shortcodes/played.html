@@ -43,7 +43,7 @@
   {{- $bySteam := dict -}}
   {{- $byPsn := dict -}}
   {{- $unlinked := slice -}}
-  {{- /* 게임 리뷰만 연결한다. 콘텐츠 분석은 한 게임에 대한 글이 아니라
+  {{- /* 게임 리뷰만 연결한다. 탐구와 분석은 한 게임에 대한 글이 아니라
          특정 주제를 다루는 글이라, 목록의 한 행에 붙일 대상이 아니다. */ -}}
   {{- range where site.RegularPages "Section" "review" -}}
     {{- $p := . -}}

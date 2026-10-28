@@ -27,7 +27,7 @@ const TAXONOMIES = ['categories', 'tags', 'developers', 'publishers'];
 const SLUGS = {
   categories: {
     '게임 리뷰': 'review',
-    '콘텐츠 분석': 'analysis',
+    '탐구와 분석': 'analysis',
   },
   tags: {
     '서사': 'narrative',

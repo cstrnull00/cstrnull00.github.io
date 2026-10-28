@@ -6,7 +6,7 @@ image: images/OpenWorldAndFreedom01.webp
 # 특정 게임을 다루는 글이 아니므로 플레이 목록 연결 대상에서 제외
 played_ignore: true
 categories:
-  - 콘텐츠 분석
+  - 탐구와 분석
 tags:
   - 오픈월드
 ---

@@ -78,7 +78,7 @@ params:
 
   sidebar:
     compact: false
-    subtitle: "게임 리뷰와 콘텐츠 분석"
+    subtitle: "게임을 읽는 여러 가지 방법"
     avatar: img/avatar.png
 
   article:
@@ -138,7 +138,7 @@ menu:
       params:
         icon: device-gamepad-2
     - identifier: analysis
-      name: 콘텐츠 분석
+      name: 탐구와 분석
       url: /analysis/
       weight: 3
       params:

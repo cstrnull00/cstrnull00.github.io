@@ -352,6 +352,16 @@
     --article-font-size: 1.5rem;
   }
 
+  /* 휴대폰에서는 글 제목을 18px 로 줄인다. */
+  .article-title {
+    font-size: 1.8rem;
+    line-height: 1.4;
+  }
+
+  .article-meta > .inline-meta.article-summary-meta .article-category-link {
+    font-size: 1.2rem;
+  }
+
   /* 바깥 여백이 없어진 만큼 프로필·제목·아이콘과 메뉴 버튼은 따로 안쪽으로 들인다 */
   /* 테마의 footer.site-footer 규칙이 더 구체적이라 .main-container 를 붙여 우선한다 */
   .left-sidebar,
@@ -541,7 +551,7 @@
 /* 한글 웹폰트는 layouts/_partials/head/custom-font.html 에서 로드한다. */
 
 :root {
-  --base-font-family: "Pretendard Variable", Pretendard, var(--sys-font-family), sans-serif;
+  --base-font-family: "Noto Sans KR", var(--sys-font-family), sans-serif;
   --article-font-family: var(--base-font-family);
 
   /* 배경색 (라이트) */

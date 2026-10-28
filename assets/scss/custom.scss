@@ -141,6 +141,23 @@
 }
 
 @media (max-width: 999.98px) {
+  .section-intro {
+    gap: 12px;
+
+    h1 {
+      font-size: 2.2rem;
+    }
+
+    .section-intro-icon {
+      transform: translateY(-2px);
+
+      svg {
+        width: 44px;
+        height: 44px;
+      }
+    }
+  }
+
   .main-container:has(.section-intro) {
     row-gap: 22px;
   }
@@ -1521,6 +1538,7 @@
     }
 
     tbody tr {
+      position: relative;
       display: grid;
       grid-template-columns: max-content max-content max-content 1fr auto;
       grid-template-areas:
@@ -1528,7 +1546,10 @@
         "hours last src . rev";
       align-items: center;
       column-gap: 0.8em;
-      padding: 0.6em 0;
+      row-gap: 4px;
+      min-height: 68px;
+      box-sizing: border-box;
+      padding: 12px 0 12px 52px;
       border-bottom: 1px solid var(--card-separator-color);
     }
 
@@ -1550,6 +1571,17 @@
 
     td.played-title {
       grid-area: title;
+      font-size: 1.6rem;
+      line-height: 1.5;
+
+      > .played-iconlink,
+      > .played-icon {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        margin: 0;
+      }
     }
 
     td.played-col-rev {
@@ -1564,10 +1596,15 @@
       text-align: left;
     }
 
-    /* 아이콘(32px) + 여백(8px) 만큼 들여 이름 아래에 줄을 맞춘다 */
+    td.played-col-hours,
+    td.played-col-last {
+      font-size: 1.4rem;
+    }
+
+    /* 행 전체를 들여써 제목과 플레이 정보를 같은 시작점에 맞춘다. */
     td.played-col-hours {
       grid-area: hours;
-      padding-left: 40px;
+      padding-left: 0;
     }
 
     td.played-col-last {
@@ -1588,6 +1625,13 @@
         height: 1.2em;
       }
     }
+  }
+
+  .article-page .main-article .article-content .played-table img.played-icon,
+  .played-table .played-icon-none {
+    width: 40px;
+    height: 40px;
+    margin-right: 0;
   }
 }
 

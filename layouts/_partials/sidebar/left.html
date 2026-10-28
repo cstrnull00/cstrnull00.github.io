@@ -65,7 +65,12 @@
                 {{ with .Params.Icon }}
                     {{ partial "helper/icon" . }}
                 {{ end }}
-                <span>{{- .Name -}}</span>
+                {{- $posts := where $currentPage.Site.RegularPages "Section" "in" $currentPage.Site.Params.mainSections -}}
+                {{- $count := -1 -}}
+                {{- if in $currentPage.Site.Params.mainSections .Identifier -}}
+                    {{- $count = len (where $posts "Section" .Identifier) -}}
+                {{- end -}}
+                <span>{{- .Name -}}{{ if ge $count 0 }} <small class="menu-post-count">({{ $count }})</small>{{ end }}</span>
             </a>
         </li>
         {{ end }}

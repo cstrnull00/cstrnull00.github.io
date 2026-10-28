@@ -1711,3 +1711,10 @@
     }
   }
 }
+
+#main-menu .menu-post-count {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--card-text-color-secondary);
+  font-variant-numeric: tabular-nums;
+}

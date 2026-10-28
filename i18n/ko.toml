@@ -1,0 +1,3 @@
+[list.page]
+    one = "{{ .Count }}개의 글"
+    other = "{{ .Count }}개의 글"

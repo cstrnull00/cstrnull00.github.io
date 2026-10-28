@@ -51,6 +51,89 @@
   }
 }
 
+/* 섹션 소개는 목록 카드와 구분되는 열린 헤더로 표시한다. */
+.section-intro {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 0 14px;
+  border-bottom: 2px solid var(--accent-color);
+
+  .section-intro-heading {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  h1 {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: var(--accent-color);
+    font-size: 2.6rem;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  .section-intro-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: var(--accent-color);
+    transform: translateY(-4px);
+
+    svg {
+      width: 64px;
+      height: 64px;
+      stroke-width: 1.4;
+    }
+  }
+
+  .section-intro-copy {
+    min-width: 0;
+  }
+
+  .section-intro-count {
+    color: var(--card-text-color-secondary);
+    font-size: 1.3rem;
+    white-space: nowrap;
+  }
+
+  p {
+    margin: 6px 0 0;
+    color: var(--card-text-color-secondary);
+    font-size: 1.4rem;
+    line-height: 1.6;
+    word-break: keep-all;
+  }
+}
+
+@media (max-width: 639.98px) {
+  .section-intro {
+    padding: 4px 16px 14px;
+    gap: 12px;
+  }
+}
+
+.main-container:has(.section-intro) {
+  --main-top-padding: 35px;
+}
+
+@media (max-width: 999.98px) {
+  .main-container:has(.section-intro) {
+    row-gap: 22px;
+  }
+
+  main.main:has(> .section-intro) {
+    gap: 20px;
+  }
+
+  .section-intro p {
+    margin-top: 6px;
+  }
+}
+
 @media (max-width: 359.98px) {
   .article-list--compact article > a:has(.article-image) .article-details {
     padding-block: 4px;

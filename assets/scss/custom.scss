@@ -551,7 +551,7 @@
 /* 한글 웹폰트는 layouts/_partials/head/custom-font.html 에서 로드한다. */
 
 :root {
-  --base-font-family: "Noto Sans KR", var(--sys-font-family), sans-serif;
+  --base-font-family: Pretendard, var(--sys-font-family), sans-serif;
   --article-font-family: var(--base-font-family);
 
   /* 배경색 (라이트) */

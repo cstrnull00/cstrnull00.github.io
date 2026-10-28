@@ -719,6 +719,71 @@
   white-space: nowrap;
 }
 
+/* 글 본문의 일반 표 테두리·줄무늬를 게임 목록에는 적용하지 않는다. */
+.article-content .played-table {
+  tbody tr:nth-child(even) {
+    background: transparent;
+  }
+}
+
+@media (min-width: 640px) {
+  .article-content .played-table {
+    font-size: 1.6rem;
+
+    th,
+    td {
+      border: 0;
+      border-bottom: 1px solid var(--card-separator-color);
+    }
+
+    th {
+      padding: 12px 10px;
+      color: var(--card-text-color-secondary);
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+
+    td {
+      padding: 12px 10px;
+    }
+
+    tbody tr:hover {
+      background: var(--navigation-hover-bg);
+    }
+
+    .played-col-hours,
+    .played-col-last {
+      color: var(--card-text-color-secondary);
+      font-size: 1.4rem;
+    }
+
+    td.played-col-hours,
+    td.played-col-last {
+      font-size: 1.5rem;
+    }
+
+    .played-col-src svg {
+      width: 28px;
+      height: 28px;
+    }
+
+    th.played-col-hours,
+    td.played-col-hours,
+    th.played-col-last,
+    td.played-col-last,
+    th.played-col-rev,
+    td.played-col-rev {
+      text-align: center;
+    }
+
+    th.played-col-hours button,
+    th.played-col-last button,
+    th.played-col-rev button {
+      justify-content: center;
+    }
+  }
+}
+
 /* 시간·아이콘 열은 폭을 고정해 제목이 넓게 쓰이도록 */
 .played-col-hours,
 .played-col-last,
@@ -764,6 +829,15 @@
   width: 32px;
   height: 32px;
   object-fit: cover;
+}
+
+@media (min-width: 640px) {
+  .article-page .main-article .article-content .played-table img.played-icon,
+  .played-table .played-icon-none {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+  }
 }
 
 .played-icon-none {

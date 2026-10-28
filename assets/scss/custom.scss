@@ -1718,3 +1718,45 @@
   color: var(--card-text-color-secondary);
   font-variant-numeric: tabular-nums;
 }
+
+/* 제목 아래에 카테고리와 게시일을 한 줄로 묶는다. */
+.article-meta > .inline-meta.article-summary-meta {
+  gap: 8px;
+  line-height: 1.5;
+
+  .article-category-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent-color);
+    font-size: 1.5rem;
+    font-weight: 600;
+    white-space: nowrap;
+
+    &:hover {
+      color: var(--accent-color-darker);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--accent-color);
+      outline-offset: 4px;
+    }
+  }
+
+  .article-category-icon {
+    display: inline-flex;
+    color: inherit;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 1.75;
+    }
+  }
+
+  time {
+    white-space: nowrap;
+  }
+}

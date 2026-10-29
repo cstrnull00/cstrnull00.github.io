@@ -158,3 +158,8 @@ menu:
       url: mailto:thack9849@gmail.com
       params:
         icon: mail
+    - identifier: rss
+      name: RSS로 구독
+      url: /index.xml
+      params:
+        icon: rss

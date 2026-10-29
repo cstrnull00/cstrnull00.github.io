@@ -8,3 +8,27 @@
     {{- end -}}
   {{- end -}}
 {{- end -}}
+{{- with .Site.Home.OutputFormats.Get "RSS" -}}
+  <dialog id="rss-subscribe" class="rss-subscribe" aria-labelledby="rss-subscribe-title" aria-describedby="rss-subscribe-description">
+    <div class="rss-subscribe-header">
+      <h2 id="rss-subscribe-title"><span class="rss-subscribe-icon" aria-hidden="true">{{ partial "helper/icon" "rss" }}</span><span>RSS로 새 글 받아보기</span></h2>
+      <form method="dialog"><button type="submit" aria-label="RSS 구독 안내 닫기">닫기</button></form>
+    </div>
+    <p id="rss-subscribe-description">RSS 리더에 이 블로그를 등록하면 새 글을 모아볼 수 있어요.</p>
+    <ol>
+      <li>아래 피드 주소를 복사하세요.</li>
+      <li>사용하는 RSS 리더에서 ‘구독 추가’ 또는 ‘피드 추가’를 선택하세요.</li>
+      <li>주소를 붙여넣고 구독하면 됩니다.</li>
+    </ol>
+    <label for="rss-feed-url">피드 주소</label>
+    <input id="rss-feed-url" type="url" value="{{ .Permalink }}" readonly spellcheck="false">
+    <div class="rss-subscribe-actions">
+      <button type="button" data-rss-copy>주소 복사</button>
+      <a href="{{ .RelPermalink }}">RSS 피드 직접 열기</a>
+    </div>
+    <p class="rss-subscribe-status" data-rss-status role="status" aria-live="polite"></p>
+  </dialog>
+  {{- with resources.Get "js/rss-subscribe.js" | minify | fingerprint -}}
+    <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>
+  {{- end -}}
+{{- end -}}

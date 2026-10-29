@@ -43,8 +43,8 @@
                     <a 
                         href='{{ .URL }}'
                         {{ if .Params.newTab }}target="_blank"{{ end }}
-                        {{ with .Name }}title="{{ . }}"{{ end }}
-                        rel="me"
+                        {{ with .Name }}title="{{ . }}" aria-label="{{ . }}"{{ end }}
+                        {{ if eq .Identifier "rss" }}rel="alternate" type="application/rss+xml" data-rss-subscribe{{ else }}rel="me"{{ end }}
                     >
                         {{ $icon := default "link" .Params.Icon }}
                         {{ with $icon }}

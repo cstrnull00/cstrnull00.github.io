@@ -548,6 +548,16 @@
    임포트되므로 여기서 덮어쓰면 전부 반영됩니다.
    =================================================================== */
 
+/* 라이트 모드의 원형 그림자를 유지하고, 다크 모드에서도 둘레가 은은히 드러나게 한다. */
+.left-sidebar .site-avatar .site-logo {
+  box-shadow: var(--shadow-l1);
+}
+
+:root[data-scheme="dark"] .left-sidebar .site-avatar .site-logo {
+  box-shadow: 0 0 8px rgba(168, 197, 220, 0.15),
+              0 4px 12px rgba(0, 0, 0, 0.28);
+}
+
 html.rss-subscribe-open {
   overflow: hidden;
 }

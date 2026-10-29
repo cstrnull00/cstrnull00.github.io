@@ -60,10 +60,10 @@
 }
 
 :root[data-scheme="dark"] {
-  --navigation-accent: #a8c5dc;
-  --navigation-accent-hover: #c5d8e8;
-  --navigation-selected-bg: rgba(120, 163, 195, 0.18);
-  --navigation-hover-bg: rgba(120, 163, 195, 0.1);
+  --navigation-accent: #d5b589;
+  --navigation-accent-hover: #e3c9a6;
+  --navigation-selected-bg: rgba(200, 167, 124, 0.18);
+  --navigation-hover-bg: rgba(200, 167, 124, 0.1);
 }
 
 .section-intro {
@@ -554,7 +554,7 @@
 }
 
 :root[data-scheme="dark"] .left-sidebar .site-avatar .site-logo {
-  box-shadow: 0 0 8px rgba(168, 197, 220, 0.15),
+  box-shadow: 0 0 8px rgba(200, 167, 124, 0.15),
               0 4px 12px rgba(0, 0, 0, 0.28);
 }
 
@@ -670,8 +670,8 @@ html.rss-subscribe-open {
   /* 배경색 (다크) */
   --body-background: #1c1f24;
   --card-background: #24282f;
-  --accent-color: #e8edf2;
-  --accent-color-darker: #c8d2dc;
+  --accent-color: #c8a77c;
+  --accent-color-darker: #d5b589;
 }
 
 /* compact 목록: 제목 아래에 카테고리 · 날짜를 한 줄로 좌측 정렬 */

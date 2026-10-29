@@ -273,7 +273,7 @@
               <a class="played-badge{{ with $tier }} played-score {{ . }}{{ end }}"
                  href="{{ .rev.url }}"
                  aria-label="{{ .name }} 리뷰 읽기{{ with $sc }} — 총점 {{ . }}점{{ end }}"
-                >{{ with $sc }}{{ . }}{{ else }}리뷰{{ end }}</a>
+                >{{ with $sc }}<span class="played-score-dot" aria-hidden="true"></span><span class="played-score-number">{{ . }}</span>{{ else }}리뷰{{ end }}</a>
             {{- end -}}
           </td>
           {{- /* 출처 표시용(링크 아님). 머리글이 있는 열이므로 로고만 두지 않고

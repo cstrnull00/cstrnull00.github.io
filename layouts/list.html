@@ -1,7 +1,15 @@
 {{ define "main" }}
+    {{- $isAnalysis := and .IsSection (eq .RelPermalink "/analysis/") -}}
+    {{- $pages := partial "helper/pages.html" . -}}
+    {{- $subsections := .Sections -}}
+    {{- if $isAnalysis -}}
+        {{- with .GetPage "OngoingGames" -}}
+            {{- $subsections = $subsections | complement (slice .) -}}
+        {{- end -}}
+    {{- end -}}
     {{ $isEditorial := or (and .IsSection (in .Site.Params.mainSections .Section)) (and (eq .Kind "term") (eq .Data.Plural "categories")) }}
     {{ if $isEditorial }}
-    {{ partial "section-intro" (dict "Page" . "CountLabel" (T "list.page" (len .RegularPages))) }}
+    {{ partial "section-intro" (dict "Page" . "CountLabel" (T "list.page" (cond $isAnalysis (len $pages) (len .RegularPages)))) }}
     {{ else }}
     <header>
         <h3 class="section-title">
@@ -43,9 +51,6 @@
     </header>
     {{ end }}
 
-    {{- $pages := partial "helper/pages.html" . -}}
-    {{- $subsections := .Sections -}}
-
     {{- if and (eq (len $pages) (len $subsections)) (eq $pages $subsections) -}}
         {{- $subsections = slice -}}
     {{- end -}}
@@ -64,7 +69,7 @@
     {{- end -}}
 
     {{/* List only pages that are not a subsection */}}
-    {{ $paginator := partial "helper/paginator.html" . }}
+    {{ $paginator := .Paginate $pages }}
     {{ $hideCategory := $isEditorial }}
     {{ with $paginator }}
         <section class="article-list--compact">

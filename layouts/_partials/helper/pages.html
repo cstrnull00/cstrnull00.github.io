@@ -1,0 +1,22 @@
+{{- $pages := .Pages -}}
+
+{{- if .IsHome -}}
+    {{- $pages = where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
+{{- else if or (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
+    {{- $subsections := .Sections -}}
+    {{- $pages = .Pages | complement $subsections -}}
+    {{- if and .IsSection (eq .RelPermalink "/analysis/") -}}
+        {{- with .GetPage "OngoingGames" -}}
+            {{- range (sort .RegularPagesRecursive "Params.series_order" "asc") -}}
+                {{- $pages = $pages | append . -}}
+            {{- end -}}
+        {{- end -}}
+        {{- $pages = $pages.ByDate.Reverse -}}
+    {{- end -}}
+    {{- if eq (len $pages) 0 -}}
+        {{- $pages = $subsections -}}
+    {{- end -}}
+{{- end -}}
+
+{{- $pages = partial "helper/pages-sort.html" (dict "Pages" $pages "Context" .) -}}
+{{- return $pages -}}

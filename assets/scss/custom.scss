@@ -1797,10 +1797,11 @@ html.rss-subscribe-open {
 
   ol li a:first-of-type::before {
     margin-right: 0.3em;
+    flex: none;
   }
 
   a {
-    display: block;
+    display: flex;
     padding: 0.35em 0.6em;
     border-radius: 6px;
     transition: background-color 0.15s;
@@ -1811,6 +1812,7 @@ html.rss-subscribe-open {
   }
 
   li.active-class > a {
+    display: flex !important;
     margin-left: 0 !important;
     padding-left: 0.6em !important;
     border-left: 0 !important;

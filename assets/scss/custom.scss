@@ -1036,8 +1036,7 @@ html.rss-subscribe-open {
   transition: opacity 0.15s ease;
 }
 
-/* 점수는 작은 색 점과 숫자로 표시한다. 구간 색은 75+ / 50-74 / 0-49.
-   숫자는 본문 색을 유지하고, 링크 영역은 모바일에서도 누르기 쉽게 확보한다. */
+/* 점수에 비례해 구간별 색상의 원형 띠를 채운다. */
 .played-badge.played-score {
   display: inline-flex;
   align-items: center;
@@ -1059,6 +1058,10 @@ html.rss-subscribe-open {
   --played-score-color: #66cc33;
 }
 
+.played-score.is-favorable {
+  --played-score-color: #a3e635;
+}
+
 .played-score.is-mixed {
   --played-score-color: #ffcc33;
 }
@@ -1067,14 +1070,25 @@ html.rss-subscribe-open {
   --played-score-color: #ff4d4d;
 }
 
-.played-score-dot {
-  width: 6px;
-  height: 6px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: var(--played-score-color);
+.played-score-number {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  color: var(--card-text-color-main);
 }
 
+.played-score-number::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from calc(360deg - var(--score-progress) * 3.6deg), var(--played-score-color) calc(var(--score-progress) * 1%), transparent 0);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+}
 .played-badge.played-score:hover,
 .played-badge.played-score:focus-visible {
   color: var(--card-text-color-main);

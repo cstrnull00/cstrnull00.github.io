@@ -84,10 +84,14 @@
   {{- warnf "[game-info] %s: 기본 정보가 빠졌습니다 (developers, publishers, releases, rating)" $p.RelPermalink -}}
 {{- end }}
 
+{{- $rating := $p.Params.rating | default "" -}}
+{{- $ratingKey := replaceRE `\s+` "" $rating -}}
+{{- $ratingFiles := dict "전체이용가" "all-square.svg" "12세이용가" "12-square.svg" "15세이용가" "15-square.svg" "청소년이용불가" "19-square.svg" -}}
+{{- $ratingFile := index $ratingFiles $ratingKey -}}
 > | | |
 > |:--|:--|
 > | **개발** | {{ delimit $dev " / " }} |
 > | **유통** | {{ delimit $pub " / " }} |
 > | **출시** | {{ delimit $dates " / " }} |
 > | **플랫폼** | {{ delimit $plats " / " | safeHTML }} |
-> | **심의 등급** | {{ $p.Params.rating }} |
+> | **심의 등급** | <span class="game-rating" style="display:inline-flex;align-items:center;gap:0.3em;vertical-align:middle">{{ with $ratingFile }}<img class="game-rating-icon" style="display:block;flex:none;width:1.35em;height:1.35em;max-width:1.35em;object-fit:contain;margin:0" src="{{ printf "images/ratings/%s" . | relURL }}" alt="" aria-hidden="true">{{ end }}<span>{{ $rating }}</span></span> |

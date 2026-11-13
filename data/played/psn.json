@@ -1,6 +1,6 @@
 {
   "platform": "psn",
-  "updated": "2026-11-12T23:02:20.305Z",
+  "updated": "2026-11-13T23:05:52.850Z",
   "minMinutes": 120,
   "ownedGames": 63,
   "listedGames": 45,
@@ -186,7 +186,7 @@
       "name": "DEATH STRANDING 2: ON THE BEACH",
       "minutes": 2406,
       "lastPlayed": "2025-07-06T10:24:23.310000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202511/2115/ae183c63bbeb38d05ecce96aa7f693b4a3769a1835020b63.png",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202502/2711/cbc6c3135660ec68eacc766959a766b36d7ce3fa6010ca88.png",
       "category": "ps5_native_game",
       "conceptId": "10001538"
     },

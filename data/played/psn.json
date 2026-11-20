@@ -1,11 +1,11 @@
 {
   "platform": "psn",
-  "updated": "2026-11-20T00:06:07.108Z",
+  "updated": "2026-11-20T23:32:02.248Z",
   "minMinutes": 120,
   "ownedGames": 64,
   "listedGames": 46,
   "unknownDuration": 0,
-  "totalMinutes": 118212,
+  "totalMinutes": 119126,
   "games": [
     {
       "titleId": "PPSA27360_00",
@@ -204,6 +204,15 @@
       ]
     },
     {
+      "titleId": "PPSA01547_00",
+      "name": "Grand Theft Auto VI",
+      "minutes": 2084,
+      "lastPlayed": "2026-11-20T14:10:14.170000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
+      "category": "ps5_native_game",
+      "conceptId": "10000730"
+    },
+    {
       "titleId": "CUSA07413_00",
       "name": "God of War",
       "minutes": 1859,
@@ -260,15 +269,6 @@
       "icon": "https://image.api.playstation.com/vulcan/img/rnd/202011/1101/zC3kulm2Ho3ZE38ZUYHW7WMK.png",
       "category": "unknown",
       "conceptId": "205353"
-    },
-    {
-      "titleId": "PPSA01547_00",
-      "name": "Grand Theft Auto VI",
-      "minutes": 1170,
-      "lastPlayed": "2026-11-19T22:55:35.680000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
-      "category": "ps5_native_game",
-      "conceptId": "10000730"
     },
     {
       "titleId": "CUSA08392_00",

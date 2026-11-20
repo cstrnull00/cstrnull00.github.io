@@ -1,11 +1,11 @@
 {
   "platform": "psn",
-  "updated": "2026-11-18T23:45:11.358Z",
+  "updated": "2026-11-20T00:06:07.108Z",
   "minMinutes": 120,
   "ownedGames": 64,
   "listedGames": 46,
-  "unknownDuration": 1,
-  "totalMinutes": 117042,
+  "unknownDuration": 0,
+  "totalMinutes": 118212,
   "games": [
     {
       "titleId": "PPSA27360_00",
@@ -262,6 +262,15 @@
       "conceptId": "205353"
     },
     {
+      "titleId": "PPSA01547_00",
+      "name": "Grand Theft Auto VI",
+      "minutes": 1170,
+      "lastPlayed": "2026-11-19T22:55:35.680000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
+      "category": "ps5_native_game",
+      "conceptId": "10000730"
+    },
+    {
       "titleId": "CUSA08392_00",
       "name": "Detroit: Become Human™",
       "minutes": 1150,
@@ -431,15 +440,6 @@
       "icon": "https://image.api.playstation.com/gs2-sec/acpkgo/prod/CUSA04551_00/2/i_cdee925ec8ea903fb9f7f6eda4471a56c2e6cd32c495ee44f04e7ac082c0ae21/i/icon0.png",
       "category": "unknown",
       "conceptId": "217551"
-    },
-    {
-      "titleId": "PPSA01547_00",
-      "name": "Grand Theft Auto VI",
-      "minutes": null,
-      "lastPlayed": "2026-11-18T15:00:50.860000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
-      "category": "ps5_native_game",
-      "conceptId": "10000730"
     }
   ]
 }

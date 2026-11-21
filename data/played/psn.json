@@ -1,11 +1,11 @@
 {
   "platform": "psn",
-  "updated": "2026-11-20T23:32:02.248Z",
+  "updated": "2026-11-21T22:39:17.788Z",
   "minMinutes": 120,
   "ownedGames": 64,
   "listedGames": 46,
   "unknownDuration": 0,
-  "totalMinutes": 119126,
+  "totalMinutes": 119859,
   "games": [
     {
       "titleId": "PPSA27360_00",
@@ -142,6 +142,15 @@
       "conceptId": "228712"
     },
     {
+      "titleId": "PPSA01547_00",
+      "name": "Grand Theft Auto VI",
+      "minutes": 2817,
+      "lastPlayed": "2026-11-21T14:01:27.950000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
+      "category": "ps5_native_game",
+      "conceptId": "10000730"
+    },
+    {
       "titleId": "PPSA08334_00",
       "name": "God of War Ragnarök",
       "minutes": 2768,
@@ -202,15 +211,6 @@
         "PPSA24700_00",
         "PPSA25915_00"
       ]
-    },
-    {
-      "titleId": "PPSA01547_00",
-      "name": "Grand Theft Auto VI",
-      "minutes": 2084,
-      "lastPlayed": "2026-11-20T14:10:14.170000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
-      "category": "ps5_native_game",
-      "conceptId": "10000730"
     },
     {
       "titleId": "CUSA07413_00",

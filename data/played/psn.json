@@ -1,11 +1,11 @@
 {
   "platform": "psn",
-  "updated": "2026-11-24T03:40:47.184Z",
+  "updated": "2026-11-25T01:47:45.630Z",
   "minMinutes": 120,
   "ownedGames": 64,
   "listedGames": 46,
   "unknownDuration": 0,
-  "totalMinutes": 120981,
+  "totalMinutes": 121745,
   "games": [
     {
       "titleId": "PPSA27360_00",
@@ -66,6 +66,15 @@
       "conceptId": "10007176"
     },
     {
+      "titleId": "PPSA01547_00",
+      "name": "Grand Theft Auto VI",
+      "minutes": 4703,
+      "lastPlayed": "2026-11-25T00:42:50.210000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
+      "category": "ps5_native_game",
+      "conceptId": "10000730"
+    },
+    {
       "titleId": "PPSA08340_00",
       "name": "마블 스파이더맨 2",
       "minutes": 4174,
@@ -73,15 +82,6 @@
       "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202306/1300/5a52270c8384a851164c66a3c4ab28f7c43e1691c69e22f4.png",
       "category": "ps5_native_game",
       "conceptId": "10002456"
-    },
-    {
-      "titleId": "PPSA01547_00",
-      "name": "Grand Theft Auto VI",
-      "minutes": 3939,
-      "lastPlayed": "2026-11-24T00:13:27.580000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
-      "category": "ps5_native_game",
-      "conceptId": "10000730"
     },
     {
       "titleId": "CUSA17357_00",

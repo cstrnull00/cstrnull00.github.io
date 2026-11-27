@@ -1,11 +1,11 @@
 {
   "platform": "psn",
-  "updated": "2026-11-26T01:23:54.896Z",
+  "updated": "2026-11-27T01:21:57.530Z",
   "minMinutes": 120,
   "ownedGames": 64,
   "listedGames": 46,
   "unknownDuration": 0,
-  "totalMinutes": 122517,
+  "totalMinutes": 122927,
   "games": [
     {
       "titleId": "PPSA27360_00",
@@ -57,6 +57,15 @@
       "conceptId": "209441"
     },
     {
+      "titleId": "PPSA01547_00",
+      "name": "Grand Theft Auto VI",
+      "minutes": 5885,
+      "lastPlayed": "2026-11-26T13:02:52.170000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
+      "category": "ps5_native_game",
+      "conceptId": "10000730"
+    },
+    {
       "titleId": "PPSA13392_00",
       "name": "EA SPORTS FC™ 24",
       "minutes": 5560,
@@ -64,15 +73,6 @@
       "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202406/1122/7a3b10ed3abad7f4f23f7f148e7e48e78e2cc8dc0c541090.png",
       "category": "ps5_native_game",
       "conceptId": "10007176"
-    },
-    {
-      "titleId": "PPSA01547_00",
-      "name": "Grand Theft Auto VI",
-      "minutes": 5475,
-      "lastPlayed": "2026-11-26T00:55:52.000000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
-      "category": "ps5_native_game",
-      "conceptId": "10000730"
     },
     {
       "titleId": "PPSA08340_00",

@@ -1,11 +1,11 @@
 {
   "platform": "psn",
-  "updated": "2026-11-27T01:21:57.530Z",
+  "updated": "2026-11-28T00:55:19.933Z",
   "minMinutes": 120,
   "ownedGames": 64,
   "listedGames": 46,
   "unknownDuration": 0,
-  "totalMinutes": 122927,
+  "totalMinutes": 123035,
   "games": [
     {
       "titleId": "PPSA27360_00",
@@ -48,6 +48,15 @@
       "conceptId": "10009762"
     },
     {
+      "titleId": "PPSA01547_00",
+      "name": "Grand Theft Auto VI",
+      "minutes": 5993,
+      "lastPlayed": "2026-11-27T14:00:50.400000Z",
+      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
+      "category": "ps5_native_game",
+      "conceptId": "10000730"
+    },
+    {
       "titleId": "CUSA03041_00",
       "name": "Red Dead Redemption 2",
       "minutes": 5931,
@@ -55,15 +64,6 @@
       "icon": "https://image.api.playstation.com/gs2-sec/appkgo/prod/CUSA08519_00/12/i_3da1cf7c41dc7652f9b639e1680d96436773658668c7dc3930c441291095713b/i/icon0.png",
       "category": "ps4_game",
       "conceptId": "209441"
-    },
-    {
-      "titleId": "PPSA01547_00",
-      "name": "Grand Theft Auto VI",
-      "minutes": 5885,
-      "lastPlayed": "2026-11-26T13:02:52.170000Z",
-      "icon": "https://image.api.playstation.com/vulcan/ap/rnd/202606/1818/9f51f0ccdb65bd29c36a0907a738c2902a712f03e2fd6470.png",
-      "category": "ps5_native_game",
-      "conceptId": "10000730"
     },
     {
       "titleId": "PPSA13392_00",
